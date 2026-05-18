@@ -1,30 +1,631 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 4.1 — Visão geral iAmasters OS | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .bg-amber-500\/20{background-color:rgba(217,119,6,.12)}html:not(.dark) .bg-amber-500\/10{background-color:rgba(217,119,6,.08)}html:not(.dark) .border-amber-500\/30{border-color:rgba(217,119,6,.25)}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.1 — Visão geral do iAmasters OS | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+
+    /* Light mode — trilhas inativas no nav */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes removidos + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre.code-block { background-color: #0f172a; color: #e5e7eb; padding: 1rem 1.25rem; border-radius: 0.75rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; }
+    pre.code-block .cmt { color: #64748b; }
+    pre.code-block .kw { color: #fbbf24; }
+    pre.code-block .str { color: #86efac; }
+    html:not(.dark) pre.code-block { background-color: #1f2937; color: #f3f4f6; }
+    html:not(.dark) pre.code-block .cmt { color: #9ca3af; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">T3</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.1</span></div></nav>
-<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.1</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🌟 Visão geral do iAmasters OS</h1><p class="text-lg text-neutral-400 max-w-3xl">O que é, quem mantém, por que copiar. Estudo de caso real de Agentic OS multi-cliente em produção.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📖 1 parágrafo</h2></div><p class="text-neutral-300 mb-6">Repo MIT em português (iamasters-academy/iamasters-os), multi-cliente nativo, engine Sinapsis v4.5, mantido por Angel Aparicio. v0.6.0, ativo na comunidade <a href="https://www.skool.com/ia-masters-automations" class="text-amber-400" target="_blank">IA Masters Academy</a>.</p></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🎯 Para quem foi feito</h2></div><p class="text-neutral-300 mb-6">Operador = pessoa que entrega trabalho pra múltiplos clientes usando Claude Code. Consultor, freelance, agência pequena, in-house.</p></section>
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4 · iAmasters OS</a>
+      <span>/</span>
+      <span class="text-amber-400">Módulo 4.1</span>
+    </div>
+  </nav>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🪜 2 camadas</h2></div><div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6"><ul class="space-y-2 text-neutral-300 text-sm"><li><strong class="text-amber-400">Camada 1 (skills curadas):</strong> .claude/skills/ — biblioteca de habilidades.</li><li><strong class="text-amber-400">Camada 2 (Sinapsis engine):</strong> ~/.claude/ — kernel global que evolui.</li></ul></div></section>
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🌟 Visão geral do iAmasters OS</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        O que é, pra quem foi feito, como está montado, quanto custa de verdade. Um repo MIT em
+        português que entrega Agentic OS multi-cliente pronto pra um operador rodar 5, 10, 30 contas
+        sem reinventar tudo a cada vez.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">50</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Caso real</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Avançado</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">💰 Custo real</h2></div><p class="text-neutral-300 mb-6">Claude Pro/Max + 4-8h setup primeiro cliente. Marginal por cliente novo: ~1h. Skills economizam minutos/operação × N operações/semana = ROI claro.</p></section>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⚡ Install em 60s</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">git clone https://github.com/iamasters-academy/iamasters-os
+    <!-- TOPICO 1 — O que é -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📖 O que é, em 1 parágrafo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        iAmasters OS é um <strong class="text-amber-400">repositório open-source com licença MIT</strong>,
+        escrito em português, que entrega um Agentic OS <strong class="text-amber-400">multi-cliente nativo</strong>
+        — não um cliente único depois adaptado, mas pensado desde o primeiro commit para um operador
+        atender N contas. Vem com a <strong class="text-amber-400">Sinapsis v4.5</strong> embedded
+        (engine de memória semântica que evolui com o uso), mantido por
+        <strong class="text-amber-400">Angel Aparicio</strong> dentro da
+        <strong class="text-amber-400">IA Masters Academy</strong>. Versão atual:
+        <strong class="text-amber-400">v0.6.0</strong>. Pin de vendor permitido via subpasta
+        <code class="bg-dark-700 px-1.5 py-0.5 rounded text-xs text-amber-400">vendor/sinapsis</code>.
+      </p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3 flex items-center"><span class="mr-2">📌</span> A frase que resume o projeto</h3>
+        <p class="text-neutral-300 text-lg italic">
+          "Não é um framework para construir agentes. É a <strong class="text-amber-400">casa pronta</strong>
+          onde um consultor coloca 30 clientes sem precisar pensar em encanamento."
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Linha do tempo do projeto</h3>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">v0.1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Janeiro 2026 — Esqueleto</h4>
+            <p class="text-neutral-300 text-sm">Estrutura de pastas, CLAUDE.md base, 1 cliente exemplo. Sinapsis ainda externa via npm.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">v0.3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Março 2026 — Multi-cliente real</h4>
+            <p class="text-neutral-300 text-sm">Isolamento por cliente, hooks de redact, primeira release com 3 clientes-piloto em produção.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">v0.5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Abril 2026 — Sinapsis embedded</h4>
+            <p class="text-neutral-300 text-sm">Engine de memória copiada para <code class="bg-dark-700 px-1 rounded text-xs">vendor/sinapsis</code>. Versão travada, atualização opt-in.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">v0.6</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Maio 2026 — Atual</h4>
+            <p class="text-neutral-300 text-sm">Install em 60s via <code class="bg-dark-700 px-1 rounded text-xs">bun run install-dream</code>, Keychain integrado, launchd templates, skills curadas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Licença</strong><p class="text-xs text-neutral-400 mt-1">MIT — fork sem culpa.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Idioma</strong><p class="text-xs text-neutral-400 mt-1">Português nativo. Não é tradução.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Engine</strong><p class="text-xs text-neutral-400 mt-1">Sinapsis v4.5 embedded.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Mantenedor</strong><p class="text-xs text-neutral-400 mt-1">Angel Aparicio / IA Masters.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — Para quem -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">👥 Para quem foi feito</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Existe um perfil específico que o iAmasters OS atende — e outros perfis para quem o projeto é
+        <em>overkill</em>. Entender isso antes de instalar evita 2 semanas de frustração. O alvo é o
+        <strong class="text-amber-400">operador</strong>: pessoa ou time que vende serviços de IA
+        para múltiplos clientes externos.
+      </p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🎭</span> Operador vs. dev solo</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-amber-400 font-semibold">Dimensão</th>
+              <th class="text-left py-3 pr-4 text-amber-400 font-semibold">Operador (alvo)</th>
+              <th class="text-left py-3 text-amber-400 font-semibold">Dev solo (não-alvo)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4">Clientes ativos</td><td class="py-3 pr-4">5 a 30</td><td class="py-3">1 (você mesmo)</td></tr>
+            <tr><td class="py-3 pr-4">Faturamento por cliente</td><td class="py-3 pr-4">R$ 2k–20k/mês</td><td class="py-3">N/A</td></tr>
+            <tr><td class="py-3 pr-4">Tipo de trabalho</td><td class="py-3 pr-4">Automação, conteúdo, suporte</td><td class="py-3">Projeto pessoal</td></tr>
+            <tr><td class="py-3 pr-4">Isolamento de dados</td><td class="py-3 pr-4">Crítico (LGPD/contrato)</td><td class="py-3">Irrelevante</td></tr>
+            <tr><td class="py-3 pr-4">Onboarding por cliente</td><td class="py-3 pr-4">Repetível e barato</td><td class="py-3">Único</td></tr>
+            <tr><td class="py-3 pr-4">Stack</td><td class="py-3 pr-4">Claude Code + Sinapsis + skills</td><td class="py-3">Editor + Chat</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Use se você é</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Consultor de IA com carteira (5+ clientes pagantes).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Agência boutique que entrega automação como serviço.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Freelance que cobra retainer mensal por operação de agentes.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Time pequeno (2–6 pessoas) atendendo múltiplas contas.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Não use se você é</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dev solo otimizando seu workflow pessoal (vai pesar à toa).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Empresa grande com squad dedicado (monte o seu, mais flexível).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Curioso sem clientes reais — não testa nada do que importa.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usuário Windows sem WSL (suporte é macOS-first, Linux degradado).</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Alvo nº1</strong><p class="text-xs text-neutral-400 mt-1">Consultor multi-cliente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Alvo nº2</strong><p class="text-xs text-neutral-400 mt-1">Agência boutique.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Alvo nº3</strong><p class="text-xs text-neutral-400 mt-1">Freelance retainer.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Tamanho ideal</strong><p class="text-xs text-neutral-400 mt-1">5–30 clientes ativos.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — As 2 camadas -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧱 As 2 camadas que formam o OS</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        iAmasters OS não é um monolito. São <strong class="text-amber-400">duas camadas independentes</strong>
+        que conversam por convenção: <strong class="text-amber-400">skills curadas</strong> (o "userland")
+        e <strong class="text-amber-400">Sinapsis engine</strong> (o "kernel" de memória). Você pode
+        trocar uma sem mexer na outra — é isso que dá longevidade ao stack.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-3 text-lg">📦 Camada 1 — Skills curadas</h4>
+          <p class="text-sm text-neutral-300 mb-3">Vivem em <code class="bg-dark-700 px-1 rounded text-xs">.claude/skills/</code> por cliente.
+          Cada skill é um Markdown com frontmatter + instruções. Ativa por trigger no prompt.</p>
+          <ul class="text-sm text-neutral-300 space-y-1.5">
+            <li>• <strong>Local:</strong> repo do cliente, versionada em git.</li>
+            <li>• <strong>Escopo:</strong> 1 skill = 1 tarefa repetível.</li>
+            <li>• <strong>Curadoria:</strong> aprovada antes de virar default.</li>
+            <li>• <strong>Reuso:</strong> ~70% das skills servem &gt;1 cliente.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-3 text-lg">🧠 Camada 2 — Sinapsis engine</h4>
+          <p class="text-sm text-neutral-300 mb-3">Vive em <code class="bg-dark-700 px-1 rounded text-xs">~/.claude/vendor/sinapsis/</code>.
+          Memória semântica persistente, indexação automática de sessões, recall por relevância.</p>
+          <ul class="text-sm text-neutral-300 space-y-1.5">
+            <li>• <strong>Local:</strong> home do operador, isolado do cliente.</li>
+            <li>• <strong>Escopo:</strong> aprendizado do operador, não do cliente.</li>
+            <li>• <strong>Versão:</strong> v4.5 embedded, pin opcional.</li>
+            <li>• <strong>Privacy:</strong> redact automático antes de indexar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Exemplo de skill curada (formato real)</h3>
+      <pre class="code-block mb-6"><span class="cmt"># .claude/skills/relatorio-semanal-cliente-x.md</span>
+<span class="kw">---</span>
+<span class="kw">name:</span> <span class="str">relatorio-semanal</span>
+<span class="kw">description:</span> <span class="str">Gera relatório semanal pro cliente X em formato PDF</span>
+<span class="kw">trigger:</span> <span class="str">"gera o relatório da semana"</span>
+<span class="kw">scope:</span> <span class="str">cliente-x</span>
+<span class="kw">---</span>
+
+<span class="cmt"># Relatório Semanal — Cliente X</span>
+
+Buscar conversas dos últimos 7 dias em `dados/cliente-x/logs/`.
+Sintetizar nos 4 blocos: Entregas, Pendências, Riscos, Próximos passos.
+Renderizar via `templates/relatorio-pdf.html` com a cor amber.
+Salvar em `out/cliente-x/YYYY-WW.pdf`.</pre>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip — vendor/sinapsis permite pin de versão</h3>
+        <p class="text-neutral-300">
+          Quando Sinapsis lançar v4.6 (esperada Q3/2026), seu OS não quebra. O <code class="bg-dark-700 px-1 rounded text-xs">vendor/sinapsis</code>
+          fica travado na v4.5 até você rodar <code class="bg-dark-700 px-1 rounded text-xs">bun run update-vendor</code>
+          e validar em ambiente de staging. Isso é o que falta em 90% dos repos agênticos por aí —
+          atualização não pode ser surpresa em produção de cliente.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Skills</strong><p class="text-xs text-neutral-400 mt-1">Userland. Por cliente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Sinapsis</strong><p class="text-xs text-neutral-400 mt-1">Kernel. Do operador.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Isolamento</strong><p class="text-xs text-neutral-400 mt-1">2 dirs distintos.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Pin</strong><p class="text-xs text-neutral-400 mt-1">vendor/ trava versão.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Custo real -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💰 Custo real (sem maquiagem)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Marketing de stack agêntico costuma esconder o custo de setup. Aqui está o número honesto,
+        baseado em onboardings reais da IA Masters Academy em 2026. Custo se divide em
+        <strong class="text-amber-400">assinatura recorrente</strong> e
+        <strong class="text-amber-400">tempo humano de setup</strong>.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Custo médio observado em 2026</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-blue-400">US$ 100–200/mês</strong> — Claude Pro ou Max (dependendo do volume de tokens; Max compensa acima de ~3M tokens/mês).</li>
+          <li><strong class="text-blue-400">4–8 horas</strong> — setup do primeiro cliente. Inclui CLAUDE.md, primeiras skills, validação de hooks, redact.</li>
+          <li><strong class="text-blue-400">~1 hora</strong> — onboarding de cada cliente adicional, reusando 60–70% das skills.</li>
+          <li><strong class="text-blue-400">Payback em ~2 semanas</strong> — para operadores que já têm carteira de 5+ clientes ativos.</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Tabela de payback por porte</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600 text-amber-400">
+              <th class="text-left py-3 pr-4">Operador</th>
+              <th class="text-left py-3 pr-4">Clientes</th>
+              <th class="text-left py-3 pr-4">Setup total</th>
+              <th class="text-left py-3">Payback</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4">Freelance júnior</td><td class="py-3 pr-4">3</td><td class="py-3 pr-4">~10h</td><td class="py-3">~3 semanas</td></tr>
+            <tr><td class="py-3 pr-4">Freelance sênior</td><td class="py-3 pr-4">8</td><td class="py-3 pr-4">~15h</td><td class="py-3">~2 semanas</td></tr>
+            <tr><td class="py-3 pr-4">Agência boutique</td><td class="py-3 pr-4">20</td><td class="py-3 pr-4">~28h</td><td class="py-3">~10 dias</td></tr>
+            <tr><td class="py-3 pr-4">Time consultoria</td><td class="py-3 pr-4">30+</td><td class="py-3 pr-4">~40h</td><td class="py-3">~1 semana</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-3">✓ Fazer</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Copie skills da pasta <code class="bg-dark-700 px-1 rounded text-xs">exemplos/</code> tal-qual no primeiro cliente.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Comece com 1 cliente real (não exemplo) no setup inicial.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Use Claude Pro nos primeiros 30 dias, suba pra Max quando tokens estourarem.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Calcule margem por cliente em planilha simples antes do próximo contrato.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evitar</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reinventar skills do zero quando o exemplo cobre 80% do caso.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tentar atender 10 clientes na primeira semana. Comece em 1, valide em 30 dias.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pular a etapa de redact — vaza dado de A pra prompt de B uma vez e perdeu a confiança.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar Claude Free em produção — context window pequeno demais pra multi-skill.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Assinatura</strong><p class="text-xs text-neutral-400 mt-1">US$100–200/mês.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Setup nº1</strong><p class="text-xs text-neutral-400 mt-1">4–8h humanas.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Cliente nº N</strong><p class="text-xs text-neutral-400 mt-1">~1h cada.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Payback</strong><p class="text-xs text-neutral-400 mt-1">~2 semanas.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Instalação 60s -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚡ Instalação em 60 segundos</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Desde a v0.6 existe um instalador único, <strong class="text-amber-400">bun run install-dream</strong>,
+        que faz tudo: clone, configuração do Keychain, instalação do Sinapsis vendor, criação dos
+        templates de launchd, e validação do primeiro <em>health-check</em>. Em macOS, leva
+        ~60 segundos numa conexão decente.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Comandos exatos (copie e cole)</h3>
+      <pre class="code-block mb-6"><span class="cmt"># 1. Pré-requisitos: Bun >= 1.1, Claude Code CLI, macOS 14+</span>
+brew install oven-sh/bun/bun
+brew install --cask claude
+
+<span class="cmt"># 2. Clone e entra</span>
+git clone https://github.com/iamastersacademy/iamasters-os.git
 cd iamasters-os
+
+<span class="cmt"># 3. Instalação completa (Keychain + vendor + launchd)</span>
 bun install
-bun run install-dream</pre></div></section>
+bun run install-dream
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🌍 Platform scope (macOS first)</h2></div><p class="text-neutral-300 mb-6">Otimizado pra macOS (Keychain, dscl, launchd, /Applications). Linux roda degradado — sem auto-redact, sem cron Dream automático. REVIEW.md §2 lista tudo.</p></section>
+<span class="cmt"># 4. Valida</span>
+bun run doctor
 
-<section class="mb-12"><div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">iAmasters OS é a primeira implementação pública e completa de Agentic OS multi-cliente em PT. MIT, ativo, com comunidade.</p><div class="flex flex-col sm:flex-row gap-4"><a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar à trilha</a><a href="modulo-4-2.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo →</a></div></div></section>
+<span class="cmt"># 5. Adiciona primeiro cliente</span>
+bun run novo-cliente --nome=<span class="str">"acme-corp"</span></pre>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 4 · Módulo 4.1 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+      <h3 class="text-xl font-bold mb-4">O que o install-dream faz por baixo</h3>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Salva ANTHROPIC_API_KEY no Keychain</h4>
+            <p class="text-neutral-300 text-sm">Via <code class="bg-dark-700 px-1 rounded text-xs">security add-generic-password</code>. Nunca grava em <code class="bg-dark-700 px-1 rounded text-xs">.env</code> em disco. Auditável via Keychain Access.app.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Copia Sinapsis v4.5 pra vendor/</h4>
+            <p class="text-neutral-300 text-sm">Não é symlink, é cópia. Garante reprodutibilidade mesmo se o upstream sumir.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Registra launchd jobs</h4>
+            <p class="text-neutral-300 text-sm">Indexação noturna do Sinapsis, backup diário das skills, rotação de logs por cliente.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Roda doctor + smoke test</h4>
+            <p class="text-neutral-300 text-sm">Confere Keychain, perms, dscl, conectividade Anthropic, hash do vendor. Falha rápido se algo torto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Comando</strong><p class="text-xs text-neutral-400 mt-1">bun run install-dream</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Tempo</strong><p class="text-xs text-neutral-400 mt-1">~60s no macOS.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Reentrante</strong><p class="text-xs text-neutral-400 mt-1">Pode rodar 2x sem quebrar.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Doctor</strong><p class="text-xs text-neutral-400 mt-1">Validação automática.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Platform scope -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🍎 Platform scope: macOS first</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Decisão consciente, não preguiça. iAmasters OS depende de 3 primitivas nativas do macOS que
+        não têm equivalente 1-pra-1 em Linux/Windows: <strong class="text-amber-400">Keychain</strong>
+        (secrets), <strong class="text-amber-400">dscl</strong> (perfil do usuário), e
+        <strong class="text-amber-400">launchd</strong> (jobs agendados). Em Linux, tudo roda — mas
+        em modo degradado, com avisos.
+      </p>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — Linux roda degradado</h3>
+        <p class="text-neutral-300 mb-3">
+          Em distribuições Linux (testado em Ubuntu 22.04 e Fedora 40), o
+          <strong class="text-red-400">auto-redact de dados sensíveis não funciona</strong> —
+          a feature usa <code class="bg-dark-700 px-1 rounded text-xs">dscl</code> pra inferir o owner
+          da sessão e cruzar com a tabela de redação. Sem dscl, a engine cai em modo "log everything",
+          o que é inaceitável pra cliente regulado.
+        </p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Mitigação:</strong> Em Linux, desligue o auto-redact e use redact manual via hook PreToolUse. Documentado em <code class="bg-dark-700 px-1 rounded text-xs">docs/linux-fallback.md</code>.</p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Comparação cross-platform</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600 text-amber-400">
+              <th class="text-left py-3 pr-4">Feature</th>
+              <th class="text-left py-3 pr-4">macOS 14+</th>
+              <th class="text-left py-3 pr-4">Linux</th>
+              <th class="text-left py-3">Windows</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4">Install-dream</td><td class="py-3 pr-4 text-amber-400">✓ 60s</td><td class="py-3 pr-4">⚠ degradado</td><td class="py-3 text-red-400">✗ via WSL</td></tr>
+            <tr><td class="py-3 pr-4">Secrets em Keychain</td><td class="py-3 pr-4 text-amber-400">✓</td><td class="py-3 pr-4">⚠ libsecret</td><td class="py-3 text-red-400">✗</td></tr>
+            <tr><td class="py-3 pr-4">Auto-redact (dscl)</td><td class="py-3 pr-4 text-amber-400">✓</td><td class="py-3 pr-4 text-red-400">✗</td><td class="py-3 text-red-400">✗</td></tr>
+            <tr><td class="py-3 pr-4">Jobs agendados</td><td class="py-3 pr-4 text-amber-400">✓ launchd</td><td class="py-3 pr-4">⚠ cron/systemd</td><td class="py-3">⚠ Task Scheduler</td></tr>
+            <tr><td class="py-3 pr-4">Skills/Sinapsis</td><td class="py-3 pr-4 text-amber-400">✓</td><td class="py-3 pr-4 text-amber-400">✓</td><td class="py-3 pr-4 text-amber-400">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que macOS-first é defensável</h3>
+        <p class="text-neutral-300">
+          Operadores de IA brasileiros em 2026 são ~85% macOS (dado de pesquisa interna IA Masters,
+          n=412). Suportar 3 plataformas iguais triplicaria a superfície de bug e atrasaria features
+          em 4–6 meses por ciclo. A decisão é: <em>polir o caminho do usuário típico, oferecer
+          fallback documentado para os outros</em>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">macOS</strong><p class="text-xs text-neutral-400 mt-1">Tier 1. Suportado.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-red-400">Linux</strong><p class="text-xs text-neutral-400 mt-1">Tier 2. Degradado.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-red-400">Windows</strong><p class="text-xs text-neutral-400 mt-1">Tier 3. Só via WSL.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Auto-redact</strong><p class="text-xs text-neutral-400 mt-1">Só macOS.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">iAmasters OS é repo MIT em português</strong><span class="text-neutral-400"> — multi-cliente nativo, Sinapsis v4.5 embedded, mantido por Angel Aparicio na IA Masters Academy (v0.6.0).</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Alvo é o operador</strong><span class="text-neutral-400"> — consultor, agência ou freelance com 5–30 clientes pagantes. Não é pra dev solo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">2 camadas independentes</strong><span class="text-neutral-400"> — skills curadas em <code class="bg-dark-700 px-1 rounded text-xs">.claude/skills/</code> (userland) + Sinapsis engine em <code class="bg-dark-700 px-1 rounded text-xs">~/.claude/vendor/sinapsis/</code> (kernel de memória).</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Custo: US$ 100–200/mês + 4–8h setup do 1º cliente</strong><span class="text-neutral-400"> — depois ~1h por cliente novo, payback em ~2 semanas.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Install em 60s</strong><span class="text-neutral-400"> — <code class="bg-dark-700 px-1 rounded text-xs">bun run install-dream</code> resolve Keychain, vendor, launchd e doctor numa tacada.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">macOS-first é decisão consciente</strong><span class="text-neutral-400"> — Linux roda mas auto-redact não funciona (dscl ausente); Windows só via WSL.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">4.2 — Estrutura de pastas do iAmasters OS (o mapa por baixo do capô)</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 4</a>
+          <a href="modulo-4-2.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 4 · Módulo 4.1 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

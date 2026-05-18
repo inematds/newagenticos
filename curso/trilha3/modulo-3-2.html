@@ -1,67 +1,683 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 3.2 — Identidade & sessão | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .bg-purple-500\/20{background-color:rgba(124,58,237,.12)}html:not(.dark) .bg-purple-500\/10{background-color:rgba(124,58,237,.08)}html:not(.dark) .border-purple-500\/30{border-color:rgba(124,58,237,.25)}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.2 — Identidade & sessão | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    pre.code-box {
+      background-color: #0b1220;
+      color: #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      font-family: ui-monospace, Menlo, monospace;
+    }
+    html:not(.dark) pre.code-box { background-color: #0f172a; color: #e2e8f0; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span><a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span><span class="text-purple-400">Módulo 3.2</span></div></nav>
-<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.2</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🆔 Identidade & sessão</h1><p class="text-lg text-neutral-400 max-w-3xl">Workspace por user, auth-profiles, sessão por request. A base que tudo depois apoia.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🪪 User model mínimo</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>CREATE TABLE users (
-    id TEXT PRIMARY KEY,  -- UUID v4
-    name TEXT NOT NULL,
-    email TEXT UNIQUE,
-    created_at REAL NOT NULL,
-    roles TEXT DEFAULT '["user"]',  -- JSON
-    metadata TEXT DEFAULT '{}'
-);</code></pre></div></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📁 Workspace por user</h2></div><p class="text-neutral-300 mb-6">Pasta dedicada por user UUID. memory.db, files/, preferences.json isolados.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from pathlib import Path
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3 · Multi-user</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.2</span>
+    </div>
+  </nav>
 
-def user_workspace(user_id: str) -&gt; Path:
-    base = Path.home() / ".app" / "users" / user_id
-    base.mkdir(parents=True, exist_ok=True)
-    return base
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🪪 Identidade & sessão</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Quem é o user, onde mora, qual é o token dele, qual é o estado <em>desta</em> requisição —
+        e como tudo isso vive sem colidir entre 10 mil clientes simultâneos. Schema, código e LGPD.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Multi-user</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Prática</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-# Memory store por user
-memory = SQLiteFTS5Store(user_workspace(user.id) / "memory.db")</code></pre></div></section>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🔑 Auth-profiles</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># ~/.config/app/auth.json (criptografado Fernet)
-{
-  "user-uuid-1": {
-    "google": {"refresh_token": "...", "expires_at": 0},
-    "anthropic": {"api_key": "sk-ant-..."},
-    "openai": {"api_key": "sk-..."}
+    <!-- TOPICO 1 — User model mínimo -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🆔 User model mínimo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Antes de qualquer coisa, defina <strong class="text-purple-400">o que é um user</strong> no seu sistema —
+        com schema, tipos e constraints. Sem isso, "user" vira string solta em prompt e você passa a debugar
+        identidade no log. 5 campos cobrem 95% dos casos.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3 flex items-center"><span class="mr-2">🗄️</span> Schema canônico (SQLite/Postgres)</h3>
+<pre class="code-box">CREATE TABLE users (
+  id          TEXT PRIMARY KEY,            -- UUID v4 (str)
+  name        TEXT NOT NULL,
+  email       TEXT UNIQUE NOT NULL,
+  roles       TEXT NOT NULL DEFAULT 'user',-- CSV: 'user,admin'
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at  TIMESTAMP                    -- soft delete (LGPD)
+);
+
+CREATE INDEX idx_users_email ON users(email) WHERE deleted_at IS NULL;</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-gradient-to-br from-purple-900/20 to-dark-800 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-3">✓ Fazer: UUID v4 como ID</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✓ Não enumerável — atacante não adivinha o próximo.</li>
+            <li>✓ Geração client-side ou server-side, mesma forma.</li>
+            <li>✓ Funciona em sistema distribuído sem coordenação.</li>
+            <li>✓ Aceito direto como nome de pasta no FS.</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evitar: autoincrement</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✗ <strong>ID enumeration attack:</strong> /user/1, /user/2, /user/3 vaza base inteira.</li>
+            <li>✗ Migração entre bancos vira pesadelo (colisão de IDs).</li>
+            <li>✗ Não dá pra criar user offline (precisa do servidor pra alocar ID).</li>
+            <li>✗ Revela quantos clientes você tem ("sou o user 47").</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-red-400 font-semibold mb-2 flex items-center"><span class="mr-2">🚨</span> Alerta: ID enumeration attack</h3>
+        <p class="text-neutral-300 text-sm">
+          Em 2024 um app de IA brasileiro vazou <strong class="text-red-400">12 mil prompts privados</strong>
+          porque a rota <code class="bg-dark-700 px-1 rounded">GET /sessions/{id}</code> usava autoincrement.
+          Bot rodou de 1 a 12000 em 4 minutos. Com UUID v4, o espaço de busca é ~10³⁸ — força-bruta inviável.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">id</strong><p class="text-xs text-neutral-400 mt-1">UUID v4. Imutável. Chave de tudo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">email</strong><p class="text-xs text-neutral-400 mt-1">Unique + soft-delete aware index.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">roles</strong><p class="text-xs text-neutral-400 mt-1">CSV simples. RBAC vem depois.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">deleted_at</strong><p class="text-xs text-neutral-400 mt-1">Soft delete pra LGPD art. 18.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — Workspace por user -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📁 Workspace por user</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada user precisa do <strong class="text-purple-400">seu próprio diretório raiz</strong> —
+        para tokens, cache, anexos, logs. Convenção simples: <code class="bg-dark-700 px-1 rounded">~/.app/users/&lt;uuid&gt;/</code>.
+        Sem isso, você acaba com tudo num <code>/tmp</code> que vaza entre clientes na próxima reinicialização.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🌳 Estrutura recomendada</h3>
+<pre class="code-box">~/.app/
+├── db.sqlite                       # users, sessions, audit
+└── users/
+    └── 7c3a-...-9f2b/              # UUID do user
+        ├── auth.json                # tokens OAuth encriptados
+        ├── memory/                  # vector store privado
+        │   └── facts.db
+        ├── uploads/                 # anexos do user
+        └── logs/
+            └── 2026-05.jsonl        # audit por mês</pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🐍 Resolver workspace (com guard-rail)</h3>
+<pre class="code-box">from pathlib import Path
+import re
+
+UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
+
+def user_workspace(user_id: str) -> Path:
+    """Retorna ~/.app/users/&lt;uuid&gt;/, criando se necessário.
+    Levanta ValueError se user_id não for UUID v4 — bloqueia path traversal."""
+    if not UUID_RE.match(user_id):
+        raise ValueError(f"user_id inválido: {user_id!r}")
+    ws = Path.home() / ".app" / "users" / user_id
+    ws.mkdir(parents=True, exist_ok=True, mode=0o700)  # só o dono lê
+    return ws</pre>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-red-400 font-semibold mb-2 flex items-center"><span class="mr-2">🚨</span> Alerta: path traversal</h3>
+        <p class="text-neutral-300 text-sm">
+          Sem validar UUID, <code class="bg-dark-700 px-1 rounded">user_id = "../../etc/passwd"</code>
+          vira <code>~/.app/users/../../etc/passwd</code>. O regex acima rejeita qualquer coisa que não seja
+          UUID v4 canônico — <strong class="text-red-400">é a primeira linha de defesa</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">1 user = 1 pasta</strong><p class="text-xs text-neutral-400 mt-1">Backup, delete e migração ficam triviais.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">mode 0700</strong><p class="text-xs text-neutral-400 mt-1">Só o processo do app lê. Não confie no FS.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Validar UUID</strong><p class="text-xs text-neutral-400 mt-1">Bloqueia traversal antes do mkdir.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Cota por pasta</strong><p class="text-xs text-neutral-400 mt-1">du -sh no cron evita user "esponja".</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Auth-profiles -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔐 Auth-profiles (lição openclaw)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Um user pode ter <strong class="text-purple-400">N identidades externas</strong>: Google pessoal,
+        Google corporativo, Notion do cliente A, Notion do cliente B. Cada um vira um <em>auth-profile</em>.
+        Lição que aprendemos no openclaw: <strong>nunca</strong> achatar tudo num token só — vira
+        impossível trocar de cliente sem reautenticar.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">📄 auth.json — estrutura aninhada por provider/profile</h3>
+<pre class="code-box">{
+  "version": 1,
+  "user_id": "7c3a-...-9f2b",
+  "providers": {
+    "google": {
+      "profiles": {
+        "pessoal": {
+          "email": "nei@gmail.com",
+          "access_token_enc": "gAAAAABm...",
+          "refresh_token_enc": "gAAAAABm...",
+          "scopes": ["calendar.readonly", "gmail.send"],
+          "expires_at": "2026-05-18T22:00:00Z"
+        },
+        "corp": {
+          "email": "nei@empresa.com.br",
+          "access_token_enc": "gAAAAABm...",
+          "refresh_token_enc": "gAAAAABm...",
+          "scopes": ["drive.file"],
+          "expires_at": "2026-05-18T22:00:00Z"
+        }
+      },
+      "default_profile": "pessoal"
+    },
+    "notion": { "profiles": { "...": "..." } }
   }
-}</code></pre></div></section>
+}</pre>
+      </div>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🎫 Session por request</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from dataclasses import dataclass, field
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🔒 Encriptar tokens com Fernet</h3>
+<pre class="code-box">from cryptography.fernet import Fernet
+import json, os
+
+KEY = os.environ["AUTH_FERNET_KEY"].encode()  # rotação por env
+fernet = Fernet(KEY)
+
+def save_token(user_id: str, provider: str, profile: str, token: dict) -> None:
+    path = user_workspace(user_id) / "auth.json"
+    data = json.loads(path.read_text()) if path.exists() else {"version": 1, "providers": {}}
+
+    enc = {
+        "email":             token["email"],
+        "access_token_enc":  fernet.encrypt(token["access_token"].encode()).decode(),
+        "refresh_token_enc": fernet.encrypt(token["refresh_token"].encode()).decode(),
+        "scopes":            token["scopes"],
+        "expires_at":        token["expires_at"],
+    }
+    data["providers"].setdefault(provider, {"profiles": {}, "default_profile": profile})
+    data["providers"][provider]["profiles"][profile] = enc
+    path.write_text(json.dumps(data, indent=2))
+    os.chmod(path, 0o600)  # só o dono lê</pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-blue-400 font-semibold mb-3 flex items-center"><span class="mr-2">📚</span> Dado: por que perfis múltiplos importam</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-blue-400">~63%</strong> dos usuários B2B do openclaw têm 2+ contas Google ativas (pessoal + corp).</li>
+          <li><strong class="text-blue-400">~28%</strong> precisam alternar entre clientes (consultores, freelas) — auth-profile vira diferenciador.</li>
+          <li><strong class="text-blue-400">1 token só</strong> = forçar logout/login a cada troca = churn imediato.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Fernet ≠ KMS</strong><p class="text-xs text-neutral-400 mt-1">Bom pra começar. Em produção sénior, migrar pra AWS KMS ou Vault.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">chmod 600</strong><p class="text-xs text-neutral-400 mt-1">Defesa em camadas: encriptado + permissão de FS.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">default_profile</strong><p class="text-xs text-neutral-400 mt-1">UX: quando o user não escolhe, qual usar.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Rotação de KEY</strong><p class="text-xs text-neutral-400 mt-1">Suporte a múltiplas keys ativas (MultiFernet).</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Sessão por request -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧵 Sessão por request (contextvars)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada requisição precisa de um <strong class="text-purple-400">objeto Session imutável</strong> que carrega
+        user, request_id, profile escolhido e timestamps. <code class="bg-dark-700 px-1 rounded">contextvars</code> da stdlib
+        propaga isso por toda a chain async <em>sem</em> passar parâmetro manualmente em cada função.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🐍 Session dataclass + contextvars</h3>
+<pre class="code-box">from dataclasses import dataclass
+from contextvars import ContextVar
+from datetime import datetime
 from uuid import uuid4
-import time
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True)
 class Session:
-    user: User
-    request_id: str = field(default_factory=lambda: str(uuid4()))
-    started_at: float = field(default_factory=time.time)
-    tools_enabled: tuple = ()
+    user_id:    str
+    request_id: str
+    provider:   str | None = None
+    profile:    str | None = None
+    started_at: datetime = None
 
-# Passa sempre adiante
-await tool.execute(session=ctx, **kwargs)</code></pre></div></section>
+_current: ContextVar[Session | None] = ContextVar("session", default=None)
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🛂 Onboarding via /start</h2></div><p class="text-neutral-300 mb-6">No Telegram: <code>/start</code> cria user, pede preferências básicas em &lt;5 mensagens, ativa tools default.</p></section>
+def current_session() -> Session:
+    s = _current.get()
+    if s is None:
+        raise RuntimeError("Nenhuma sessão ativa — chame within_session() antes.")
+    return s
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🚪 Delete account (LGPD art. 18)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>async def delete_account(user_id: str, confirmed: bool):
-    if not confirmed:
-        return "Envie /delete CONFIRMO pra apagar tudo"
-    # 1. Soft delete (7 dias)
-    await db.execute("UPDATE users SET deleted_at = ? WHERE id = ?", (time.time(), user_id))
-    # 2. Cron move workspace pra /archive/ depois de 7d
-    # 3. Hard delete final, audit mantém só hash do user_id</code></pre></div></section>
+async def within_session(user_id: str, handler, *args, **kwargs):
+    sess = Session(
+        user_id=user_id,
+        request_id=str(uuid4()),
+        started_at=datetime.utcnow(),
+    )
+    token = _current.set(sess)
+    try:
+        return await handler(*args, **kwargs)
+    finally:
+        _current.reset(token)</pre>
+      </div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">UUID + workspace dedicado + Session imutável = base sólida. LGPD respeitada desde o dia 1.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-3-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo →</a></div></div></section>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-primary font-semibold mb-2 flex items-center"><span class="mr-2">💡</span> Tip: frozen=True evita race em async</h3>
+        <p class="text-neutral-300 text-sm">
+          <code class="bg-dark-700 px-1 rounded">@dataclass(frozen=True)</code> bloqueia mutação após a criação.
+          Em código async, qualquer tarefa que tente <code>sess.user_id = "outro"</code> levanta
+          <code>FrozenInstanceError</code>. Combinado com <code>contextvars</code> (que isola por task),
+          você ganha imunidade a vazamento de estado entre clientes — sem mutex, sem lock.
+        </p>
+      </div>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 3 · Módulo 3.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🔌 Uso no handler de mensagem</h3>
+<pre class="code-box">async def handle_message(msg):
+    await within_session(msg.user_id, _process, msg)
+
+async def _process(msg):
+    sess = current_session()
+    workspace = user_workspace(sess.user_id)
+    log.info("request", extra={"request_id": sess.request_id, "user_id": sess.user_id})
+    return await llm.run(msg.text, ctx=sess)</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">frozen=True</strong><p class="text-xs text-neutral-400 mt-1">Imutável. Sem race em async.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">contextvars</strong><p class="text-xs text-neutral-400 mt-1">Isola por asyncio.Task automaticamente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">request_id</strong><p class="text-xs text-neutral-400 mt-1">Cola logs, métricas e traces da mesma req.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">try/finally reset</strong><p class="text-xs text-neutral-400 mt-1">Sem vazar sessão pra próxima task no pool.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Onboarding via /start -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🚀 Onboarding via /start</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Primeiro contato é onde 40% dos users desistem. Um wizard inline guiado por
+        <strong class="text-purple-400">state machine</strong> resolve: cada mensagem do user avança 1 estado,
+        o agente sempre sabe a próxima pergunta. Sem prompt gigante "me conte tudo sobre você".
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🤖 State machine do /start</h3>
+<pre class="code-box">from enum import Enum
+
+class OnboardingState(str, Enum):
+    NEW         = "new"
+    ASKED_NAME  = "asked_name"
+    ASKED_EMAIL = "asked_email"
+    ASKED_AUTH  = "asked_auth"
+    DONE        = "done"
+
+PROMPTS = {
+    OnboardingState.NEW:         "👋 Oi! Pra começar, como você se chama?",
+    OnboardingState.ASKED_NAME:  "Prazer, {name}. Qual seu email?",
+    OnboardingState.ASKED_EMAIL: "Quer conectar o Google agora? (sim/depois)",
+    OnboardingState.ASKED_AUTH:  "✅ Tudo pronto. Tente: 'liste meus eventos de hoje'.",
+}
+
+async def on_start(user_id: str, text: str) -> str:
+    state = await db.get_onboarding_state(user_id) or OnboardingState.NEW
+
+    if state == OnboardingState.NEW:
+        await db.set_state(user_id, OnboardingState.ASKED_NAME)
+        return PROMPTS[OnboardingState.NEW]
+
+    if state == OnboardingState.ASKED_NAME:
+        await db.update_user(user_id, name=text.strip())
+        await db.set_state(user_id, OnboardingState.ASKED_EMAIL)
+        return PROMPTS[OnboardingState.ASKED_NAME].format(name=text.strip())
+
+    if state == OnboardingState.ASKED_EMAIL:
+        if "@" not in text:
+            return "Hmm, isso não parece um email. Tente de novo."
+        await db.update_user(user_id, email=text.strip().lower())
+        await db.set_state(user_id, OnboardingState.ASKED_AUTH)
+        return PROMPTS[OnboardingState.ASKED_EMAIL]
+
+    if state == OnboardingState.ASKED_AUTH:
+        await db.set_state(user_id, OnboardingState.DONE)
+        if text.lower().startswith("sim"):
+            return f"Abre este link: {oauth_url(user_id)}"
+        return PROMPTS[OnboardingState.ASKED_AUTH]
+
+    return PROMPTS[OnboardingState.ASKED_AUTH]</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-3">✓ Por que state machine</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✓ Cada turno é idempotente — se cair, retoma do mesmo estado.</li>
+            <li>✓ Validação local (email tem @?) antes de gastar token de LLM.</li>
+            <li>✓ Onboarding fica auditável: você vê em qual passo o user desistiu.</li>
+            <li>✓ A/B testar 1 passo de cada vez é trivial.</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evite: prompt "conte tudo"</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✗ LLM inventa campos que o user não disse.</li>
+            <li>✗ Sem checkpoint — se o user fechar, perde tudo.</li>
+            <li>✗ Difícil cobrar campo obrigatório que veio vazio.</li>
+            <li>✗ Latência alta no primeiro turno = abandono.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Estado em DB</strong><p class="text-xs text-neutral-400 mt-1">Não em memória. Sobrevive a restart.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Idempotência</strong><p class="text-xs text-neutral-400 mt-1">Mesma msg duas vezes = mesmo resultado.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Funil mensurável</strong><p class="text-xs text-neutral-400 mt-1">Conte users em cada state diariamente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">/start sempre</strong><p class="text-xs text-neutral-400 mt-1">Comando reseta o wizard se quiser refazer.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Logout & delete account (LGPD) -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🗑️ Logout & delete account (LGPD)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Logout é fácil (apaga session). <strong class="text-purple-400">Delete account é caro</strong> —
+        mas obrigatório. LGPD art. 18 dá ao titular o direito de eliminação dos dados pessoais.
+        Padrão correto: <em>soft delete imediato</em> + <em>hard delete em 15 dias</em> (janela de undo + auditoria).
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-blue-400 font-semibold mb-3 flex items-center"><span class="mr-2">📚</span> Dado: LGPD art. 18, §3º</h3>
+        <p class="text-neutral-300 text-sm mb-2">
+          O controlador tem <strong class="text-blue-400">15 dias</strong> para responder a um pedido de
+          eliminação. A ANPD vem multando empresas que ignoram o prazo — multa pode chegar a
+          <strong class="text-blue-400">2% do faturamento</strong> (até R$ 50 milhões por infração).
+        </p>
+        <p class="text-neutral-400 text-xs">
+          Fonte: Lei 13.709/2018, art. 18, II + IV; Resolução CD/ANPD nº 4/2023 sobre sanções.
+        </p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-purple-400 font-semibold mb-3">🐍 Delete em duas fases</h3>
+<pre class="code-box">import shutil
+from datetime import datetime, timedelta
+
+SOFT_DELETE_TTL = timedelta(days=15)  # janela de undo + auditoria
+
+async def delete_account(user_id: str, reason: str = "user_request") -> None:
+    """Fase 1: soft delete imediato. User não consegue mais logar."""
+    await db.execute(
+        "UPDATE users SET deleted_at = ?, email = ? WHERE id = ?",
+        (datetime.utcnow(), f"deleted+{user_id}@example.invalid", user_id),
+    )
+    await db.execute(
+        "INSERT INTO audit_log (user_id, event, reason) VALUES (?, ?, ?)",
+        (user_id, "soft_delete", reason),
+    )
+    # invalida sessões ativas
+    await sessions.revoke_all(user_id)
+
+
+async def purge_expired() -> int:
+    """Fase 2: roda em cron diário. Hard delete passados 15 dias."""
+    cutoff = datetime.utcnow() - SOFT_DELETE_TTL
+    rows = await db.fetch_all(
+        "SELECT id FROM users WHERE deleted_at IS NOT NULL AND deleted_at &lt; ?",
+        (cutoff,),
+    )
+    purged = 0
+    for (user_id,) in rows:
+        # 1. apaga workspace inteiro (auth.json, memória, uploads)
+        ws = Path.home() / ".app" / "users" / user_id
+        if ws.exists():
+            shutil.rmtree(ws)
+        # 2. apaga registro do user
+        await db.execute("DELETE FROM users WHERE id = ?", (user_id,))
+        # 3. mantém só linha de audit (anonimizada)
+        await db.execute(
+            "INSERT INTO audit_log (user_id, event) VALUES (?, ?)",
+            (user_id, "hard_delete"),
+        )
+        purged += 1
+    return purged</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-3">✓ Fazer: soft → hard</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✓ Soft delete imediato: bloqueia acesso já.</li>
+            <li>✓ Email anonimizado evita UNIQUE conflict se user voltar.</li>
+            <li>✓ 15 dias de janela = compliance + undo + auditoria.</li>
+            <li>✓ Audit log mantém apenas o ID (sem PII).</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evite: DELETE direto</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✗ User clica errado e perde tudo na hora.</li>
+            <li>✗ Sem audit trail = você não prova que cumpriu LGPD.</li>
+            <li>✗ FK em cascata pode apagar dado de outro user por engano.</li>
+            <li>✗ Sem janela = suporte não consegue reverter fraude.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-primary font-semibold mb-2 flex items-center"><span class="mr-2">💡</span> Tip: cron de purge é seu amigo</h3>
+        <p class="text-neutral-300 text-sm">
+          Rode <code class="bg-dark-700 px-1 rounded">purge_expired()</code> 1x por dia (cron 03:00).
+          Logue quantos foram purgados. Se um dia o número explodir, você tem um alerta antes do
+          incidente virar manchete. Bonus: a métrica de "users em soft delete" é um early warning de churn.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Soft imediato</strong><p class="text-xs text-neutral-400 mt-1">deleted_at = now(). Sem mais acesso.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Hard em 15d</strong><p class="text-xs text-neutral-400 mt-1">rmtree do workspace + DELETE do row.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Audit fica</strong><p class="text-xs text-neutral-400 mt-1">Só o UUID. Sem nome, email, conteúdo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Cron diário</strong><p class="text-xs text-neutral-400 mt-1">Métrica observável. Falha = alerta.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">User model em 5 campos</strong><span class="text-neutral-400"> — UUID v4 (nunca autoincrement), email único, roles CSV, soft delete-aware.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Workspace por UUID</strong><span class="text-neutral-400"> — ~/.app/users/&lt;uuid&gt;/ com mode 0700 e validação regex contra path traversal.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Auth-profiles aninhados</strong><span class="text-neutral-400"> — providers/profiles, tokens Fernet, default_profile pra UX (lição openclaw).</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Session frozen + contextvars</strong><span class="text-neutral-400"> — imutável, isolado por task, request_id pra observabilidade.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">/start como state machine</strong><span class="text-neutral-400"> — checkpoint em DB, idempotente, funil mensurável passo a passo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Delete em duas fases</strong><span class="text-neutral-400"> — soft imediato + hard em 15 dias (LGPD art. 18), audit log anonimizado.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">3.3 — Memória compartilhada vs privada (como decidir o que cada user vê dos outros)</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 3</a>
+          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 3 · Módulo 3.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

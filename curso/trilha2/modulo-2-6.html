@@ -1,108 +1,716 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 2.6 — Empacotar e operar | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2.6 — Empacotar e operar | New Agentic OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+html:not(.dark) body{background-color:#f8fafc}
+html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}
+html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}
+html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}
+html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .bg-blue-900\/20{background-color:rgba(59,130,246,.08)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}
+html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}
+html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}
+html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}
+html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}
+html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}
+html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}
+html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}
+html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}
+.dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}
+.code-box{font-family:'Menlo',monospace;font-size:0.85rem}
+</style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+<a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+<a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+<a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+<button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+</div>
+</div></div></nav>
+
 <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 2 · Builder</a><span>/</span><span class="text-blue-400">Módulo 2.6</span></div></nav>
-<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.6</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">📦 Empacotar e operar</h1><p class="text-lg text-neutral-400 max-w-3xl">launchd/systemd, logs auditáveis, Fernet secrets, cron dream cycle, kill switch. De script solto a serviço.</p></div></header>
+
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.6</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📦 Empacotar e operar</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">launchd, systemd, secrets com Fernet, logs estruturados em JSON, cron com lock e healthcheck. Como tirar o agente do "roda no meu laptop" e colocar pra trabalhar 24/7 sem te acordar de madrugada.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">90</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Técnico</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Ops</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div></header>
+
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">⚙️ launchd (macOS)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>&lt;!-- ~/Library/LaunchAgents/com.meu-agente.plist --&gt;
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;plist version="1.0"&gt;&lt;dict&gt;
-  &lt;key&gt;Label&lt;/key&gt;&lt;string&gt;com.meu-agente&lt;/string&gt;
+<!-- TOPICO 1 — launchd -->
+<section id="topico-1" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🍎 launchd no macOS — plist + load + start</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">No macOS, <strong class="text-blue-400">launchd</strong> é o init system. Você descreve o serviço num plist XML, coloca em <code>~/Library/LaunchAgents/</code>, carrega com <code>launchctl load</code>. Pronto: roda no boot, reinicia se cair, redireciona stdout pra arquivo. Sem nohup, sem screen, sem "deixa o terminal aberto".</p>
+
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📌</span> A regra do plist</h3>
+<p class="text-neutral-300">Convenção: <code>com.&lt;empresa&gt;.&lt;servico&gt;.plist</code>. <code>RunAtLoad=true</code> + <code>KeepAlive=true</code> é o combo "sempre vivo". Logs em <code>~/Library/Logs/</code> pra Console.app indexar.</p>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+  &lt;key&gt;Label&lt;/key&gt;
+  &lt;string&gt;club.inema.agentos&lt;/string&gt;
+
   &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt;&lt;string&gt;/usr/local/bin/python3&lt;/string&gt;&lt;string&gt;-m&lt;/string&gt;&lt;string&gt;meu_agente&lt;/string&gt;&lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;/Users/marco/.venvs/agentos/bin/python&lt;/string&gt;
+    &lt;string&gt;-m&lt;/string&gt;
+    &lt;string&gt;agentos.main&lt;/string&gt;
+  &lt;/array&gt;
+
+  &lt;key&gt;WorkingDirectory&lt;/key&gt;
+  &lt;string&gt;/Users/marco/code/agentos&lt;/string&gt;
+
+  &lt;key&gt;EnvironmentVariables&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;AGENTOS_ENV&lt;/key&gt;
+    &lt;string&gt;production&lt;/string&gt;
+    &lt;key&gt;SECRET_KEY_FILE&lt;/key&gt;
+    &lt;string&gt;/Users/marco/.agentos/master.key&lt;/string&gt;
+  &lt;/dict&gt;
+
+  &lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
   &lt;key&gt;KeepAlive&lt;/key&gt;&lt;true/&gt;
-  &lt;key&gt;StandardOutPath&lt;/key&gt;&lt;string&gt;/Users/me/.meu-agente/logs/out.log&lt;/string&gt;
-  &lt;key&gt;StandardErrorPath&lt;/key&gt;&lt;string&gt;/Users/me/.meu-agente/logs/err.log&lt;/string&gt;
-&lt;/dict&gt;&lt;/plist&gt;
 
-# load
-launchctl load ~/Library/LaunchAgents/com.meu-agente.plist
-launchctl start com.meu-agente</code></pre></div></section>
+  &lt;key&gt;StandardOutPath&lt;/key&gt;
+  &lt;string&gt;/Users/marco/Library/Logs/agentos.out.log&lt;/string&gt;
+  &lt;key&gt;StandardErrorPath&lt;/key&gt;
+  &lt;string&gt;/Users/marco/Library/Logs/agentos.err.log&lt;/string&gt;
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🐧 systemd (Linux)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># ~/.config/systemd/user/meu-agente.service
+  &lt;key&gt;ThrottleInterval&lt;/key&gt;&lt;integer&gt;10&lt;/integer&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># Salvar como ~/Library/LaunchAgents/club.inema.agentos.plist
+$ chmod 644 ~/Library/LaunchAgents/club.inema.agentos.plist
+$ launchctl load ~/Library/LaunchAgents/club.inema.agentos.plist
+$ launchctl start club.inema.agentos
+
+# Ver status
+$ launchctl list | grep agentos
+12345  0  club.inema.agentos   # PID, último exit code, label
+
+# Recarregar após editar plist
+$ launchctl unload ~/Library/LaunchAgents/club.inema.agentos.plist
+$ launchctl load   ~/Library/LaunchAgents/club.inema.agentos.plist
+
+# Tail dos logs
+$ tail -f ~/Library/Logs/agentos.err.log</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Fazer</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><code>ThrottleInterval</code> ≥ 10s — evita loop de crash que consome CPU.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Path absoluto pro Python do venv — launchd não herda <code>PATH</code> do shell.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Logs separados <code>out</code> e <code>err</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><code>WorkingDirectory</code> explícito — paths relativos quebram sem ele.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Evitar</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar <code>/usr/bin/python3</code> — em update do macOS some.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esquecer <code>KeepAlive</code> — caiu uma vez, ficou caído.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Colocar segredo direto em <code>EnvironmentVariables</code> — plist vai pro git.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>chmod 755</code> no plist — launchctl rejeita por segurança.</span></li>
+</ul>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Escopo</strong><p class="text-xs text-neutral-400 mt-1">LaunchAgents = usuário. LaunchDaemons = root.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Boot</strong><p class="text-xs text-neutral-400 mt-1">Sobe no login automático.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Crash</strong><p class="text-xs text-neutral-400 mt-1">KeepAlive=true reinicia em ~ThrottleInterval.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Debug</strong><p class="text-xs text-neutral-400 mt-1">Console.app mostra crash + stderr.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 2 — systemd -->
+<section id="topico-2" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🐧 systemd no Linux — unit user + enable</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">No Linux, <strong class="text-blue-400">systemd</strong> é o padrão. Você descreve o serviço num <code>.service</code> INI, coloca em <code>~/.config/systemd/user/</code> (modo user — sem sudo), habilita com <code>systemctl --user enable</code>. <code>journalctl</code> dá log estruturado de graça.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># ~/.config/systemd/user/agentos.service
 [Unit]
-Description=Meu Agente
+Description=Agentic OS — main loop
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-ExecStart=/home/me/.venv/bin/python -m meu_agente
+Type=simple
+WorkingDirectory=/home/marco/code/agentos
+ExecStart=/home/marco/.venvs/agentos/bin/python -m agentos.main
+Environment=AGENTOS_ENV=production
+Environment=SECRET_KEY_FILE=/home/marco/.agentos/master.key
+EnvironmentFile=-/home/marco/.agentos/runtime.env
+
 Restart=always
 RestartSec=10
+StartLimitInterval=120
+StartLimitBurst=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=agentos
+
+# Hardening básico — vale o esforço
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/marco/.agentos /home/marco/code/agentos/data
 
 [Install]
-WantedBy=default.target
+WantedBy=default.target</code></pre>
+</div>
 
-# habilita
-systemctl --user enable --now meu-agente
-journalctl --user -u meu-agente -f</code></pre></div></section>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># Habilitar e iniciar (sem sudo)
+$ systemctl --user daemon-reload
+$ systemctl --user enable --now agentos.service
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🔒 Secrets com Fernet</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from cryptography.fernet import Fernet
+# Sobreviver ao logout (caso contrário cai com a sessão)
+$ sudo loginctl enable-linger marco
+
+# Status, logs, restart
+$ systemctl --user status agentos
+$ journalctl --user -u agentos -f
+$ journalctl --user -u agentos --since "2 hours ago" -p err
+$ systemctl --user restart agentos</code></pre>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> macOS vs Linux — tabela comparativa</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-sm">
+<thead>
+<tr class="border-b border-dark-600">
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">Aspecto</th>
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">launchd (macOS)</th>
+<th class="text-left py-3 text-blue-400 font-semibold">systemd (Linux)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-dark-600 text-neutral-300">
+<tr><td class="py-3 pr-4">Formato</td><td class="py-3 pr-4">plist XML</td><td class="py-3">INI <code>.service</code></td></tr>
+<tr><td class="py-3 pr-4">Local (user)</td><td class="py-3 pr-4"><code>~/Library/LaunchAgents/</code></td><td class="py-3"><code>~/.config/systemd/user/</code></td></tr>
+<tr><td class="py-3 pr-4">Carregar</td><td class="py-3 pr-4"><code>launchctl load</code></td><td class="py-3"><code>systemctl --user daemon-reload</code></td></tr>
+<tr><td class="py-3 pr-4">Ligar</td><td class="py-3 pr-4"><code>launchctl start &lt;label&gt;</code></td><td class="py-3"><code>systemctl --user start agentos</code></td></tr>
+<tr><td class="py-3 pr-4">Auto-restart</td><td class="py-3 pr-4"><code>KeepAlive=true</code></td><td class="py-3"><code>Restart=always</code></td></tr>
+<tr><td class="py-3 pr-4">Throttle</td><td class="py-3 pr-4"><code>ThrottleInterval=10</code></td><td class="py-3"><code>RestartSec=10</code></td></tr>
+<tr><td class="py-3 pr-4">Logs</td><td class="py-3 pr-4">Arquivo em <code>~/Library/Logs/</code></td><td class="py-3"><code>journalctl</code> (estruturado)</td></tr>
+<tr><td class="py-3 pr-4">Sobrevive logout</td><td class="py-3 pr-4">Sim (LaunchAgent)</td><td class="py-3">Só com <code>loginctl enable-linger</code></td></tr>
+<tr><td class="py-3 pr-4">Hardening</td><td class="py-3 pr-4">Limitado (sandbox-exec)</td><td class="py-3">Rico (NoNewPrivileges, ProtectSystem…)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Type=simple</strong><p class="text-xs text-neutral-400 mt-1">Default — processo não faz fork.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">StartLimitBurst</strong><p class="text-xs text-neutral-400 mt-1">5 crashes em 120s = systemd desiste.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">linger</strong><p class="text-xs text-neutral-400 mt-1">Sem ele, serviço user morre no logout.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">ReadWritePaths</strong><p class="text-xs text-neutral-400 mt-1">Whitelist explícita de escrita.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 3 — Secrets Fernet -->
+<section id="topico-3" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🔐 Secrets com Fernet — AES + chave derivada</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Tokens de API, chaves do bot, credenciais de banco — <strong class="text-blue-400">nada disso em <code>.env</code> versionado</strong>. Use <code>cryptography.fernet</code>: criptografia simétrica AES-128-CBC + HMAC-SHA256, chave única em arquivo fora do repo, descriptografia em memória só quando precisa.</p>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — secrets em git são compromisso vitalício</h3>
+<p class="text-neutral-300 text-sm">Um <code>git push</code> com chave Anthropic exposta = chave queimada. Mesmo se você forçar <code>--force-push</code>, o GitHub <em>escaneia</em>, notifica o provider e a chave é revogada automaticamente em horas. Pior: bots scrapeiam commits públicos em segundos. Trate qualquer leak como rotação obrigatória, não como susto.</p>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># secrets/box.py
+import json
+import os
 from pathlib import Path
-import json, os
+from cryptography.fernet import Fernet, InvalidToken
 
 class SecretBox:
-    def __init__(self, path):
-        self.path = Path(path)
-        key_path = self.path.with_suffix('.key')
+    """Wrapper sobre Fernet com chave em arquivo + cache em memória."""
+
+    def __init__(self, key_path: Path, vault_path: Path):
+        self.key_path = key_path
+        self.vault_path = vault_path
+        self._cache: dict[str, str] | None = None
+
+    @classmethod
+    def init(cls, key_path: Path, vault_path: Path) -&gt; "SecretBox":
+        """Gera chave nova se não existir. chmod 0600 obrigatório."""
         if not key_path.exists():
+            key_path.parent.mkdir(parents=True, exist_ok=True)
             key_path.write_bytes(Fernet.generate_key())
             os.chmod(key_path, 0o600)
-        self.f = Fernet(key_path.read_bytes())
+        if not vault_path.exists():
+            vault_path.write_bytes(b"")
+            os.chmod(vault_path, 0o600)
+        return cls(key_path, vault_path)
 
-    def save(self, data: dict):
-        encrypted = self.f.encrypt(json.dumps(data).encode())
-        self.path.write_bytes(encrypted)
-        os.chmod(self.path, 0o600)
+    def _fernet(self) -&gt; Fernet:
+        # Recusa abrir se permissões frouxas
+        mode = self.key_path.stat().st_mode &amp; 0o777
+        if mode != 0o600:
+            raise PermissionError(
+                f"{self.key_path} tem modo {oct(mode)}; deveria ser 0o600"
+            )
+        return Fernet(self.key_path.read_bytes())
 
-    def load(self) -> dict:
-        return json.loads(self.f.decrypt(self.path.read_bytes()))</code></pre></div></section>
+    def _load(self) -&gt; dict[str, str]:
+        if self._cache is not None:
+            return self._cache
+        raw = self.vault_path.read_bytes()
+        if not raw:
+            self._cache = {}
+            return self._cache
+        try:
+            plain = self._fernet().decrypt(raw)
+        except InvalidToken:
+            raise RuntimeError("Vault corrompido ou chave errada")
+        self._cache = json.loads(plain.decode("utf-8"))
+        return self._cache
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📊 Logs estruturados</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>import structlog, logging
+    def get(self, name: str) -&gt; str:
+        data = self._load()
+        if name not in data:
+            raise KeyError(f"Secret '{name}' não está no vault")
+        return data[name]
+
+    def put(self, name: str, value: str) -&gt; None:
+        data = self._load()
+        data[name] = value
+        token = self._fernet().encrypt(json.dumps(data).encode("utf-8"))
+        # Escrita atômica — tmp + rename
+        tmp = self.vault_path.with_suffix(".tmp")
+        tmp.write_bytes(token)
+        os.chmod(tmp, 0o600)
+        tmp.replace(self.vault_path)
+        self._cache = data</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># Uso na boot do agente
+from secrets.box import SecretBox
 from pathlib import Path
-from datetime import date
 
-log_path = Path.home() / ".meu-agente" / "logs" / f"app-{date.today()}.log"
-log_path.parent.mkdir(parents=True, exist_ok=True)
+box = SecretBox.init(
+    key_path=Path.home() / ".agentos" / "master.key",
+    vault_path=Path.home() / ".agentos" / "vault.fernet",
+)
 
-logging.basicConfig(filename=str(log_path), level=logging.INFO)
-structlog.configure(processors=[
-    structlog.processors.TimeStamper(fmt="iso"),
-    structlog.processors.JSONRenderer()
-])
-log = structlog.get_logger()
+# Primeira vez — popula
+box.put("ANTHROPIC_API_KEY", "sk-ant-...")
+box.put("TELEGRAM_BOT_TOKEN", "1234:ABC...")
 
-# uso
-log.info("llm_call", user_id="abc", model="claude-haiku-4.5", tokens_in=120, tokens_out=340, latency_ms=850)</code></pre></div></section>
+# No app
+api_key = box.get("ANTHROPIC_API_KEY")</code></pre>
+</div>
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⏰ Dream cycle (cron 3h)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># plist com StartCalendarInterval
-&lt;key&gt;StartCalendarInterval&lt;/key&gt;
-&lt;dict&gt;&lt;key&gt;Hour&lt;/key&gt;&lt;integer&gt;3&lt;/integer&gt;&lt;/dict&gt;
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ chmod 0600 sempre</h4>
+<p class="text-sm text-neutral-300">Só o dono lê e escreve. Sem isso, qualquer processo do user pode ler — incluindo malware que rodou com seus privilégios. SecretBox <strong>recusa abrir</strong> se modo está errado.</p>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ World-readable é jogar fora</h4>
+<p class="text-sm text-neutral-300"><code>chmod 0644</code> deixa qualquer usuário do sistema ler. Em multi-tenant, <code>nobody</code> e <code>www-data</code> herdam acesso. É como deixar a senha do cofre num post-it no balcão.</p>
+</div>
+</div>
 
-# script dream.py
-import fcntl, sys
-lock_path = "/tmp/meu-agente-dream.lock"
-fp = open(lock_path, 'w')
-try:
-    fcntl.flock(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
-except BlockingIOError:
-    sys.exit(0)  # já está rodando
-# ... gera daily summary, consolida learnings, limpa logs &gt; 90 dias</code></pre></div></section>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Backup da chave</strong><p class="text-xs text-neutral-400 mt-1">Off-site. Sem ela, vault vira lixo.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Rotação</strong><p class="text-xs text-neutral-400 mt-1">MultiFernet aceita chave nova + velha.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Escrita atômica</strong><p class="text-xs text-neutral-400 mt-1">tmp + rename — crash não corrompe.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Escala</strong><p class="text-xs text-neutral-400 mt-1">&gt;10 secrets ou multi-host? Vá pra Vault/SOPS.</p></div>
+</div>
+</section>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🚦 Kill switch + status</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># Endpoint /status sempre acessível (mesmo se loop principal travou)
-# Via /tmp/meu-agente-control.sock (unix socket)
+<!-- TOPICO 4 — Logs estruturados -->
+<section id="topico-4" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📜 Logs estruturados — JSON lines + rotação</h2></div>
 
-# /status
-{"uptime_sec": 86400, "cost_today_usd": 0.42, "last_error": null, "active": true}
+<p class="text-neutral-300 mb-6 leading-relaxed">Log de string concatenada (<code>"user 42 sent: hello"</code>) é hieróglifo pra máquina. <strong class="text-blue-400">JSON por linha</strong> com <code>structlog</code> + <code>TimedRotatingFileHandler</code> = busca, filtro, agregação em Grafana/Loki sem regex. Custa 5 linhas a mais no setup, paga em todo bug de produção.</p>
 
-# /killall — para tudo
-launchctl stop com.meu-agente
-# Linux: systemctl --user stop meu-agente</code></pre></div></section>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica — JSON line é o formato pra Grafana/Loki ler</h3>
+<p class="text-neutral-300 text-sm">Loki indexa labels (request_id, user_id, level), grep no resto. Datadog, Honeycomb, Elastic — todos consomem JSONL nativo. Texto plano vira string opaca e a busca custa 10x.</p>
+</div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Trilha 2 concluída</h2><p class="text-neutral-300 mb-6">Você agora tem um agente pessoal funcional em produção com Telegram, memória, tools e operação. Próximo passo: escalar pra times.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próxima trilha: Multi-user →</a></div></div></section>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># observability/log.py
+import logging
+import logging.handlers
+from pathlib import Path
+import structlog
+
+LOG_DIR = Path.home() / ".agentos" / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+def configure_logging(level: str = "INFO") -&gt; None:
+    # Handler: 1 arquivo por dia, mantém 14
+    handler = logging.handlers.TimedRotatingFileHandler(
+        filename=LOG_DIR / "agentos.jsonl",
+        when="midnight",
+        interval=1,
+        backupCount=14,
+        encoding="utf-8",
+        utc=True,
+    )
+    handler.suffix = "%Y-%m-%d"
+
+    logging.basicConfig(
+        format="%(message)s",   # structlog produz a linha já formatada
+        level=level,
+        handlers=[handler, logging.StreamHandler()],
+    )
+
+    structlog.configure(
+        processors=[
+            structlog.contextvars.merge_contextvars,   # request_id, user_id
+            structlog.processors.add_log_level,
+            structlog.processors.TimeStamper(fmt="iso", utc=True),
+            structlog.processors.StackInfoRenderer(),
+            structlog.processors.format_exc_info,
+            structlog.processors.JSONRenderer(),       # &lt;-- saída JSON
+        ],
+        wrapper_class=structlog.make_filtering_bound_logger(
+            logging.getLevelName(level)
+        ),
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        cache_logger_on_first_use=True,
+    )
+
+log = structlog.get_logger()</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># Uso
+from observability.log import log, configure_logging
+from structlog.contextvars import bind_contextvars, clear_contextvars
+
+configure_logging("INFO")
+
+async def handle_message(msg):
+    clear_contextvars()
+    bind_contextvars(request_id=msg.id, user_id=msg.user_id, channel="telegram")
+    log.info("turn_start", text_preview=msg.text[:60])
+    try:
+        result = await run_agent(msg)
+        log.info("turn_end", tokens_in=result.tin, tokens_out=result.tout,
+                 latency_ms=result.dt_ms)
+    except Exception:
+        log.exception("turn_failed")   # stack trace serializado em JSON
+        raise
+
+# Linha resultante:
+# {"event":"turn_start","level":"info","timestamp":"2026-05-18T23:43:01Z",
+#  "request_id":"r-abc","user_id":"u-42","channel":"telegram",
+#  "text_preview":"oi, lembra do projeto X?"}</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">JSONL</strong><p class="text-xs text-neutral-400 mt-1">1 evento por linha. <code>jq</code> ama.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Rotação diária</strong><p class="text-xs text-neutral-400 mt-1">Disk não estoura, retenção previsível.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">contextvars</strong><p class="text-xs text-neutral-400 mt-1">request_id viaja sem passar parâmetro.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">PII</strong><p class="text-xs text-neutral-400 mt-1">Trunca payload — log não é warehouse.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 5 — Cron + lock -->
+<section id="topico-5" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⏰ Cron — dream cycle de 3h com lock</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Agente bom <strong class="text-blue-400">dorme</strong>: a cada 3h, roda um "dream cycle" que consolida memória, gera resumos, sincroniza com fontes externas. Cron é a forma mais barata de agendar. Mas cron <em>não sabe</em> que a execução anterior ainda está rodando — sem lock, dois processos pisam um no outro.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># crontab -e  (user crontab)
+# Min  Hora       Dia Mês DiaSem  Comando
+0      */3        *   *   *       /home/marco/.venvs/agentos/bin/python -m agentos.dream &gt;&gt; /home/marco/.agentos/logs/dream.log 2&gt;&amp;1
+30     4          *   *   *       /home/marco/.venvs/agentos/bin/python -m agentos.tasks.daily_digest
+0      *          *   *   *       /home/marco/code/agentos/scripts/health_ping.sh</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># agentos/dream.py
+import asyncio
+import fcntl
+import os
+import sys
+from pathlib import Path
+from contextlib import contextmanager
+from observability.log import log, configure_logging
+
+LOCK_PATH = Path.home() / ".agentos" / "dream.lock"
+
+@contextmanager
+def exclusive_lock(path: Path):
+    """flock não-bloqueante. Se outro processo segura, levantamos."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fp = path.open("w")
+    try:
+        fcntl.flock(fp.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        fp.close()
+        raise RuntimeError(f"dream já em execução (lock: {path})")
+    try:
+        fp.write(str(os.getpid()))
+        fp.flush()
+        yield
+    finally:
+        fcntl.flock(fp.fileno(), fcntl.LOCK_UN)
+        fp.close()
+
+async def dream_cycle():
+    log.info("dream_start")
+    await consolidate_memories()
+    await refresh_external_sources()
+    await summarize_recent_interactions()
+    log.info("dream_end")
+
+def main():
+    configure_logging("INFO")
+    try:
+        with exclusive_lock(LOCK_PATH):
+            asyncio.run(dream_cycle())
+    except RuntimeError as e:
+        log.warning("dream_skipped", reason=str(e))
+        sys.exit(0)   # exit 0 — cron não considera erro
+
+if __name__ == "__main__":
+    main()</code></pre>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🧠</span> Por que <code>fcntl.flock</code> e não arquivo "lockfile" manual</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">Kernel libera no crash:</strong> mesmo se o processo morrer com <code>kill -9</code>, o lock cai junto. Lockfile manual ficaria órfão.</li>
+<li><strong class="text-blue-400">Atômico:</strong> dois processos chamando <code>flock</code> ao mesmo tempo — só um ganha. Sem race.</li>
+<li><strong class="text-blue-400">LOCK_NB:</strong> não-bloqueante. Se preso, falha rápido em vez de empilhar processos esperando.</li>
+<li><strong class="text-blue-400">Cross-platform-ish:</strong> macOS e Linux compartilham; no Windows use <code>msvcrt.locking</code>.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Padrão dream cycle</h4>
+<ul class="space-y-1 text-sm text-neutral-300">
+<li>• A cada 3h consolida memória</li>
+<li>• Resume últimas 24h em 1 entrada</li>
+<li>• Reindex FTS5</li>
+<li>• Limpa interações &gt;90 dias se houver fact extraído</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Erros típicos</h4>
+<ul class="space-y-1 text-sm text-neutral-300">
+<li>• <code>* * * * *</code> sem lock — concorrência</li>
+<li>• Job dura mais que o intervalo</li>
+<li>• Exit code ≠ 0 em "skip" → cron alerta</li>
+<li>• Sem log → "não rodou" vs "rodou e deu silêncio"</li>
+</ul>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Cadência</strong><p class="text-xs text-neutral-400 mt-1">3h equilibra freshness e custo de LLM.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">PATH no cron</strong><p class="text-xs text-neutral-400 mt-1">Vazio — use sempre paths absolutos.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">stderr no log</strong><p class="text-xs text-neutral-400 mt-1"><code>2&gt;&amp;1</code> ou o cron te manda mail.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Alternativas</strong><p class="text-xs text-neutral-400 mt-1">systemd timers (linux) / launchd StartCalendar (mac).</p></div>
+</div>
+</section>
+
+<!-- TOPICO 6 — Healthcheck + kill switch -->
+<section id="topico-6" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🚦 Healthcheck e kill switch — /status + /killall</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Duas peças que o módulo 1.1 chamou de "termômetro de maturidade". <strong class="text-blue-400">/status</strong> responde "tô vivo, eis meu estado". <strong class="text-blue-400">/killall</strong> é o botão vermelho — uma flag no banco que o loop principal lê a cada turno e respeita. Sem isso, "desligar tudo" vira <code>kill -9</code> torcendo.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>-- schema.sql — flag central
+CREATE TABLE IF NOT EXISTS system_flags (
+  name        TEXT PRIMARY KEY,
+  value       TEXT NOT NULL,
+  set_by      TEXT NOT NULL,
+  set_at      REAL NOT NULL,
+  reason      TEXT
+);
+
+-- Estado inicial
+INSERT OR IGNORE INTO system_flags(name, value, set_by, set_at, reason)
+VALUES ('agent.enabled', '1', 'system', strftime('%s','now'), 'boot');</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># ops/control.py
+import time
+import sqlite3
+from observability.log import log
+
+DB = "/home/marco/.agentos/data/agentos.db"
+
+def is_enabled() -&gt; bool:
+    with sqlite3.connect(DB) as cx:
+        row = cx.execute(
+            "SELECT value FROM system_flags WHERE name='agent.enabled'"
+        ).fetchone()
+        return bool(row and row[0] == "1")
+
+def killall(actor: str, reason: str) -&gt; None:
+    with sqlite3.connect(DB) as cx:
+        cx.execute("""
+            INSERT INTO system_flags(name, value, set_by, set_at, reason)
+            VALUES ('agent.enabled', '0', ?, ?, ?)
+            ON CONFLICT(name) DO UPDATE SET
+                value='0', set_by=excluded.set_by,
+                set_at=excluded.set_at, reason=excluded.reason
+        """, (actor, time.time(), reason))
+    log.warning("kill_switch_engaged", actor=actor, reason=reason)
+
+def resume(actor: str) -&gt; None:
+    with sqlite3.connect(DB) as cx:
+        cx.execute("""
+            UPDATE system_flags SET value='1', set_by=?, set_at=?, reason='resume'
+            WHERE name='agent.enabled'
+        """, (actor, time.time()))
+    log.info("kill_switch_released", actor=actor)</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># No loop principal do agente
+from ops.control import is_enabled
+
+async def handle(self, msg):
+    if not is_enabled():
+        await self.channel.send(OutgoingMessage(
+            user_id=msg.user_id,
+            text="🛑 Sistema em manutenção. Volto em breve."
+        ))
+        return
+    # ... resto do turno
+
+# Comandos administrativos expostos como tools (só admin)
+class StatusTool(Tool):
+    name = "status"
+    description = "Diagnóstico: uptime, fila, último erro, flags."
+    parameters = {"type": "object", "properties": {}, "required": []}
+
+    async def execute(self, session, **kwargs):
+        uptime = time.time() - BOOT_TIME
+        return ToolResult(output=json.dumps({
+            "enabled": is_enabled(),
+            "uptime_s": round(uptime),
+            "pending_turns": queue.qsize(),
+            "last_error": LAST_ERROR_AT,
+            "version": __version__,
+        }, indent=2))
+
+class KillallTool(Tool):
+    name = "killall"
+    description = "EMERGÊNCIA: para todos os turnos novos. Não mata em-andamento."
+    parameters = {
+        "type": "object",
+        "properties": {"reason": {"type": "string"}},
+        "required": ["reason"]
+    }
+    requires_approval = True   # T3.4 — human-in-the-loop
+
+    async def execute(self, session, reason: str, **_):
+        if not session.user.is_admin:
+            return ToolResult(error="Apenas admins podem acionar kill switch")
+        killall(actor=session.user.id, reason=reason)
+        return ToolResult(output=f"🛑 Kill switch engajado. Motivo: {reason}")</code></pre>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Healthcheck também vira endpoint externo</h3>
+<p class="text-neutral-300 text-sm">Exponha <code>/health</code> num HTTP server pequeno (<code>aiohttp</code>). UptimeRobot/Healthchecks.io faz ping a cada 1 min — se 2 falhas seguidas, te manda push. Custo: 5 linhas, 0 dólares.</p>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Conceitos-chave do kill switch</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-neutral-300 text-sm">
+<div><strong class="text-blue-400">Pull, não push:</strong> agente lê a flag, sistema externo não precisa "alcançar" cada processo.</div>
+<div><strong class="text-blue-400">Não mata em-andamento:</strong> turnos atuais terminam (transação não fica órfã). Novos param.</div>
+<div><strong class="text-blue-400">Auditável:</strong> set_by + reason + set_at = quem desligou e por quê.</div>
+<div><strong class="text-blue-400">Idempotente:</strong> chamar 2x não causa estrago. Resume requer ação explícita.</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">/status</strong><p class="text-xs text-neutral-400 mt-1">Diagnóstico em JSON. Admin lê do chat.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">/killall</strong><p class="text-xs text-neutral-400 mt-1">Flag no banco. Loop respeita.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">/health</strong><p class="text-xs text-neutral-400 mt-1">Endpoint HTTP. Monitor externo.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">requires_approval</strong><p class="text-xs text-neutral-400 mt-1">Killall pede confirmação humana.</p></div>
+</div>
+</section>
+
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏁</span> Trilha 2 concluída — resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">launchd e systemd resolvem 95% do "rodar 24/7"</strong><span class="text-neutral-400"> — plist no macOS, .service no Linux, ambos com auto-restart e log nativo.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Secrets nunca em git</strong><span class="text-neutral-400"> — Fernet + chave 0600 + escrita atômica. SecretBox recusa abrir com permissão errada.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Log = JSONL com structlog</strong><span class="text-neutral-400"> — rotação diária, contextvars carregam request_id, Grafana/Loki consome direto.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Cron de dream cycle com fcntl.flock</strong><span class="text-neutral-400"> — kernel libera no crash, LOCK_NB falha rápido, sem processos órfãos.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">/status + /killall + /health</strong><span class="text-neutral-400"> — flag em system_flags, agente lê, kill switch auditável e idempotente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Trilha 2 concluída</strong><span class="text-neutral-400">: estrutura, contratos, canais, memória, ferramentas e operação. Você tem um agente Builder-grade aguentando produção.</span></div></div>
+</div>
+
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Próxima trilha:</h3>
+<p class="text-neutral-300">Trilha 3 — Multi-user OS. Tirar o agente de single-tenant e abrir pra equipe/clientes: identidade, isolamento, rate limit, audit log, billing por user.</p>
+</div>
+
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+<a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Ir para Trilha 3 →</a>
+</div>
+</div>
+</section>
 
 </main>
+
 <footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 2 · Módulo 2.6 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
+
+<script>
+const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;
+if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}
+tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});
+</script>
 </body></html>

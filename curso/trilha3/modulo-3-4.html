@@ -1,78 +1,694 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 3.4 — Orquestrador multi-tenant | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .bg-purple-500\/20{background-color:rgba(124,58,237,.12)}html:not(.dark) .bg-purple-500\/10{background-color:rgba(124,58,237,.08)}html:not(.dark) .border-purple-500\/30{border-color:rgba(124,58,237,.25)}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.4 — Orquestrador multi-tenant | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha purple (T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+
+    /* Light mode — trilhas inativas no nav */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes removidos + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre { white-space: pre; overflow-x: auto; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span><a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span><span class="text-purple-400">Módulo 3.4</span></div></nav>
-<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🎼 Orquestrador multi-tenant</h1><p class="text-lg text-neutral-400 max-w-3xl">Chief-of-staff pattern adaptado pra múltiplos clientes. Roteamento, sub-agentes, rate limiting, human-in-the-loop.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🎯 Chief-of-staff</h2></div><p class="text-neutral-300 mb-6">1 agente "chief" recebe request, decompõe, delega para especialistas, reconcilia. Estudo Anthropic mostra +90,2% qualidade vs agente solo.</p></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🚏 Roteamento por user/tier</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>TIERS = {
-    "free":  {"model": "haiku-4.5", "tools": ["web_fetch", "shell"], "rate": 20},
-    "pro":   {"model": "sonnet-4.6", "tools": ["*"], "rate": 200},
-    "enterprise": {"model": "opus-4.7", "tools": ["*"], "rate": 2000}
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3 · Multi-user</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.4</span>
+    </div>
+  </nav>
+
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎼 Orquestrador multi-tenant</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Chief-of-staff que decompõe pedido, roteia para sub-agentes especialistas, isola
+        falhas, respeita tier do user e pede aprovação humana quando o risco passa do limite.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Builder</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Código</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 — Chief-of-staff pattern -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">👔 Chief-of-staff pattern</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Agente solo em produção falha em tarefas longas: tenta tudo no mesmo contexto, perde
+        o fio, alucina. O <strong class="text-purple-400">chief-of-staff</strong> é um agente fino
+        que <em>não executa</em> — decompõe o pedido, delega para especialistas, reconcilia o
+        retorno. Pesquisa da Anthropic mostra <strong class="text-purple-400">+90,2%</strong>
+        de qualidade vs. agente único no mesmo benchmark.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> O dado que justifica</h3>
+        <p class="text-neutral-300 mb-2"><strong class="text-blue-400">90,2%</strong> — melhoria média do chief-of-staff multi-agente vs. agente solo (mesma família de modelos, mesmo prompt-base).</p>
+        <p class="text-neutral-300 text-sm">Vale para research, planejamento longo, multi-step com tools. Não vale para chat curto — aí o solo ganha em latência.</p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Fluxo em ASCII</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300">
+  user_request
+       │
+       ▼
+  ┌──────────────────┐
+  │   ChiefOfStaff   │  ── decompose() ──▶  [task1, task2, task3]
+  │  (não executa)   │
+  └──────────────────┘
+       │ delegate(task, subagent)
+       ├──────────────┬──────────────┐
+       ▼              ▼              ▼
+  ┌──────────┐   ┌──────────┐   ┌──────────┐
+  │Researcher│   │ Planner  │   │ Executor │
+  │ (web,RAG)│   │ (LLM)    │   │ (tools)  │
+  └──────────┘   └──────────┘   └──────────┘
+       │              │              │
+       └──────────────┴──────────────┘
+                      ▼
+              reconcile(results)
+                      │
+                      ▼
+                 response</pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">🧠</span> Esqueleto do ChiefOfStaff</h3>
+<pre class="text-sm text-neutral-300">class ChiefOfStaff:
+    def __init__(self, user: User, registry: SubagentRegistry):
+        self.user = user
+        self.registry = registry
+        self.llm = pick_model(user.tier)  # tier define modelo
+
+    async def handle(self, request: str) -> Response:
+        tasks = await self.decompose(request)
+        results = []
+        for task in tasks:
+            sub = self.registry.pick(task.kind, tier=self.user.tier)
+            try:
+                r = await self.delegate(sub, task)
+            except SubagentError as e:
+                r = TaskFailed(task=task, error=str(e))  # isola
+            results.append(r)
+        return await self.reconcile(request, results)
+
+    async def decompose(self, request):
+        prompt = f"Quebre em sub-tarefas atômicas:\n{request}"
+        return await self.llm.complete(prompt, schema=TaskList)
+
+    async def delegate(self, sub, task):
+        return await sub.run(task, user=self.user)
+
+    async def reconcile(self, request, results):
+        prompt = build_reconcile_prompt(request, results)
+        return await self.llm.complete(prompt)</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Decompose</strong><p class="text-sm text-neutral-400 mt-1">LLM quebra em <code>TaskList</code> via schema validado.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Delegate</strong><p class="text-sm text-neutral-400 mt-1">Cada task vai pro sub-agente certo. Try/except isola.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Reconcile</strong><p class="text-sm text-neutral-400 mt-1">Resultado vira input do prompt final. Falhas viram contexto, não exception.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — Roteamento por tier -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎚️ Roteamento por tier do user</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Free user não pode chamar Opus em loop — quebra unit economics. Enterprise não tolera
+        Haiku numa decisão de M&A. O orquestrador <strong class="text-purple-400">decide modelo
+        + tools + limites pelo tier</strong>, não pelo prompt.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">🗂️</span> Dict TIERS</h3>
+<pre class="text-sm text-neutral-300">TIERS = {
+    "free": {
+        "model": "claude-haiku-4-5",
+        "max_subagents": 2,
+        "tools": ["search_web"],
+        "rate_per_min": 10,
+        "max_tokens_per_req": 4_000,
+        "can_approve_human": False,
+    },
+    "pro": {
+        "model": "claude-sonnet-4-7",
+        "max_subagents": 5,
+        "tools": ["search_web", "rag_query", "code_exec"],
+        "rate_per_min": 60,
+        "max_tokens_per_req": 32_000,
+        "can_approve_human": True,
+    },
+    "enterprise": {
+        "model": "claude-opus-4-7",
+        "max_subagents": 12,
+        "tools": ["search_web", "rag_query", "code_exec",
+                  "db_write", "send_email", "create_ticket"],
+        "rate_per_min": 600,
+        "max_tokens_per_req": 200_000,
+        "can_approve_human": True,
+        "dedicated_circuit": True,
+    },
 }
 
-def config_for(user):
-    return TIERS.get(user.tier, TIERS["free"])</code></pre></div></section>
+def pick_model(tier: str) -> LLM:
+    return LLM(TIERS[tier]["model"])
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🤖 Sub-agentes especialistas</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># Cada subagent = Tool exposed ao chief
+def allowed_tools(tier: str) -> list[str]:
+    return TIERS[tier]["tools"]</pre>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Tabela comparativa</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Capacidade</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Free</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Pro</th>
+              <th class="text-left py-3 text-purple-400 font-semibold">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4">Modelo</td><td class="py-3 pr-4">Haiku 4.5</td><td class="py-3 pr-4">Sonnet 4.7</td><td class="py-3">Opus 4.7</td></tr>
+            <tr><td class="py-3 pr-4">Sub-agentes paralelos</td><td class="py-3 pr-4">2</td><td class="py-3 pr-4">5</td><td class="py-3">12</td></tr>
+            <tr><td class="py-3 pr-4">Tools liberadas</td><td class="py-3 pr-4">1 (search)</td><td class="py-3 pr-4">3</td><td class="py-3">6 + db_write</td></tr>
+            <tr><td class="py-3 pr-4">Req/min</td><td class="py-3 pr-4">10</td><td class="py-3 pr-4">60</td><td class="py-3">600</td></tr>
+            <tr><td class="py-3 pr-4">Max tokens/req</td><td class="py-3 pr-4">4k</td><td class="py-3 pr-4">32k</td><td class="py-3">200k</td></tr>
+            <tr><td class="py-3 pr-4">Human approval</td><td class="py-3 pr-4">—</td><td class="py-3 pr-4">✓</td><td class="py-3">✓</td></tr>
+            <tr><td class="py-3 pr-4">Circuit dedicado</td><td class="py-3 pr-4">—</td><td class="py-3 pr-4">—</td><td class="py-3">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Decisão no orquestrador</strong><p class="text-sm text-neutral-400 mt-1">Nunca pergunte tier dentro do sub-agente. Decide na entrada.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Upgrade dinâmico</strong><p class="text-sm text-neutral-400 mt-1">User pode pagar Opus por request específico — vira override no <code>Session</code>.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Sub-agentes -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧩 Sub-agentes especialistas</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada sub-agente é uma <strong class="text-purple-400">Tool</strong> pro chief, com
+        contrato fechado: <code>input</code> tipado, <code>output</code> tipado, timeout,
+        rate-limit próprio. O chief não conhece o miolo do sub — só a interface.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">🔬</span> ResearcherSubagent como Tool</h3>
+<pre class="text-sm text-neutral-300">from pydantic import BaseModel
+
+class ResearchInput(BaseModel):
+    query: str
+    max_sources: int = 5
+    recency_days: int | None = None
+
+class ResearchOutput(BaseModel):
+    summary: str
+    sources: list[dict]
+    confidence: float
+
 class ResearcherSubagent(Tool):
-    name = "subagent_research"
-    description = "Delega pesquisa profunda em web. Use quando precisar de 5+ fontes."
-    parameters = {"type": "object", "properties": {"topic": {"type": "string"}}}
-    async def execute(self, topic, session):
-        sub = Agent(provider=fast_provider, tools=[web_fetch, web_search],
-                    system_prompt="Você é pesquisador. Sempre cite fontes.")
-        return ToolResult(output=await sub.run(topic))</code></pre></div></section>
+    name = "researcher"
+    description = "Busca web + RAG e devolve summary com citações."
+    input_schema = ResearchInput
+    output_schema = ResearchOutput
+    timeout_s = 30
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🛑 Rate limit + circuit breaker</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from collections import defaultdict
-import time
+    def __init__(self, llm: LLM, web: WebClient, rag: RAGClient):
+        self.llm, self.web, self.rag = llm, web, rag
+
+    async def run(self, inp: ResearchInput, user: User) -> ResearchOutput:
+        web_hits = await self.web.search(inp.query, k=inp.max_sources)
+        rag_hits = await self.rag.query(inp.query, user_id=user.id, k=3)
+        sources = web_hits + rag_hits
+        summary = await self.llm.complete(
+            build_summary_prompt(inp.query, sources),
+            max_tokens=2000,
+        )
+        return ResearchOutput(
+            summary=summary,
+            sources=[s.to_dict() for s in sources],
+            confidence=score_confidence(sources),
+        )</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip — isolamento de falha</h3>
+        <p class="text-neutral-300">Sub-agente que falha <strong>não derruba o chief</strong>. O try/except no <code>delegate()</code> transforma exception em <code>TaskFailed</code> e segue. O chief reconcilia com o que sobrou e diz na resposta: <em>"researcher falhou, segui com planner."</em> Usuário vê algo útil — não 500.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Researcher</strong><p class="text-sm text-neutral-400 mt-1">Web + RAG. Devolve summary + sources + confidence.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Planner</strong><p class="text-sm text-neutral-400 mt-1">LLM puro. Recebe contexto, devolve sequência de passos.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Executor</strong><p class="text-sm text-neutral-400 mt-1">Roda tools concretas (db, email, ticket). Único que escreve no mundo.</p></div>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Fazer vs evitar</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Fazer</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Sub-agente recebe <em>só</em> as tools que precisa pra função dele.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span><code>Researcher</code> só tem read (web, rag). Não escreve nada.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span><code>Executor</code> é o único com write — e cada write loga <code>user_id + request_id</code>.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Schema Pydantic em input/output. Erros viram <code>ValidationError</code> determinístico.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evitar</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sub-agente com toolkit completo "por garantia". Vira mini-chief, perde foco.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>Researcher</code> que também pode <code>db_write</code> — caminho rápido pra deletar produção por alucinação.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sub-agente que chama outros sub-agentes sem passar pelo chief. Vira grafo intratável.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Output free-form. Sem schema o reconcile vira string parsing — frágil.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Rate limit + circuit breaker -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚦 Rate limiting + circuit breaker</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sem isso, um user com loop infinito (intencional ou não) drena seu orçamento mensal em
+        horas. <strong class="text-purple-400">TokenBucket por user</strong> e
+        <strong class="text-purple-400">circuit breaker por sub-agente</strong> são
+        obrigatórios — não otimização.
+      </p>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-2 flex items-center"><span class="mr-2">🚨</span> Alerta — loop infinito sem rate limit</h3>
+        <p class="text-neutral-300 mb-2">Caso real: agente em loop chamando Opus a cada 200ms. Em 6h de madrugada queimou <strong class="text-red-400">USD 14.000</strong> antes de alguém notar. Sem TokenBucket = sua margem some.</p>
+        <p class="text-sm text-neutral-400">Coloque hard cap por user/dia <em>antes</em> de subir o primeiro chief multi-agente.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">🪣</span> TokenBucket por user (defaultdict)</h3>
+<pre class="text-sm text-neutral-300">import time
+from collections import defaultdict
+from dataclasses import dataclass
+
+@dataclass
+class Bucket:
+    capacity: float
+    tokens: float
+    refill_rate: float  # tokens/segundo
+    last_refill: float
 
 class TokenBucket:
     def __init__(self):
-        self.buckets = defaultdict(lambda: {"tokens": 0, "last": time.time()})
+        # cada user_id ganha bucket sob demanda
+        self.buckets: dict[str, Bucket] = defaultdict(self._new)
 
-    def allow(self, user_id, capacity, refill_per_sec):
+    def _new(self) -> Bucket:
+        return Bucket(capacity=60, tokens=60, refill_rate=1.0,
+                      last_refill=time.monotonic())
+
+    def configure(self, user_id: str, tier: str):
+        rpm = TIERS[tier]["rate_per_min"]
         b = self.buckets[user_id]
-        now = time.time()
-        b["tokens"] = min(capacity, b["tokens"] + (now - b["last"]) * refill_per_sec)
-        b["last"] = now
-        if b["tokens"] &gt;= 1:
-            b["tokens"] -= 1
+        b.capacity = rpm
+        b.tokens = min(b.tokens, rpm)
+        b.refill_rate = rpm / 60.0
+
+    def allow(self, user_id: str, cost: float = 1.0) -> bool:
+        b = self.buckets[user_id]
+        now = time.monotonic()
+        b.tokens = min(b.capacity, b.tokens + (now - b.last_refill) * b.refill_rate)
+        b.last_refill = now
+        if b.tokens >= cost:
+            b.tokens -= cost
             return True
-        return False</code></pre></div></section>
+        return False
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🧰 A2A protocol básico</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>POST /a2a/v1/invoke
-Authorization: Bearer &lt;shared-token&gt;
-Content-Type: application/json
-{
-  "correlation_id": "uuid",
-  "from_agent": "chief-of-staff-prod",
-  "to_agent": "report-generator",
-  "intent": "generate_weekly_report",
-  "payload": {...},
-  "deadline_ms": 30000
-}</code></pre></div></section>
+# Circuit breaker por sub-agente
+class CircuitBreaker:
+    def __init__(self, threshold=5, cooldown_s=30):
+        self.fails = defaultdict(int)
+        self.opened_at = {}
+        self.threshold, self.cooldown = threshold, cooldown_s
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">⏸️ Human-in-the-loop</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>class SendEmailTool(Tool):
-    requires_approval = True  # flag especial
-    ...
+    def call_allowed(self, sub: str) -> bool:
+        if sub in self.opened_at:
+            if time.monotonic() - self.opened_at[sub] > self.cooldown:
+                del self.opened_at[sub]
+                self.fails[sub] = 0
+            else:
+                return False
+        return True
 
-# No agent loop:
-if tool.requires_approval:
-    approval_id = await create_pending_approval(session, tool.name, kwargs)
-    await channel.send(OutgoingMessage(
-        user_id=session.user.id,
-        text=f"Aprovar /approve {approval_id}? Vou {tool.preview(kwargs)}"
-    ))
-    return None  # pausa execução até /approve</code></pre></div></section>
+    def record(self, sub: str, ok: bool):
+        if ok:
+            self.fails[sub] = 0
+        else:
+            self.fails[sub] += 1
+            if self.fails[sub] >= self.threshold:
+                self.opened_at[sub] = time.monotonic()</pre>
+      </div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">Chief-of-staff + tiers + sub-agentes + rate limit = orquestrador robusto. Human-in-the-loop pra actions sensíveis.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo →</a></div></div></section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Bucket por user</strong><p class="text-sm text-neutral-400 mt-1">Vizinho barulhento não derruba os outros.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Breaker por sub</strong><p class="text-sm text-neutral-400 mt-1">5 falhas → abre 30s. Para de bater num serviço caído.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Hard cap diário</strong><p class="text-sm text-neutral-400 mt-1">Independente do bucket: USD/dia por user. Kill switch contábil.</p></div>
+      </div>
+    </section>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 3 · Módulo 3.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+    <!-- TOPICO 5 — A2A protocol -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📨 A2A protocol — envelope padrão</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Quando dois agentes falam (chief → sub, ou sistema A → sistema B), envelope é
+        obrigatório: <strong class="text-purple-400">correlation_id</strong> pra rastrear,
+        <strong class="text-purple-400">bearer token</strong> pra autenticar,
+        <strong class="text-purple-400">trace_id</strong> pra observabilidade.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">📦</span> Payload A2A — exemplo JSON</h3>
+<pre class="text-sm text-neutral-300">{
+  "envelope": {
+    "version": "a2a/1.0",
+    "correlation_id": "req_01HZ8X7K3M2NRQ9V4PYJBD6S5C",
+    "trace_id": "trc_4f9c2b1a8e7d6c5b",
+    "from": "agent://chief.tenant42",
+    "to":   "agent://researcher.tenant42",
+    "issued_at": "2026-05-18T20:44:11Z",
+    "expires_at": "2026-05-18T20:44:41Z",
+    "auth": {
+      "scheme": "Bearer",
+      "token": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9..."
+    }
+  },
+  "user_context": {
+    "user_id": "u_8821",
+    "tenant_id": "tenant42",
+    "tier": "pro",
+    "locale": "pt-BR"
+  },
+  "task": {
+    "kind": "research",
+    "input": {
+      "query": "concorrentes diretos do produto X no Brasil 2026",
+      "max_sources": 8,
+      "recency_days": 90
+    },
+    "requires_approval": false,
+    "timeout_s": 30
+  },
+  "limits": {
+    "max_tokens": 8000,
+    "max_cost_usd": 0.50
+  }
+}</pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3">Por que cada campo importa</h3>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li><strong class="text-purple-400">correlation_id</strong> — segue o pedido do user até as N chamadas de sub. Suporte usa isso pra reproduzir.</li>
+          <li><strong class="text-purple-400">trace_id</strong> — span no OpenTelemetry. Latência por hop fica visível.</li>
+          <li><strong class="text-purple-400">expires_at</strong> — sub-agente rejeita envelope velho. Evita replay.</li>
+          <li><strong class="text-purple-400">auth.token</strong> — JWT assinado pelo orquestrador. Sub valida assinatura — não confia só no IP.</li>
+          <li><strong class="text-purple-400">user_context</strong> — tier viaja no envelope. Sub não consulta DB.</li>
+          <li><strong class="text-purple-400">limits</strong> — sub aborta se ultrapassar. Cap em duas camadas.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Sempre versione</strong><p class="text-sm text-neutral-400 mt-1"><code>a2a/1.0</code> no envelope. Breaking changes viram <code>1.1</code>.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Nunca confie no body</strong><p class="text-sm text-neutral-400 mt-1">Sub valida JWT + schema. Body sem assinatura = anônimo.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Human-in-the-loop -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🙋 Human-in-the-loop</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Ações irreversíveis (enviar email a cliente, deletar dado, criar fatura) nunca rodam
+        sem ack humano. O orquestrador marca a task como <code>requires_approval</code>, congela
+        em estado <code>pending</code> e espera — com <strong class="text-purple-400">timeout de 24h</strong>.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">⏳</span> Fluxo pending_approval</h3>
+<pre class="text-sm text-neutral-300">from datetime import datetime, timedelta, timezone
+
+APPROVAL_TIMEOUT = timedelta(hours=24)
+
+async def execute_with_approval(task, user, executor):
+    if not task.requires_approval:
+        return await executor.run(task, user)
+
+    pending = await db.create_pending(
+        task=task,
+        user_id=user.id,
+        state="pending_approval",
+        expires_at=datetime.now(timezone.utc) + APPROVAL_TIMEOUT,
+    )
+    await notify_approver(user, pending)  # email/slack/webhook
+
+    decision = await wait_for_decision(
+        pending_id=pending.id,
+        timeout=APPROVAL_TIMEOUT,
+    )
+
+    if decision is None:                  # timeout
+        await db.update(pending.id, state="expired")
+        return TaskExpired(task=task)
+    if decision.action == "deny":
+        await db.update(pending.id, state="denied",
+                        reviewer=decision.user_id, reason=decision.reason)
+        return TaskDenied(task=task, reason=decision.reason)
+
+    # approved
+    await db.update(pending.id, state="approved",
+                    reviewer=decision.user_id)
+    result = await executor.run(task, user)
+    await db.update(pending.id, state="executed",
+                    result_id=result.id)
+    return result</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip — quem aprova ≠ quem pede</h3>
+        <p class="text-neutral-300">Sempre. User que pediu não aprova a própria ação irreversível — vira self-service de cagada. O <code>approver_role</code> da task define quem pode dar ack: <em>manager</em>, <em>compliance</em>, <em>admin</em>. Aprovador vê o payload completo + diff do que vai acontecer.</p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Estados possíveis</h3>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">pending</strong><p class="text-xs text-neutral-400 mt-1">Aguardando humano.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">approved</strong><p class="text-xs text-neutral-400 mt-1">Ack dado. Executor roda.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">denied</strong><p class="text-xs text-neutral-400 mt-1">Humano vetou. Audit guarda razão.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">expired</strong><p class="text-xs text-neutral-400 mt-1">24h sem resposta. Falha segura.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">executed</strong><p class="text-xs text-neutral-400 mt-1">Rodou. Liga <code>result_id</code>.</p></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Idempotente</strong><p class="text-sm text-neutral-400 mt-1">Aprovação duplicada não roda 2x. Use <code>pending.id</code> como chave.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Reabrir histórico</strong><p class="text-sm text-neutral-400 mt-1">Pending fica forever na DB. Suporte vê o que foi aprovado, por quem, quando.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Chief-of-staff bate solo em 90,2%</strong><span class="text-neutral-400"> — decompose / delegate / reconcile.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">TIERS dirige modelo + tools + limites</strong><span class="text-neutral-400"> — free/pro/enterprise no orquestrador, nunca no sub.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Sub-agentes têm tools mínimas</strong><span class="text-neutral-400"> — researcher só lê, executor só escreve, schema Pydantic.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">TokenBucket + CircuitBreaker são obrigatórios</strong><span class="text-neutral-400"> — sem isso, um loop queima USD 14k de madrugada.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">A2A envelope com correlation_id + JWT</strong><span class="text-neutral-400"> — rastreabilidade ponta-a-ponta e auth por hop.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Human-in-the-loop com timeout 24h</strong><span class="text-neutral-400"> — pending/approved/denied/expired/executed, aprovador ≠ requisitante.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">3.5 — Canais paralelos: como rodar múltiplos sub-agentes ao mesmo tempo sem corromper estado.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 3</a>
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 3 · Módulo 3.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

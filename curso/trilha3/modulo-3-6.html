@@ -1,69 +1,672 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 3.6 — Operação | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .bg-purple-500\/20{background-color:rgba(124,58,237,.12)}html:not(.dark) .bg-purple-500\/10{background-color:rgba(124,58,237,.08)}html:not(.dark) .border-purple-500\/30{border-color:rgba(124,58,237,.25)}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.6 — Operação | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha purple (T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+
+    /* Light mode — trilhas inativas no nav */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span><a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span><span class="text-purple-400">Módulo 3.6</span></div></nav>
-<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.6</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🚦 Operação</h1><p class="text-lg text-neutral-400 max-w-3xl">Dashboard de métricas, audit log, custos por user, alertas, kill switch. Como ops de IA realmente é.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📊 Dashboard MVP (4 cards)</h2></div><p class="text-neutral-300 mb-6">HTML simples + Tailwind CDN + endpoint JSON. 4 cards: DAU, custo do dia, erros 24h, latência p95.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>@app.get("/dashboard/stats")
-async def stats():
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3 · Multi-user</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.6</span>
+    </div>
+  </nav>
+
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.6 · ÚLTIMO DA TRILHA</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📟 Operação: o turno de plantão do seu OS</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Dashboard, audit log, custo por user, alertas e kill switch. O que separa um agente
+        que "tá rodando" de um sistema que você dorme tranquilo operando.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Avançado</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Prática</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 — Dashboard MVP -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📊 Dashboard MVP: 4 cards e você dorme melhor</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Antes de Datadog, Grafana, OTel: 1 página HTML com 4 números. <strong class="text-purple-400">DAU</strong>,
+        <strong class="text-purple-400">custo do dia</strong>, <strong class="text-purple-400">erros 24h</strong>,
+        <strong class="text-purple-400">latência p95</strong>. Se um fica vermelho, alguém olha. Pronto.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🖥️</span> Mockup do dashboard (ASCII honesto)</h3>
+<pre class="text-xs sm:text-sm text-neutral-300 bg-dark-900/60 p-4 rounded-lg overflow-x-auto">┌─────────────────────┬─────────────────────┐
+│  DAU                │  CUSTO HOJE         │
+│  1.247 ▲ 8%         │  R$ 84,30 ▼ 3%      │
+│  vs ontem           │  budget R$ 120      │
+├─────────────────────┼─────────────────────┤
+│  ERROS 24h          │  LATÊNCIA p95       │
+│  12 ⚠ (3 críticos)  │  2.1s ▲ 0.4s        │
+│  threshold: 20      │  SLO: &lt; 3.0s        │
+└─────────────────────┴─────────────────────┘</pre>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Endpoint FastAPI que alimenta os 4 cards</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300"># app/routes/dashboard.py
+from fastapi import APIRouter, Depends
+from datetime import datetime, timedelta
+import asyncpg
+
+router = APIRouter(prefix="/dashboard")
+
+@router.get("/stats")
+async def dashboard_stats(db: asyncpg.Connection = Depends(get_db)):
+    today = datetime.utcnow().date()
+    yesterday = today - timedelta(days=1)
+
+    row = await db.fetchrow("""
+        SELECT
+          (SELECT COUNT(DISTINCT user_id)
+             FROM requests
+            WHERE day = $1)                                    AS dau_today,
+          (SELECT COUNT(DISTINCT user_id)
+             FROM requests
+            WHERE day = $2)                                    AS dau_yesterday,
+          (SELECT COALESCE(SUM(cost_usd), 0)
+             FROM usage_daily
+            WHERE day = $1)                                    AS cost_today,
+          (SELECT COUNT(*) FROM errors
+            WHERE ts &gt; NOW() - INTERVAL '24 hours')            AS errors_24h,
+          (SELECT COUNT(*) FROM errors
+            WHERE ts &gt; NOW() - INTERVAL '24 hours'
+              AND severity = 'critical')                       AS crit_24h,
+          (SELECT percentile_cont(0.95)
+                  WITHIN GROUP (ORDER BY latency_ms)
+             FROM requests
+            WHERE day = $1)                                    AS p95_ms
+    """, today, yesterday)
+
     return {
-        "dau": await count_active_users(hours=24),
-        "cost_today_usd": await sum_cost(today=True),
-        "errors_24h": await count_errors(hours=24),
-        "p95_latency_ms": await percentile_latency(95, hours=1)
-    }</code></pre></div></section>
+        "dau":     {"today": row["dau_today"], "delta_pct": _delta(row)},
+        "cost":    {"today_brl": round(row["cost_today"] * 5.0, 2)},
+        "errors":  {"total": row["errors_24h"], "critical": row["crit_24h"]},
+        "latency": {"p95_s": round((row["p95_ms"] or 0) / 1000, 2)},
+    }</pre>
+      </div>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🧾 Audit log estruturado</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># 1 linha JSON por evento, file por dia
-{"event":"tool_called","user_id":"abc","request_id":"req-1","tool":"shell","args":{...},"timestamp":"2026-05-18T14:23:15Z","latency_ms":230}
-{"event":"llm_call","user_id":"abc","request_id":"req-1","model":"sonnet-4.6","tokens_in":450,"tokens_out":120,"cost_usd":0.0042}</code></pre></div></section>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">DAU</strong><p class="text-xs text-neutral-400 mt-1">Usuários únicos no dia. Vaza churn antes do CSAT.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Custo dia</strong><p class="text-xs text-neutral-400 mt-1">USD → BRL convertido. Comparado a budget/30.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Erros 24h</strong><p class="text-xs text-neutral-400 mt-1">Total + críticos. Crit &gt; 0 = paginado.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">p95</strong><p class="text-xs text-neutral-400 mt-1">Percentil 95. Mediana mente; p95 não.</p></div>
+      </div>
+    </section>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">💵 Custo por user</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>CREATE TABLE usage_daily (
-    user_id TEXT, day DATE, model TEXT,
-    tokens_in INT, tokens_out INT, cost_usd REAL,
+    <!-- TOPICO 2 — Audit log -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📝 Audit log estruturado: JSON lines, retenção 90d, PII redigida</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Log de texto livre é log que ninguém grep. <strong class="text-purple-400">1 evento = 1 linha JSON</strong>.
+        Campos obrigatórios: <code class="bg-dark-700 px-1 rounded">ts</code>,
+        <code class="bg-dark-700 px-1 rounded">user_id</code>,
+        <code class="bg-dark-700 px-1 rounded">request_id</code>,
+        <code class="bg-dark-700 px-1 rounded">action</code>,
+        <code class="bg-dark-700 px-1 rounded">cost_usd</code>,
+        <code class="bg-dark-700 px-1 rounded">latency_ms</code>. PII passa por redact antes de tocar disco.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evitar: log de texto livre</h4>
+<pre class="text-xs text-neutral-300">2026-05-18 14:23 user nei@email.com asked
+about pricing, replied with R$ 99/mo plan,
+used 1247 tokens, took 2.3s, OK.</pre>
+          <p class="text-sm text-neutral-400 mt-3">Impossível agregar. Email vaza. grep é jogo de adivinhação.</p>
+        </div>
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Fazer: JSON line</h4>
+<pre class="text-xs text-neutral-300">{"ts":"2026-05-18T14:23:11Z","user_id":"u_8a3f",
+"request_id":"r_91c2","action":"chat.reply",
+"tokens_in":412,"tokens_out":835,"cost_usd":0.0042,
+"latency_ms":2310,"model":"claude-opus-4-7",
+"status":"ok"}</pre>
+          <p class="text-sm text-neutral-400 mt-3"><code>jq</code>, agregação SQL, retenção automática. Sem PII no log.</p>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-purple-400 mb-3">Audit writer com redact + retention</h4>
+<pre class="text-sm text-neutral-300"># app/audit.py
+import json, re, time
+from pathlib import Path
+
+EMAIL_RE = re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+')
+CPF_RE   = re.compile(r'\d{3}\.\d{3}\.\d{3}-\d{2}')
+LOG_DIR  = Path("/var/log/agent/audit")
+RETENTION_DAYS = 90
+
+def _redact(s: str) -&gt; str:
+    s = EMAIL_RE.sub("[email]", s)
+    s = CPF_RE.sub("[cpf]", s)
+    return s
+
+def audit(event: dict) -&gt; None:
+    # nunca confiar — re-aplica redact em strings
+    for k, v in list(event.items()):
+        if isinstance(v, str):
+            event[k] = _redact(v)
+    event["ts"] = event.get("ts") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    day_file = LOG_DIR / f"{event['ts'][:10]}.jsonl"
+    with day_file.open("a") as f:
+        f.write(json.dumps(event, ensure_ascii=False) + "\n")
+
+def purge_expired() -&gt; int:
+    """Cron diário. Remove arquivos &gt; 90 dias."""
+    cutoff = time.time() - RETENTION_DAYS * 86400
+    removed = 0
+    for f in LOG_DIR.glob("*.jsonl"):
+        if f.stat().st_mtime &lt; cutoff:
+            f.unlink()
+            removed += 1
+    return removed</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Formato</strong><p class="text-xs text-neutral-400 mt-1">JSON Lines. 1 linha = 1 evento atômico.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Retenção</strong><p class="text-xs text-neutral-400 mt-1">90 dias default. LGPD pede limite e propósito.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Redact</strong><p class="text-xs text-neutral-400 mt-1">Email, CPF, telefone, token. Antes do disco.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Custo por user -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">💰 Custo por user: tabela usage_daily + PRICING versionada</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Se você não sabe quanto cada user custou ontem, não tem modelo de negócio — tem voluntariado.
+        Duas peças: tabela <code class="bg-dark-700 px-1 rounded">usage_daily</code> com PK composta
+        <code class="bg-dark-700 px-1 rounded">(user_id, day, model)</code>, e dict
+        <code class="bg-dark-700 px-1 rounded">PRICING</code> versionado por data.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300">-- migrations/004_usage_daily.sql
+CREATE TABLE usage_daily (
+    user_id      TEXT          NOT NULL,
+    day          DATE          NOT NULL,
+    model        TEXT          NOT NULL,
+    tokens_in    BIGINT        NOT NULL DEFAULT 0,
+    tokens_out   BIGINT        NOT NULL DEFAULT 0,
+    requests     INT           NOT NULL DEFAULT 0,
+    cost_usd     NUMERIC(10,6) NOT NULL DEFAULT 0,
+    pricing_ver  TEXT          NOT NULL,
+    updated_at   TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
     PRIMARY KEY (user_id, day, model)
 );
 
-# Preços versionados
-PRICING = {
-    "haiku-4.5": {"in": 1.0/1e6, "out": 5.0/1e6},
-    "sonnet-4.6": {"in": 3.0/1e6, "out": 15.0/1e6},
-    "opus-4.7": {"in": 15.0/1e6, "out": 75.0/1e6}
-}</code></pre></div></section>
+CREATE INDEX idx_usage_day        ON usage_daily (day);
+CREATE INDEX idx_usage_user_month ON usage_daily (user_id, date_trunc('month', day));</pre>
+      </div>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">⚠️ Alertas (cron 5 min)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>THRESHOLDS = {
-    "cost_user_day_usd": 50.0,
-    "p95_latency_ms": 5000,
-    "error_rate_pct": 5.0
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">💵</span> Tabela PRICING (versionada, USD por 1M tokens)</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Modelo</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Input / 1M</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Output / 1M</th>
+              <th class="text-left py-3 text-purple-400 font-semibold">Vigente desde</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4"><code>claude-opus-4-7</code></td><td class="py-3 pr-4">$15.00</td><td class="py-3 pr-4">$75.00</td><td class="py-3">2026-03-01</td></tr>
+            <tr><td class="py-3 pr-4"><code>claude-sonnet-4-7</code></td><td class="py-3 pr-4">$3.00</td><td class="py-3 pr-4">$15.00</td><td class="py-3">2026-03-01</td></tr>
+            <tr><td class="py-3 pr-4"><code>claude-haiku-4-7</code></td><td class="py-3 pr-4">$0.80</td><td class="py-3 pr-4">$4.00</td><td class="py-3">2026-04-15</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300"># app/pricing.py
+from datetime import date
+
+PRICING = {
+    "2026-03-01": {
+        "claude-opus-4-7":   {"in": 15.00, "out": 75.00},
+        "claude-sonnet-4-7": {"in":  3.00, "out": 15.00},
+    },
+    "2026-04-15": {
+        "claude-opus-4-7":   {"in": 15.00, "out": 75.00},
+        "claude-sonnet-4-7": {"in":  3.00, "out": 15.00},
+        "claude-haiku-4-7":  {"in":  0.80, "out":  4.00},
+    },
 }
 
-async def check_alerts():
-    for metric, limit in THRESHOLDS.items():
-        current = await measure(metric)
-        if current &gt; limit:
-            if not await is_snoozed(metric):
-                await send_alert(f"{metric}={current} excede {limit}")</code></pre></div></section>
+def pricing_for(day: date) -&gt; tuple[str, dict]:
+    """Retorna (version, table) vigente em 'day'. Nunca interpola."""
+    versions = sorted(PRICING.keys())
+    active = max(v for v in versions if date.fromisoformat(v) &lt;= day)
+    return active, PRICING[active]
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🛑 Kill switch</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>CREATE TABLE system_flags (key TEXT PRIMARY KEY, value TEXT, set_at REAL, set_by TEXT);
+def cost_usd(model: str, tin: int, tout: int, day: date) -&gt; tuple[float, str]:
+    ver, table = pricing_for(day)
+    p = table[model]
+    return (tin * p["in"] + tout * p["out"]) / 1_000_000, ver</pre>
+      </div>
 
-# Checado em CADA request
-async def is_killed(user_id=None):
-    if await flag("killall"):
-        return True
-    if user_id and await flag(f"kill_user_{user_id}"):
-        return True
-    return False
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Por que <code>pricing_ver</code> na linha</h3>
+        <p class="text-neutral-300">
+          Quando Anthropic baixar preço em julho e você reprocessar histórico de junho, o número antigo
+          continua reproduzível. Auditoria fiscal não aceita "rodei de novo, deu diferente".
+        </p>
+      </div>
+    </section>
 
-# Endpoint admin /admin/kill?scope=all
-# Audit log obrigatório</code></pre></div></section>
+    <!-- TOPICO 4 — Alertas -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚨 Alertas: cron 5min, snooze, dedup</h2>
+      </div>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">📈 Métricas que importam</h2></div><div class="bg-primary/10 rounded-xl border border-primary/40 p-6"><h3 class="text-primary font-semibold mb-3">As 4 essenciais</h3><ul class="space-y-1 text-neutral-300 text-sm"><li><strong>DAU</strong> — Daily Active Users. Engagement.</li><li><strong>Custo/user</strong> — Saúde unitária do negócio.</li><li><strong>👍/👎 ratio</strong> — Quality proxy via feedback inline.</li><li><strong>Time-to-first-token</strong> — UX percebida.</li></ul></div></section>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Alerta sem dedup é alerta que vira mute. 3 regras: <strong class="text-purple-400">checa a cada 5 min</strong>,
+        <strong class="text-purple-400">não re-dispara mesmo alerta em &lt; 1h</strong>,
+        <strong class="text-purple-400">snooze por chave</strong> quando você sabe que algo está sendo investigado.
+      </p>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Trilha 3 concluída</h2><p class="text-neutral-300 mb-6">Você tem agora arquitetura multi-user pronta para escala. Próxima trilha: estudo de caso completo.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="../trilha4/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próxima trilha: iAmasters OS →</a></div></div></section>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Cron de 5 minutos é o sweet spot</h3>
+        <p class="text-neutral-300">
+          &lt; 1 min: ruído + custo de polling. &gt; 15 min: você descobre o incêndio pelo Slack do cliente.
+          5 min cobre 99% dos casos sem queimar CPU nem confiança.
+        </p>
+      </div>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 3 · Módulo 3.6 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300"># app/alerts.py
+from datetime import datetime, timedelta
+
+DEDUP_WINDOW = timedelta(hours=1)
+
+async def check_alerts(db) -&gt; list[dict]:
+    fired = []
+    now = datetime.utcnow()
+
+    rules = [
+        ("errors_critical_24h",
+         "SELECT COUNT(*) FROM errors WHERE severity='critical' "
+         "AND ts &gt; NOW() - INTERVAL '24 hours'",
+         lambda n: n &gt; 0,
+         "{n} erros críticos nas últimas 24h"),
+
+        ("cost_over_budget",
+         "SELECT COALESCE(SUM(cost_usd),0) FROM usage_daily WHERE day=CURRENT_DATE",
+         lambda n: n &gt; 25.0,
+         "Custo do dia: ${n:.2f} (budget diário: $25)"),
+
+        ("p95_latency",
+         "SELECT percentile_cont(0.95) WITHIN GROUP (ORDER BY latency_ms) "
+         "FROM requests WHERE ts &gt; NOW() - INTERVAL '15 minutes'",
+         lambda n: (n or 0) &gt; 3000,
+         "p95 latência {n:.0f}ms (SLO 3000ms)"),
+    ]
+
+    for key, sql, predicate, msg in rules:
+        # snooze ativo? pula.
+        snoozed = await db.fetchval(
+            "SELECT until FROM alert_snooze WHERE key=$1 AND until &gt; NOW()", key)
+        if snoozed:
+            continue
+
+        n = await db.fetchval(sql)
+        if not predicate(n):
+            continue
+
+        # dedup: não disparou nesta janela?
+        last = await db.fetchval(
+            "SELECT MAX(fired_at) FROM alert_log WHERE key=$1", key)
+        if last and (now - last) &lt; DEDUP_WINDOW:
+            continue
+
+        await db.execute(
+            "INSERT INTO alert_log (key, fired_at, payload) VALUES ($1, $2, $3)",
+            key, now, msg.format(n=n))
+        fired.append({"key": key, "message": msg.format(n=n)})
+
+    return fired
+
+async def snooze(db, key: str, hours: int = 4):
+    until = datetime.utcnow() + timedelta(hours=hours)
+    await db.execute("""
+        INSERT INTO alert_snooze (key, until) VALUES ($1, $2)
+        ON CONFLICT (key) DO UPDATE SET until = EXCLUDED.until
+    """, key, until)</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Cron 5min</strong><p class="text-xs text-neutral-400 mt-1">Equilíbrio entre ruído e atraso.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Dedup 1h</strong><p class="text-xs text-neutral-400 mt-1">Mesma chave não re-dispara na janela.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Snooze 4h</strong><p class="text-xs text-neutral-400 mt-1">Investigando? Cala o alerta com prazo.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Kill switch -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🛑 Kill switch: system_flags + is_killed() em todo request</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Dois modos: <strong class="text-purple-400">killall</strong> (desliga tudo) e
+        <strong class="text-purple-400">kill_user_X</strong> (bloqueia 1 cliente abusando).
+        Tabela única <code class="bg-dark-700 px-1 rounded">system_flags</code>, 1 leitura por request com cache de 30s.
+      </p>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Sem kill switch = noites sem dormir</h3>
+        <p class="text-neutral-300">
+          Agente entrou em loop, queimou R$ 4.000 em tokens em 20 min, vazou contexto do cliente A pro B,
+          começou a responder em japonês — todos cenários reais. Sem kill switch você precisa abrir SSH,
+          achar o processo, matar, explicar ao cliente. Com kill switch é 1 UPDATE SQL.
+        </p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300">-- migrations/005_system_flags.sql
+CREATE TABLE system_flags (
+    key      TEXT PRIMARY KEY,
+    value    JSONB       NOT NULL,
+    reason   TEXT,
+    set_by   TEXT        NOT NULL,
+    set_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- killall:      key='killall',     value='true'
+-- kill_user_X:  key='kill:u_8a3f', value='true'
+-- read_only:    key='read_only',   value='true'</pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm text-neutral-300"># app/killswitch.py
+import time
+
+_CACHE_TTL = 30  # segundos
+_cache = {"ts": 0, "flags": {}}
+
+async def _refresh(db):
+    rows = await db.fetch("SELECT key, value FROM system_flags")
+    _cache["flags"] = {r["key"]: r["value"] for r in rows}
+    _cache["ts"] = time.time()
+
+async def is_killed(db, user_id: str) -&gt; tuple[bool, str | None]:
+    if time.time() - _cache["ts"] &gt; _CACHE_TTL:
+        await _refresh(db)
+    flags = _cache["flags"]
+    if flags.get("killall") is True:
+        return True, "system halted (killall)"
+    if flags.get(f"kill:{user_id}") is True:
+        return True, "user temporarily blocked"
+    return False, None
+
+# uso em CADA request handler
+@router.post("/chat")
+async def chat(req: ChatRequest, db = Depends(get_db)):
+    killed, reason = await is_killed(db, req.user_id)
+    if killed:
+        audit({"action": "killed", "user_id": req.user_id, "reason": reason})
+        raise HTTPException(503, detail=reason)
+    return await process(req, db)</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">killall</strong><p class="text-sm text-neutral-400 mt-1">Pânico geral. 1 UPDATE, 30s para propagar via cache.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">kill:user_X</strong><p class="text-sm text-neutral-400 mt-1">Cirúrgico. Cliente em loop não derruba o resto.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Métricas que importam -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📈 Métricas que importam: 4 números, não 40</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Tem time que mede 40 métricas e olha 0. Mede estes 4 e o resto é luxo.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Os 4 que pagam o aluguel</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-blue-400">DAU</strong> — Daily Active Users. Único número que diz se o produto importa. Cresceu = bom. Caiu 2 dias seguidos = investigar.</li>
+          <li><strong class="text-blue-400">Custo / user / dia</strong> — Divide custo total pelo DAU. Se passar do ticket médio, modelo de negócio quebra. Acompanhe junto com churn.</li>
+          <li><strong class="text-blue-400">👍 / 👎 ratio</strong> — Botão de feedback após cada resposta. Meta: &gt; 90% 👍. Quando cai abaixo de 80%, há regressão de qualidade.</li>
+          <li><strong class="text-blue-400">Time-to-first-token</strong> — Da chegada do request ao 1º token streamed. UX percebida vive aqui. Meta &lt; 800ms, vermelho &gt; 2s.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-purple-400 mb-3">✅ Olhar todo dia</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>DAU e delta vs ontem</li>
+            <li>Custo/user/dia</li>
+            <li>👍/👎 das últimas 24h</li>
+            <li>Time-to-first-token p95</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-purple-400 mb-3">📅 Olhar toda semana</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Top 10 users por custo</li>
+            <li>Erros agrupados por <code>action</code></li>
+            <li>Mix de modelos (opus/sonnet/haiku %)</li>
+            <li>Snoozes ativos sem follow-up</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">DAU</strong><p class="text-xs text-neutral-400 mt-1">Produto importa?</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">$/user/dia</strong><p class="text-xs text-neutral-400 mt-1">Modelo fecha?</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">👍/👎</strong><p class="text-xs text-neutral-400 mt-1">Qualidade hoje.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">TTFT</strong><p class="text-xs text-neutral-400 mt-1">UX percebida.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO + FECHAMENTO TRILHA -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-2 flex items-center"><span class="mr-3">🏁</span> Trilha 3 concluída</h2>
+        <p class="text-neutral-400 mb-6">Você fechou Multi-user. Agora sabe rodar um agente que aguenta 2, 200, 2.000 clientes — sem virar pesadelo de plantão.</p>
+
+        <h3 class="text-xl font-bold mb-4 text-purple-400">📝 Resumo do módulo</h3>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Dashboard MVP</strong><span class="text-neutral-400"> — 4 cards (DAU, custo, erros, p95) batem 80% das perguntas operacionais.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Audit log</strong><span class="text-neutral-400"> — JSON lines, 90d retenção, PII redigida antes do disco.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Custo por user</strong><span class="text-neutral-400"> — usage_daily com PK composta + PRICING versionado por data.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Alertas</strong><span class="text-neutral-400"> — cron 5min, dedup 1h, snooze 4h. Sweet spot sem mute fatigue.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Kill switch</strong><span class="text-neutral-400"> — system_flags + is_killed() em cada request. killall + kill_user_X.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">4 métricas que pagam</strong><span class="text-neutral-400"> — DAU, custo/user, 👍/👎, time-to-first-token.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próxima trilha:</h3>
+          <p class="text-neutral-300">Trilha 4 — <strong>iAmasters OS</strong>: escala organizacional, governança multi-time, plataforma compartilhada.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">Voltar à Trilha 3</a>
+          <a href="../trilha4/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Ir para Trilha 4 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 3 · Módulo 3.6 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

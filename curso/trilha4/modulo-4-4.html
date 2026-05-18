@@ -1,48 +1,647 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 4.4 — Install gate | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .bg-amber-500\/20{background-color:rgba(217,119,6,.12)}html:not(.dark) .bg-amber-500\/10{background-color:rgba(217,119,6,.08)}html:not(.dark) .border-amber-500\/30{border-color:rgba(217,119,6,.25)}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.4 — Install gate | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+
+    /* Light mode — trilhas inativas no nav */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes removidos + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre { font-family: 'SF Mono', Monaco, Menlo, monospace; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">T3</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.4</span></div></nav>
-<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.4</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🚪 Install gate</h1><p class="text-lg text-neutral-400 max-w-3xl">Estado JSON, fases bloqueantes, onboarding controlado. Como dar boas-vindas sem caos.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📐 Conceito</h2></div><p class="text-neutral-300 mb-6">Setup como state machine. Script verifica em que fase você está, executa só o próximo passo, salva estado, repete.</p></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📄 _install-state.json</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">{
-  "schema_version": "1.0",
-  "started_at": "2026-05-18T10:00:00Z",
-  "phase": "configure-brand",
-  "completed_steps": ["install-sinapsis", "install-skills", "create-templates"],
-  "pending_steps": ["configure-brand", "welcome-quick-win"],
-  "fresh": true
-}</pre></div></section>
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4 · iAmasters OS</a>
+      <span>/</span>
+      <span class="text-amber-400">Módulo 4.4</span>
+    </div>
+  </nav>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🚧 Fases bloqueantes vs opcionais</h2></div><p class="text-neutral-300 mb-6">Algumas fases (brand-context) bloqueiam uso. Outras (welcome-quick-win) são opcionais. Schema controla com <code>required: true</code>.</p></section>
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚪 Install gate: setup como state machine</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        O instalador não é um script que roda do zero ao fim — é uma máquina de estados que sabe onde parou,
+        o que falta, e o que é opcional. Esse é o gate que evita o abismo do "instalei e agora?".
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Operador</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Prático</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🎯 Welcome quick-win</h2></div><p class="text-neutral-300 mb-6">Após install, sistema executa 1 demo concreta (gerar daily summary do dia 1) em &lt;5min. Sem demo, user nunca volta.</p></section>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🔁 Re-run idempotente</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono"># install.sh
+    <!-- TOPICO 1 — Conceito state machine -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🧭 Conceito: setup como state machine</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Instalador comum trata o setup como <em>script linear</em>: roda do início ao fim, e se quebrar no meio
+        o user fica órfão. O <strong class="text-amber-400">install gate</strong> trata como
+        <strong class="text-amber-400">state machine</strong>: cada execução pergunta "em que estado eu estou?",
+        decide o próximo passo, executa, salva o novo estado. Re-rodar é seguro. Parar no meio é seguro.
+        Voltar amanhã e continuar é a operação padrão.
+      </p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🔀</span> O ciclo de cada execução</h3>
+        <pre class="text-sm text-neutral-300 leading-relaxed overflow-x-auto">
+  ┌──────────────────────────────────────────────────────────────┐
+  │                    install.sh inicia                         │
+  └──────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+              ┌─────────────────────────────┐
+              │  Lê _install-state.json     │
+              │  (cria se não existir)      │
+              └─────────────────────────────┘
+                              │
+                              ▼
+              ┌─────────────────────────────┐
+              │  phase = ?                  │
+              └─────────────────────────────┘
+                              │
+        ┌─────────────┬───────┴───────┬────────────────┐
+        ▼             ▼               ▼                ▼
+   [fresh]       [brand-ctx]    [skills-install]  [welcome]
+        │             │               │                │
+        ▼             ▼               ▼                ▼
+   pergunta      coleta dados    instala skills    quick-win
+   básicos       de marca        do catálogo       opcional
+        │             │               │                │
+        └─────────────┴───────┬───────┴────────────────┘
+                              ▼
+              ┌─────────────────────────────┐
+              │  Marca passo como done      │
+              │  Salva _install-state.json  │
+              │  Imprime próximo passo      │
+              └─────────────────────────────┘
+                              │
+                              ▼
+                         [exit 0]
+        </pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Idempotente</strong><p class="text-xs text-neutral-400 mt-1">Rodar 100x = rodar 1x.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Resumable</strong><p class="text-xs text-neutral-400 mt-1">Parou? Continua de onde parou.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Inspectável</strong><p class="text-xs text-neutral-400 mt-1">O JSON conta a história.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Versionado</strong><p class="text-xs text-neutral-400 mt-1">Migra entre versões do OS.</p></div>
+      </div>
+
+      <p class="text-neutral-300 leading-relaxed">
+        A virada conceitual: <strong class="text-amber-400">o instalador não é dono do tempo do user</strong>.
+        Ele oferece passos, registra o que foi feito, sai limpo. O user volta quando quiser e o gate sabe
+        exatamente onde retomar.
+      </p>
+    </section>
+
+    <!-- TOPICO 2 — JSON schema -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📦 _install-state.json: o schema completo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Um único arquivo na raiz do projeto carrega o estado. Pequeno, legível, versionado em git
+        (ou em <code class="text-amber-400">.gitignore</code> se for por-máquina). É o contrato entre
+        o instalador, os hooks e o próprio user.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-amber-400 mb-3">_install-state.json (real, após 2ª fase)</h4>
+        <pre class="text-sm text-neutral-300 leading-relaxed">
+{
+  "version": "1.2.0",
+  "schema": "iamasters-os/install-state/v1",
+  "phase": "skills-install",
+  "fresh": false,
+  "started_at": "2026-05-18T20:11:43-03:00",
+  "updated_at": "2026-05-18T20:38:09-03:00",
+  "completed_steps": [
+    {
+      "id": "brand-context",
+      "blocking": true,
+      "completed_at": "2026-05-18T20:14:22-03:00",
+      "artifact": "context/brand.md"
+    },
+    {
+      "id": "claude-md-bootstrap",
+      "blocking": true,
+      "completed_at": "2026-05-18T20:16:01-03:00",
+      "artifact": "CLAUDE.md"
+    }
+  ],
+  "pending_steps": [
+    { "id": "skills-install",      "blocking": true,  "estimated_minutes": 5 },
+    { "id": "hooks-install",       "blocking": true,  "estimated_minutes": 3 },
+    { "id": "welcome-quick-win",   "blocking": false, "estimated_minutes": 4 }
+  ],
+  "skipped_steps": [],
+  "machine": {
+    "os": "linux",
+    "shell": "bash",
+    "claude_code_version": "2.5.1"
+  }
+}
+        </pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">📥 Campos obrigatórios</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>version</strong> — semver do OS instalado.</li>
+            <li><strong>schema</strong> — versão do próprio schema.</li>
+            <li><strong>phase</strong> — estado atual da máquina.</li>
+            <li><strong>fresh</strong> — true só na 1ª execução.</li>
+            <li><strong>completed_steps[]</strong> — auditoria.</li>
+            <li><strong>pending_steps[]</strong> — roadmap restante.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">📤 Campos opcionais úteis</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>skipped_steps[]</strong> — auditar o que foi pulado conscientemente.</li>
+            <li><strong>machine.*</strong> — diagnóstico em suporte.</li>
+            <li><strong>artifact</strong> — caminho do arquivo que o passo produziu.</li>
+            <li><strong>estimated_minutes</strong> — expectativa pro user.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-amber-400 mb-3">_install-state.template.json (canônico, no repo)</h4>
+        <pre class="text-sm text-neutral-300 leading-relaxed">
+{
+  "version": "1.2.0",
+  "schema": "iamasters-os/install-state/v1",
+  "phase": "brand-context",
+  "fresh": true,
+  "completed_steps": [],
+  "pending_steps": [
+    { "id": "brand-context",       "blocking": true,  "estimated_minutes": 6 },
+    { "id": "claude-md-bootstrap", "blocking": true,  "estimated_minutes": 2 },
+    { "id": "skills-install",      "blocking": true,  "estimated_minutes": 5 },
+    { "id": "hooks-install",       "blocking": true,  "estimated_minutes": 3 },
+    { "id": "welcome-quick-win",   "blocking": false, "estimated_minutes": 4 },
+    { "id": "mcp-extras",          "blocking": false, "estimated_minutes": 5 }
+  ],
+  "skipped_steps": []
+}
+        </pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip — o template é um contrato versionado</h3>
+        <p class="text-neutral-300">
+          Mantenha o <code class="text-primary">_install-state.template.json</code> versionado em git.
+          Toda mudança é PR. Quando o user faz upgrade da versão do OS, o instalador compara
+          <em>o state dele</em> com o template novo e <strong>infere automaticamente os passos
+          faltantes</strong>. Migração vira diff de JSON, não cirurgia.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Fases bloqueantes vs opcionais -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🚦 Fases bloqueantes vs opcionais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Nem todo passo é igual. Alguns precisam acontecer antes do OS sequer funcionar
+        (<strong class="text-amber-400">bloqueantes</strong>). Outros melhoram a experiência mas o sistema
+        roda sem (<strong class="text-amber-400">opcionais</strong>). O install gate distingue os dois
+        explicitamente — porque misturar gera o pior dos dois mundos: ou o user é forçado a coisas que
+        não precisa, ou pula coisas que vão quebrar depois.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-500/10 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">🔒 Bloqueantes — não pula</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li><strong>brand-context</strong> — sem isso o agente não sabe quem ele representa. Pergunta nome, tom, público, do/dont's. Vira <code>context/brand.md</code>.</li>
+            <li><strong>claude-md-bootstrap</strong> — gera o <code>CLAUDE.md</code> raiz. Sem isso, nenhum hook ou skill carrega contexto certo.</li>
+            <li><strong>skills-install</strong> — instala o set mínimo da trilha escolhida. Sem skills, é só LLM solto.</li>
+            <li><strong>hooks-install</strong> — registra SessionStart e PostToolUse. Sem isso, o greeting nunca aparece.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">🎁 Opcionais — pode pular</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li><strong>welcome-quick-win</strong> — gera 1 demo concreta em <code>projects/welcome/</code>. Pular não quebra nada, mas perde a "primeira vitória".</li>
+            <li><strong>mcp-extras</strong> — instala MCPs adicionais (Gmail, Drive). Pode ser feito depois pelo catálogo.</li>
+            <li><strong>analytics-opt-in</strong> — telemetria local. Default é off, pergunta uma vez.</li>
+            <li><strong>seed-templates</strong> — copia templates de PRD/ADR. Útil mas trivial de adicionar depois.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Por que separar importa</h3>
+        <p class="text-neutral-300 mb-3">
+          Dados de campo: em onboardings sem gate explícito, <strong class="text-blue-400">~90% dos users
+          abandonam entre os passos 3 e 5</strong> — exatamente quando o instalador linear força tarefas
+          opcionais misturadas com bloqueantes. O user perde paciência num passo que ele "achou que era
+          opcional" e nunca volta.
+        </p>
+        <p class="text-neutral-300">
+          Com gate separando os dois, a taxa de conclusão dos passos bloqueantes sobe pra
+          <strong class="text-blue-400">~85%</strong>, e os opcionais ficam disponíveis pro user pegar
+          quando quiser, sem culpa.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Bloqueia</strong><p class="text-xs text-neutral-400 mt-1">brand, claude.md, skills, hooks.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Opcional</strong><p class="text-xs text-neutral-400 mt-1">welcome, mcp-extras, analytics.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Sinalizar</strong><p class="text-xs text-neutral-400 mt-1">[obrigatório] vs [opcional] no prompt.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Skipável</strong><p class="text-xs text-neutral-400 mt-1">--skip-optional flag.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Welcome quick-win -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎉 Welcome quick-win: a 1ª vitória em &lt;5min</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Logo após os passos bloqueantes, o gate oferece <strong class="text-amber-400">uma demonstração
+        concreta</strong> que prova o OS funciona pro <em>caso real</em> do user. Não é tutorial. Não é vídeo.
+        É um artefato gerado <em>com os dados que ele acabou de fornecer no brand-context</em>, em &lt;5min.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-amber-400 mb-3">Estrutura de projects/welcome/ após o quick-win</h4>
+        <pre class="text-sm text-neutral-300 leading-relaxed">
+projects/welcome/
+├── README.md                  # "Sua primeira vitória — feita pelo OS"
+├── brand-applied-demo.html    # landing com cores/tom do brand-context
+├── prompt-usado.md            # transparência: o prompt que gerou o artefato
+└── proximos-passos.md         # 3 sugestões de próximos projetos
+        </pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-500/10 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Quick-win bom</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Usa <strong>dados reais</strong> do brand-context.</li>
+            <li>Gera <strong>artefato visível</strong> (HTML, PDF, doc).</li>
+            <li>Tem <strong>"abra esse arquivo"</strong> no final.</li>
+            <li>Roda em <strong>&lt;5 minutos</strong>.</li>
+            <li>Mostra o <strong>prompt</strong> que produziu (transparência).</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Quick-win ruim</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>"Hello world" com dados fake.</li>
+            <li>Só texto no terminal, sem artefato.</li>
+            <li>Termina com "agora explore!" (e nada mais).</li>
+            <li>Demora &gt;10 min (vira outro install).</li>
+            <li>Esconde como foi feito (mágica = desconfiança).</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-neutral-300 leading-relaxed">
+        O quick-win não é marketing — é o <strong class="text-amber-400">teste de fumaça do próprio OS</strong>.
+        Se ele falha, o user sabe imediatamente que algo está errado <em>antes</em> de tentar usar pra valer.
+        Se passa, o user já tem 1 caso concreto pra mostrar pro chefe/cliente na próxima reunião.
+      </p>
+    </section>
+
+    <!-- TOPICO 5 — Re-run idempotente -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">♻️ Re-run idempotente: 100x = 1x</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Idempotência é a regra de ouro do install gate: rodar <code class="text-amber-400">./install.sh</code>
+        cem vezes seguidas deve produzir o mesmo resultado de rodar uma vez. Nenhum arquivo do user
+        é sobrescrito sem aviso. Nenhum passo já feito é refeito. Nenhuma pergunta já respondida volta.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-amber-400 mb-3">install.sh — núcleo com case statement</h4>
+        <pre class="text-sm text-neutral-300 leading-relaxed">
 #!/usr/bin/env bash
-set -e
-STATE_FILE=~/.iamasters-os/_install-state.json
+set -euo pipefail
 
-if [ ! -f "$STATE_FILE" ]; then
-  cp scripts/_install-state.template.json "$STATE_FILE"
+STATE_FILE="_install-state.json"
+TEMPLATE_FILE=".iamasters/_install-state.template.json"
+
+# 1. Inicializa state se não existir (fresh=true)
+if [[ ! -f "$STATE_FILE" ]]; then
+  cp "$TEMPLATE_FILE" "$STATE_FILE"
+  jq '.fresh = true | .started_at = (now | todate)' \
+     "$STATE_FILE" &gt; "$STATE_FILE.tmp" &amp;&amp; mv "$STATE_FILE.tmp" "$STATE_FILE"
 fi
 
+# 2. Lê fase atual
 PHASE=$(jq -r '.phase' "$STATE_FILE")
+
+# 3. Executa o handler da fase (case dispatch)
 case "$PHASE" in
-  install-sinapsis) ./scripts/phases/01-sinapsis.sh ;;
-  install-skills)   ./scripts/phases/02-skills.sh ;;
-  ...
-esac</pre></div></section>
+  brand-context)
+    run_brand_context_step          # só pergunta se faltar
+    advance_phase "claude-md-bootstrap"
+    ;;
+  claude-md-bootstrap)
+    run_claude_md_step              # gera só se CLAUDE.md ausente
+    advance_phase "skills-install"
+    ;;
+  skills-install)
+    run_skills_install              # checa cada skill, pula se já instalada
+    advance_phase "hooks-install"
+    ;;
+  hooks-install)
+    run_hooks_install               # idempotente via jq merge em settings
+    advance_phase "welcome-quick-win"
+    ;;
+  welcome-quick-win)
+    run_quick_win_step              # opcional, pergunta antes
+    advance_phase "done"
+    ;;
+  done)
+    echo "✓ Install já completo. Use --reset para reinstalar."
+    exit 0
+    ;;
+  *)
+    echo "✗ Fase desconhecida: $PHASE"; exit 1
+    ;;
+esac
+        </pre>
+      </div>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">📨 First-time greeting</h2></div><p class="text-neutral-300 mb-6">Hook SessionStart detecta <code>fresh: true</code> e cumprimenta com checklist dos próximos 5 passos. Marca fresh=false após primeiro turno.</p></section>
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — re-run que apaga progresso = user nunca volta</h3>
+        <p class="text-neutral-300 mb-3">
+          O pior bug do install gate é parecer idempotente e <em>não ser</em>. Casos clássicos:
+          sobrescrever <code>CLAUDE.md</code> que o user já editou, regenerar <code>brand.md</code> apagando
+          customizações, "resetar" silenciosamente o state quando encontra um campo desconhecido.
+        </p>
+        <p class="text-sm text-neutral-400">
+          <strong class="text-red-400">Regra:</strong> qualquer arquivo do user com mtime &gt; started_at
+          do install precisa pedir confirmação antes de tocar. Sempre. Sem exceção.
+        </p>
+      </div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">Estado em JSON + script idempotente + greeting = onboarding sem fricção. Padrão replicável pra qualquer projeto.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-4-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-4-5.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo →</a></div></div></section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Checagem de fase</strong><p class="text-xs text-neutral-400 mt-1">Sempre lê state antes de agir.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Avanço atômico</strong><p class="text-xs text-neutral-400 mt-1">advance_phase só após sucesso.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">--reset explícito</strong><p class="text-xs text-neutral-400 mt-1">Reinstalar é opt-in com flag.</p></div>
+      </div>
+    </section>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 4 · Módulo 4.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+    <!-- TOPICO 6 — First-time greeting -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">👋 First-time greeting via SessionStart hook</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Depois do install, na <em>primeira</em> vez que o user abre o Claude Code no projeto, um hook
+        <code class="text-amber-400">SessionStart</code> lê o <code>_install-state.json</code>, vê
+        <code>fresh=true</code>, mostra um checklist com os próximos 5 passos sugeridos —
+        e marca <code>fresh=false</code> para nunca mais aparecer automaticamente.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-500/10 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Fazer — greeting só na 1ª vez</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Hook checa <code>fresh === true</code>.</li>
+            <li>Mostra 3-5 próximos passos concretos.</li>
+            <li>Aponta para arquivos reais (welcome demo, CLAUDE.md).</li>
+            <li>Marca <code>fresh = false</code> ao final.</li>
+            <li>Tem comando explícito pra reativar: <code>/welcome</code>.</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evitar — greeting toda vez</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Mostrar o checklist em <em>todo</em> SessionStart.</li>
+            <li>"Bem-vindo de volta!" antes de qualquer prompt.</li>
+            <li>Dicas aleatórias que poluem o contexto.</li>
+            <li>Mensagens longas que o user vai começar a fechar no automático.</li>
+            <li>Nenhum jeito de desativar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-amber-400 mb-3">Saída do greeting (primeira sessão)</h4>
+        <pre class="text-sm text-neutral-300 leading-relaxed">
+╭─────────────────────────────────────────────────────────────╮
+│  Bem-vindo ao iAmasters OS — instalação completa ✓          │
+├─────────────────────────────────────────────────────────────┤
+│  Próximos 5 passos sugeridos:                               │
+│                                                             │
+│    1. Abrir projects/welcome/brand-applied-demo.html        │
+│    2. Ler CLAUDE.md (3 min) — entender as regras do OS      │
+│    3. Rodar /skills para ver o que está instalado           │
+│    4. Criar seu 1º projeto: /new-project &lt;nome&gt;             │
+│    5. Quando travar, rodar /doctor                          │
+│                                                             │
+│  Este checklist não aparece de novo. Use /welcome para ver. │
+╰─────────────────────────────────────────────────────────────╯
+        </pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Princípio — silêncio é respeito</h3>
+        <p class="text-neutral-300">
+          O greeting é caro: aparece uma vez, tem que valer. Depois disso, o OS volta a ser silencioso
+          por default. Confiança se constrói não pedindo atenção desnecessária. O <code>/welcome</code>
+          fica disponível como comando explícito pra quem quiser revisitar.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Setup é state machine, não script linear</strong><span class="text-neutral-400"> — cada execução lê fase, executa, salva, sai.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">_install-state.json é o contrato</strong><span class="text-neutral-400"> — phase, completed_steps, pending_steps, fresh, version.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Bloqueantes vs opcionais separados</strong><span class="text-neutral-400"> — brand-context bloqueia, welcome-quick-win é opt-in.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Welcome quick-win é teste de fumaça</strong><span class="text-neutral-400"> — 1 artefato real com dados do brand, em &lt;5min.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Re-run idempotente é inegociável</strong><span class="text-neutral-400"> — 100x = 1x. Sobrescrever arquivo do user = sempre pedir confirmação.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Greeting só na 1ª vez</strong><span class="text-neutral-400"> — SessionStart lê fresh=true, mostra próximos 5 passos, vira false.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">4.5 — Operação diária: rotinas, telemetria local e o ciclo de manutenção do OS</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 4</a>
+          <a href="modulo-4-5.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 4 · Módulo 4.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

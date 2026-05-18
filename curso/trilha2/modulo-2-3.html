@@ -1,82 +1,556 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 2.3 — Canal Telegram | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2.3 — Canal Telegram em 50 linhas | New Agentic OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+html:not(.dark) body{background-color:#f8fafc}
+html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}
+html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}
+html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}
+html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .bg-blue-900\/20{background-color:rgba(59,130,246,.08)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}
+html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}
+html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}
+html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}
+html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}
+html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}
+html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}
+html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}
+html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}
+.dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}
+.code-box{font-family:'Menlo',monospace;font-size:0.85rem}
+</style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+<a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+<a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+<a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+<button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+</div>
+</div></div></nav>
+
 <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 2 · Builder</a><span>/</span><span class="text-blue-400">Módulo 2.3</span></div></nav>
-<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.3</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">💬 Canal Telegram em 50 linhas</h1><p class="text-lg text-neutral-400 max-w-3xl">Bot long-polling completo. Token → primeira mensagem em produção em &lt;30 min.</p></div></header>
+
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">💬 Canal Telegram em 50 linhas</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Do <code class="text-blue-400">/newbot</code> ao primeiro turno em produção em menos de 30 minutos. Long-polling, MarkdownV2, whitelist e voz — implementação concreta da abstração <code class="text-blue-400">Channel</code> que você desenhou no módulo anterior.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">70</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Técnico</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div></header>
+
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🤖 @BotFather + token</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">No Telegram: procure @BotFather, mande <code class="bg-dark-700 px-2 py-0.5 rounded">/newbot</code>, escolha nome, copie o token. 60s.</p><div class="bg-primary/10 rounded-xl border border-primary/40 p-6"><p class="text-neutral-300 text-sm"><strong class="text-primary">Não esqueça:</strong> <code>/setdescription</code> e <code>/setuserpic</code> melhoram percepção.</p></div></section>
+<!-- TOPICO 1 — BotFather -->
+<section id="topico-1" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🤖 @BotFather — token em 60 segundos</h2></div>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🔁 Long-polling explicado</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Cliente chama <code>getUpdates</code> com timeout 30s. Telegram segura até ter mensagem ou timeout. Sem servidor público.</p></section>
+<p class="text-neutral-300 mb-6 leading-relaxed">Telegram é o único canal de chat onboardável em <strong class="text-blue-400">menos de 1 minuto</strong> sem aprovação de plataforma, sem business verification, sem revisão de app store. Você fala com um bot oficial chamado <strong class="text-blue-400">@BotFather</strong>, ele te devolve um token, e qualquer humano com celular pode mandar mensagem pro seu agente. Não tem rival nesse quesito — WhatsApp Business API leva semanas, Slack precisa de workspace, Discord precisa de servidor.</p>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">📨 TelegramChannel completo</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>import httpx, asyncio, time
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📌</span> O ritual de 60 segundos</h3>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Abra Telegram, busque <code class="bg-dark-700 px-1 rounded">@BotFather</code> (com ícone azul de verificado).</li>
+<li>Mande <code class="bg-dark-700 px-1 rounded">/newbot</code>.</li>
+<li>Digite o nome de exibição: <em>"Intelecto Dev"</em>.</li>
+<li>Digite o handle único: precisa terminar em <code class="bg-dark-700 px-1 rounded">_bot</code> — ex: <code class="bg-dark-700 px-1 rounded">intelecto_nm_bot</code>.</li>
+<li>BotFather devolve algo como <code class="bg-dark-700 px-1 rounded">7842913847:AAH...</code>. Esse é o token.</li>
+<li>Imediatamente: copie pro <code class="bg-dark-700 px-1 rounded">.env</code> ou wizard Fernet. Nunca commite, nunca passe em chat público.</li>
+</ol>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">Validação do token (1 curl):</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>$ curl -s "https://api.telegram.org/bot${TG_TOKEN}/getMe" | jq
+
+{
+  "ok": true,
+  "result": {
+    "id": 7842913847,
+    "is_bot": true,
+    "first_name": "Intelecto Dev",
+    "username": "intelecto_nm_bot",
+    "can_join_groups": true,
+    "can_read_all_group_messages": false,
+    "supports_inline_queries": false
+  }
+}</code></pre>
+<p class="text-xs text-neutral-400 mt-3">Se <code>ok: false</code>, token errado ou revogado. Volte ao BotFather com <code>/revoke</code> e gere novo.</p>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Comandos de polish que ninguém roda (mas devia)</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><code class="bg-dark-700 px-1 rounded">/setdescription</code> — 1 frase que aparece ao abrir o bot pela primeira vez. Faça parecer útil.</li>
+<li><code class="bg-dark-700 px-1 rounded">/setuserpic</code> — foto 512x512 PNG. Bot sem avatar passa golpe.</li>
+<li><code class="bg-dark-700 px-1 rounded">/setcommands</code> — lista de comandos (/start, /help, /esqueca) que aparece no menu "/" do app.</li>
+<li><code class="bg-dark-700 px-1 rounded">/setprivacy</code> em DISABLE — só se o bot for usado em grupos e precisar ler todas as mensagens.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Token = senha</strong><p class="text-xs text-neutral-400 mt-1">Vazou = alguém manda em nome do bot. Revogue na hora.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sem custo Telegram</strong><p class="text-xs text-neutral-400 mt-1">Plataforma é grátis. Custo é só do LLM por trás.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Handle único global</strong><p class="text-xs text-neutral-400 mt-1">Reserve cedo. Bons nomes já foram.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Múltiplos bots OK</strong><p class="text-xs text-neutral-400 mt-1">Tenha bot dev, staging, prod com tokens distintos.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 2 — Long-polling vs webhook -->
+<section id="topico-2" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🔁 Long-polling vs webhook — qual escolher</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Telegram Bot API te dá duas formas de receber mensagens. <strong class="text-blue-400">Long-polling</strong>: seu processo pergunta "tem novidade?" e fica aguardando até 50 segundos por uma resposta. <strong class="text-blue-400">Webhook</strong>: você cadastra uma URL HTTPS pública e o Telegram bate nela quando chega mensagem. Para a maioria dos casos do livro <em>intelecto</em>, a resposta é long-polling — e essa decisão sozinha economiza dias de devops.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Long-polling vence quando…</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Você roda no laptop, num droplet, num Raspberry — qualquer máquina <em>sem IP público</em>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Não quer cuidar de certificado TLS / Let's Encrypt / proxy reverso.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Volume baixo a médio (até ~30 msg/seg por bot).</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quer deploy em &lt;1 dia sem firewall ticket no time de infra.</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">📡 Webhook vence quando…</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Você já tem infra HTTPS rodando e quer 1 worker a mais nela.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Volume alto (centenas de msg/seg) e latência precisa ser &lt;100ms.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Quer rodar serverless (Lambda, Cloud Run) — paga só quando há mensagem.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Múltiplas instâncias horizontalmente atrás de load balancer.</span></li>
+</ul>
+</div>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">Anatomia de uma rodada de long-polling:</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>GET https://api.telegram.org/bot{TOKEN}/getUpdates
+    ?offset={last_update_id + 1}
+    &amp;timeout=30
+    &amp;allowed_updates=["message","callback_query"]
+
+# Resposta (vazia ou com batch):
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 819374821,
+      "message": {
+        "message_id": 47,
+        "from": {"id": 12345, "first_name": "Nei"},
+        "chat": {"id": 12345, "type": "private"},
+        "date": 1715980800,
+        "text": "oi agente"
+      }
+    }
+  ]
+}</code></pre>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> O gotcha do <code>offset</code></h3>
+<p class="text-neutral-300 text-sm mb-2">Telegram só confirma que recebeu o update quando você manda o <em>próximo</em> getUpdates com <code>offset = max(update_id) + 1</code>. Esquecer disso = você processa a mesma mensagem em loop infinito até estourar conta.</p>
+<p class="text-xs text-neutral-400"><strong class="text-red-400">Regra:</strong> só avance o offset DEPOIS de processar com sucesso. Se o handler falhar, mantenha o offset — Telegram redelivery no próximo loop. Idempotência por <code>update_id</code> resolve as ambiguidades.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">timeout=30</strong><p class="text-xs text-neutral-400 mt-1">Sweet spot. Maior = NAT mata conexão.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">allowed_updates</strong><p class="text-xs text-neutral-400 mt-1">Filtre tipos. Sem isso, vem CHAT_MEMBER, MY_CHAT_MEMBER, ruído.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">1 polling, 1 bot</strong><p class="text-xs text-neutral-400 mt-1">Dois processos polling o mesmo token = leitura intercalada e bugs.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Migração depois</strong><p class="text-xs text-neutral-400 mt-1">Trocar pra webhook é 1 setWebhook + deleteWebhook. Sem refactor.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 3 — TelegramChannel completo -->
+<section id="topico-3" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">📨 TelegramChannel implementando Channel</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">A classe abaixo é a <strong class="text-blue-400">implementação canônica</strong> do contrato <code>Channel</code> do módulo 2.2. Sem dependência de biblioteca python-telegram-bot — só <code>httpx.AsyncClient</code> direto na Bot API. Resultado: 50 linhas, zero magic, transparente para debugar. Copie, cole, ajuste o token, roda.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">channels/telegram.py</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import asyncio, httpx, logging
+from typing import Callable, Awaitable
 from .base import Channel, IncomingMessage, OutgoingMessage
 
-class TelegramChannel(Channel):
-    def __init__(self, token, allowed_user_ids=None):
-        self.token = token
-        self.allowed = set(allowed_user_ids or [])
-        self.base = f"https://api.telegram.org/bot{token}"
-        self.offset = 0
-        self._stop = False
+log = logging.getLogger(__name__)
+API = "https://api.telegram.org/bot{token}/{method}"
 
-    async def start(self, on_message):
-        async with httpx.AsyncClient(timeout=35) as cli:
-            while not self._stop:
-                r = await cli.get(f"{self.base}/getUpdates",
-                    params={"offset": self.offset, "timeout": 30})
-                for up in r.json().get("result", []):
-                    self.offset = up["update_id"] + 1
-                    msg = up.get("message", {})
-                    uid = msg.get("from", {}).get("id")
-                    if self.allowed and uid not in self.allowed:
+class TelegramChannel(Channel):
+    def __init__(self, token: str, allowed_user_ids: set[int] | None = None):
+        self.token = token
+        self.allowed = allowed_user_ids or set()
+        self.client = httpx.AsyncClient(timeout=35.0)
+        self._offset = 0
+        self._running = False
+
+    async def start(self, on_message: Callable[[IncomingMessage], Awaitable[None]]) -&gt; None:
+        self._running = True
+        log.info("telegram.start", extra={"allowed": len(self.allowed)})
+        while self._running:
+            try:
+                r = await self.client.get(API.format(token=self.token, method="getUpdates"),
+                    params={"offset": self._offset, "timeout": 30,
+                            "allowed_updates": '["message"]'})
+                r.raise_for_status()
+                for u in r.json().get("result", []):
+                    self._offset = u["update_id"] + 1
+                    msg = u.get("message") or {}
+                    chat_id = msg.get("chat", {}).get("id")
+                    text = msg.get("text") or ""
+                    if self.allowed and chat_id not in self.allowed:
+                        await self.send(OutgoingMessage(user_id=str(chat_id),
+                            text="⛔ Bot privado. Solicite acesso ao admin."))
+                        log.warning("telegram.denied", extra={"chat_id": chat_id})
                         continue
                     await on_message(IncomingMessage(
-                        user_id=str(uid),
-                        text=msg.get("text", ""),
-                        timestamp=time.time(),
-                        metadata={"chat_id": msg["chat"]["id"]}))
+                        user_id=str(chat_id), text=text, timestamp=msg["date"],
+                        metadata={"message_id": msg["message_id"], "voice": msg.get("voice")}))
+            except httpx.HTTPError as e:
+                log.error("telegram.poll_error", exc_info=e)
+                await asyncio.sleep(3)  # backoff
 
-    async def send(self, msg):
-        async with httpx.AsyncClient(timeout=10) as cli:
-            await cli.post(f"{self.base}/sendMessage",
-                json={"chat_id": int(msg.user_id), "text": msg.text,
-                      "parse_mode": "MarkdownV2"})
+    async def send(self, m: OutgoingMessage) -&gt; str:
+        for chunk in _chunks(m.text, 4000):
+            r = await self.client.post(API.format(token=self.token, method="sendMessage"),
+                json={"chat_id": int(m.user_id), "text": chunk,
+                      "parse_mode": "MarkdownV2" if m.parse_mode == "markdown" else None,
+                      "reply_to_message_id": int(m.reply_to) if m.reply_to else None})
+            r.raise_for_status()
+        return str(r.json()["result"]["message_id"])
 
-    async def stop(self):
-        self._stop = True</code></pre></div></section>
+    async def stop(self) -&gt; None:
+        self._running = False
+        await self.client.aclose()
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📝 MarkdownV2 escaping</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Telegram exige escape de caracteres reservados (<code>_*[]()~`&gt;#+-=|{}.!</code>).</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>SPECIALS = r'_*[]()~`&gt;#+-=|{}.!'
-def escape_md(text):
-    return ''.join('\\\\' + c if c in SPECIALS else c for c in text)</code></pre></div></section>
+def _chunks(s: str, n: int):
+    for i in range(0, len(s) or 1, n): yield s[i:i+n] or " "</code></pre>
+</div>
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🔒 Whitelist obrigatório</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Sem whitelist, em 1 semana algum bot scraper acha seu endpoint e gasta sua chave.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># .env
-ALLOWED_USER_IDS=123456789,987654321
-TELEGRAM_BOT_TOKEN=...
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🧠</span> Decisões que parecem pequenas mas pesam</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">timeout=35s no client</strong> — 5s a mais que <code>timeout=30</code> do polling. Evita race entre Telegram fechando e cliente abortando.</li>
+<li><strong class="text-blue-400">_offset é instance attr</strong> — não persiste em disco. Se o processo reiniciar, redelivery últimos updates. Aceitável porque handlers são idempotentes (T2.2).</li>
+<li><strong class="text-blue-400">chunking em 4000 chars</strong> — limite de sendMessage é 4096. Folga de 96 evita encoding bugs com emoji.</li>
+<li><strong class="text-blue-400">on_message é await direto</strong> — não <code>create_task</code>. Backpressure natural: se LLM trava, polling pausa, não acumula em memória.</li>
+<li><strong class="text-blue-400">backoff fixo 3s</strong> — exponencial é overkill aqui. Erros de polling são quase sempre rede transitória.</li>
+</ul>
+</div>
 
-# init
-channel = TelegramChannel(
-    token=os.environ["TELEGRAM_BOT_TOKEN"],
-    allowed_user_ids=[int(x) for x in os.environ["ALLOWED_USER_IDS"].split(",")]
-)</code></pre></div></section>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Como rodar agora</h3>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import os, asyncio
+from channels.telegram import TelegramChannel
+from base import IncomingMessage, OutgoingMessage
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🎤 Voz com Whisper</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Detecta msg.voice, baixa via getFile, transcreve com faster-whisper local.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from faster_whisper import WhisperModel
-model = WhisperModel("medium", device="cpu", compute_type="int8")
+async def echo(msg: IncomingMessage):
+    await ch.send(OutgoingMessage(user_id=msg.user_id, text=f"echo: {msg.text}"))
 
-# em start():
-if "voice" in msg:
-    file_id = msg["voice"]["file_id"]
-    file_path = (await cli.get(f"{self.base}/getFile", params={"file_id": file_id})).json()["result"]["file_path"]
-    audio = (await cli.get(f"https://api.telegram.org/file/bot{token}/{file_path}")).content
-    # transcreve
-    segments, _ = model.transcribe(audio_bytes)
-    text = " ".join(s.text for s in segments)</code></pre></div></section>
+ch = TelegramChannel(token=os.environ["TG_TOKEN"],
+                     allowed_user_ids={int(os.environ["MY_TG_ID"])})
+asyncio.run(ch.start(echo))</code></pre>
+</div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">~50 linhas de Python = bot funcional em produção. Whitelist, MarkdownV2 e voz incluídos.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-2-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo →</a></div></div></section>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Dependência</strong><p class="text-xs text-neutral-400 mt-1">Só httpx. Nada de wrapper grosso.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Trocável</strong><p class="text-xs text-neutral-400 mt-1">Implementa Channel. Agent não sabe que é Telegram.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Observável</strong><p class="text-xs text-neutral-400 mt-1">3 log lines (start, denied, poll_error) cobrem 95% do debug.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 4 — Markdown -->
+<section id="topico-4" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📝 MarkdownV2 — formatação sem quebrar bot</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">LLM gosta de markdown. Telegram aceita markdown. Parece simples — não é. <strong class="text-blue-400">MarkdownV2</strong> exige escape de <em>18 caracteres reservados</em> (<code>_ * [ ] ( ) ~ ` &gt; # + - = | { } . !</code>), e qualquer um não escapado faz a API retornar <em>400 Bad Request</em> e a mensagem inteira não chega. Você descobre em produção, com cliente vendo "ops, bot offline".</p>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> O bug clássico</h3>
+<p class="text-neutral-300 text-sm mb-3">LLM responde "Custou R$ 1.299,90 — bem mais barato!". O ponto antes do 90 e o travessão quebram MarkdownV2. Telegram rejeita silenciosamente (do ponto de vista do user) e seu bot parece offline.</p>
+<pre class="code-box text-xs text-neutral-300">400 Bad Request: can't parse entities:
+Character '.' is reserved and must be escaped with the preceding '\'</pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">Escaper canônico + fallback automático:</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import re
+
+_MDV2_SPECIAL = r'_*[]()~`&gt;#+-=|{}.!'
+_MDV2_RE = re.compile('([' + re.escape(_MDV2_SPECIAL) + '])')
+
+def escape_mdv2(text: str) -&gt; str:
+    """Escapa todos os reservados FORA de blocos de código."""
+    parts, out = text.split('```'), []
+    for i, part in enumerate(parts):
+        if i % 2 == 1:               # bloco de código: preserva intacto
+            out.append('```' + part + '```')
+        else:
+            out.append(_MDV2_RE.sub(r'\\\1', part))
+    return ''.join(out)
+
+async def send_safe(ch, user_id, text):
+    """Tenta MarkdownV2; se falhar, manda como plain."""
+    try:
+        await ch.send(OutgoingMessage(user_id=user_id,
+            text=escape_mdv2(text), parse_mode="markdown"))
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code == 400:
+            log.warning("mdv2.fallback", extra={"err": e.response.text[:200]})
+            await ch.send(OutgoingMessage(user_id=user_id,
+                text=text, parse_mode="plain"))
+        else:
+            raise</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Fazer</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Escapar <strong>antes</strong> de enviar, nunca confiar no LLM.</li>
+<li>• Preservar blocos <code>```python ... ```</code> intactos.</li>
+<li>• Fallback automático pra plain em erro 400.</li>
+<li>• Logar tentativas falhas pra ajustar prompt do LLM.</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Evitar</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Usar Markdown (v1) — deprecated, suporte irregular.</li>
+<li>• Pedir pro LLM "escapar markdown" no system prompt — alucinabilíssimo.</li>
+<li>• Misturar HTML e MarkdownV2 no mesmo bot.</li>
+<li>• Esquecer que <code>.</code> e <code>!</code> precisam escape (sempre esquecem).</li>
+</ul>
+</div>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Alternativa: parse_mode=HTML</h3>
+<p class="text-neutral-300 text-sm mb-2">Telegram também aceita HTML (subset: <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;a&gt;</code>). Só precisa escapar <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>. Mais simples — mas LLM cospe markdown por default, então você gasta tokens convertendo. Para a maioria, MarkdownV2 + escaper compensa.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">18 caracteres</strong><p class="text-xs text-neutral-400 mt-1">Reservados. Decore: <code>.!-=()</code> são os esquecidos.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Code blocks</strong><p class="text-xs text-neutral-400 mt-1">Preservar intacto. Reservados lá dentro não contam.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Fallback é lei</strong><p class="text-xs text-neutral-400 mt-1">Plain text sempre passa. Use como safety net.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Test fixture</strong><p class="text-xs text-neutral-400 mt-1">Tenha string com todos 18 chars no test suite.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 5 — Whitelist -->
+<section id="topico-5" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🔒 Whitelist — antes que descubram seu bot</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Bots Telegram são <strong class="text-blue-400">públicos por design</strong>. Qualquer pessoa que descubra o handle (<code>@intelecto_nm_bot</code>) consegue mandar mensagem. Scrapers varrem o Telegram 24/7 procurando bots novos pra catalogar — e LLMs caros expostos viram alvo. <strong class="text-blue-400">Sem whitelist, sua primeira surpresa é uma fatura de US$ 380 num bot que era pra ser pessoal.</strong></p>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Caso real — anonimizado</h3>
+<p class="text-neutral-300 text-sm">Bot pessoal criado num sábado, GPT-4 atrás. Dev esqueceu whitelist. Quinta-feira: 12.000 mensagens de 47 chat_ids desconhecidos, fatura de OpenRouter US$ 380. Reclamação: <em>"mas eu nunca compartilhei o handle"</em>. Não precisa. Telegram tem indexação pública via @userinfobot e dezenas de scrapers que listam bots novos diariamente.</p>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">.env + carregamento:</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code># .env
+TG_TOKEN=7842913847:AAH...
+ALLOWED_USER_IDS=12345,67890,11223      # vírgula, sem espaço
+ADMIN_USER_ID=12345
+
+# config.py
+import os
+ALLOWED = {int(x) for x in os.environ.get("ALLOWED_USER_IDS","").split(",") if x}
+ADMIN   = int(os.environ.get("ADMIN_USER_ID", "0"))</code></pre>
+</div>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">Gate com onboarding amigável:</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>DENY_MSG = (
+    "🔒 Este bot é privado.\n\n"
+    "Seu ID: `{chat_id}`\n"
+    "Envie esse número ao admin para liberar acesso.\n\n"
+    "_Se isso foi um engano, pode ignorar — nenhuma mensagem foi processada._"
+)
+
+async def gate(msg: IncomingMessage, allowed: set[int], admin: int) -&gt; bool:
+    chat_id = int(msg.user_id)
+    if chat_id in allowed:
+        return True
+    # log + alerta para admin (1x por user_id, com cooldown)
+    log.warning("access_denied", extra={"chat_id": chat_id, "text": msg.text[:80]})
+    await audit_save(event="access_denied", chat_id=chat_id, text=msg.text)
+    if should_alert(chat_id):     # cooldown 1h por chat_id
+        await ch.send(OutgoingMessage(user_id=str(admin),
+            text=f"🚨 Tentativa de acesso: `{chat_id}` — \"{msg.text[:60]}\""))
+    await ch.send(OutgoingMessage(user_id=str(chat_id),
+        text=DENY_MSG.format(chat_id=chat_id)))
+    return False</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-3">📊 Camadas de defesa</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>1. <strong>Whitelist estática</strong> (env) — barreira primária.</li>
+<li>2. <strong>Audit log</strong> — toda tentativa negada vai pra disco/sqlite.</li>
+<li>3. <strong>Alert admin</strong> com cooldown — você fica sabendo, sem flood.</li>
+<li>4. <strong>Rate limit por chat_id</strong> — mesmo pra autorizados (T3.4).</li>
+<li>5. <strong>Kill switch</strong> — <code>BOT_DISABLED=1</code> derruba sem deploy.</li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+<h4 class="font-bold text-primary mb-3">💡 Como descobrir seu chat_id</h4>
+<p class="text-sm text-neutral-300 mb-2">Fale com <code class="bg-dark-700 px-1 rounded">@userinfobot</code> no Telegram. Ele responde com seu ID numérico. Adicione ao <code>ALLOWED_USER_IDS</code> e reinicie.</p>
+<p class="text-xs text-neutral-400">Para descobrir o ID de outro user que pediu acesso: você já tem — está no log de <code>access_denied</code>.</p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Set, não list</strong><p class="text-xs text-neutral-400 mt-1">Lookup O(1). Em bot público com 10k users, faz diferença.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Inteiro estrito</strong><p class="text-xs text-neutral-400 mt-1"><code>chat_id</code> é int. Comparar string ↔ int = bug silencioso.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Audit obrigatório</strong><p class="text-xs text-neutral-400 mt-1">LGPD pede. Mostre quem tentou e quando.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Mensagem amigável</strong><p class="text-xs text-neutral-400 mt-1">Não trate como ataque. 80% é curioso bem-intencionado.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 6 — Voz e áudio -->
+<section id="topico-6" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🎤 Voz e áudio — Whisper-on-the-edge</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Voz é o feature que mais aumenta uso em bot mobile. Pessoas <strong class="text-blue-400">falam 3x mais do que digitam</strong>, e Telegram tem botão de voice nativo a 1 toque. O fluxo: usuário aperta o microfone, Telegram manda update com <code>voice.file_id</code>, você baixa o OGG, transcreve com Whisper, processa o texto como mensagem normal. <strong class="text-blue-400">Whisper rodando local</strong> (faster-whisper, modelo <code>small</code> ou <code>medium</code>) é grátis, &lt;500ms por áudio de 30s num laptop M1, e mantém áudio sensível fora de API terceira.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h4 class="font-semibold text-blue-400 mb-2 text-sm">Download + transcrição:</h4>
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>from faster_whisper import WhisperModel
+import httpx, tempfile, os, asyncio
+from dataclasses import replace
+
+# Carrega 1x no startup. small = 244MB, medium = 769MB
+_model = WhisperModel("small", device="cpu", compute_type="int8")
+
+async def download_voice(token: str, file_id: str) -&gt; str:
+    """Baixa OGG do Telegram, retorna path local."""
+    async with httpx.AsyncClient(timeout=30) as c:
+        meta = (await c.get(
+            f"https://api.telegram.org/bot{token}/getFile",
+            params={"file_id": file_id})).json()
+        path = meta["result"]["file_path"]
+        ogg = (await c.get(
+            f"https://api.telegram.org/file/bot{token}/{path}")).content
+    fd, fp = tempfile.mkstemp(suffix=".ogg")
+    os.write(fd, ogg); os.close(fd)
+    return fp
+
+def transcribe(path: str, language: str = "pt") -&gt; str:
+    segments, _ = _model.transcribe(path, language=language, beam_size=1)
+    return " ".join(s.text.strip() for s in segments).strip()
+
+# Integração no handler:
+async def on_message(msg: IncomingMessage):
+    voice = msg.metadata.get("voice")
+    if voice:
+        path = await download_voice(TG_TOKEN, voice["file_id"])
+        try:
+            text = await asyncio.to_thread(transcribe, path)
+            log.info("voice.transcribed", extra={"len": len(text), "dur": voice["duration"]})
+            msg = replace(msg, text=text)
+        finally:
+            os.unlink(path)
+    await agent.handle(msg)</code></pre>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-3">📊 Local vs API — quando escolher cada</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li><strong class="text-blue-400">faster-whisper local</strong>: dev, dados sensíveis, &lt;100 áudios/dia. Custo zero, latência ~1x duração.</li>
+<li><strong class="text-blue-400">OpenAI Whisper API</strong>: produção alta-escala, sem GPU local. US$ 0.006/min, latência fixa &lt;3s.</li>
+<li><strong class="text-blue-400">Groq Whisper</strong>: caso especial — 100x real-time, US$ 0.02/h. Use quando latência importa mais que custo.</li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Pattern de fallback</h4>
+<pre class="code-box text-xs text-neutral-300">try:
+    text = transcribe_local(path)
+except Exception:
+    log.warning("whisper.local_fail")
+    text = await transcribe_api(path)
+if not text.strip():
+    await ch.send(OutgoingMessage(
+        user_id=msg.user_id,
+        text="Não entendi o áudio. Pode digitar?"))
+    return</pre>
+</div>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Armadilhas que custam horas</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li>• <strong>Voice ≠ audio_file</strong>: Telegram tem 2 tipos. <code>voice</code> é botão de microfone (OGG). <code>audio</code> é arquivo MP3/M4A anexado. Trate ambos ou explicite.</li>
+<li>• <strong>Modelo bloqueante</strong>: <code>WhisperModel.transcribe</code> é CPU-bound síncrono. Sem <code>asyncio.to_thread</code>, trava o event loop e bot fica unresponsive.</li>
+<li>• <strong>Carregar modelo no handler</strong>: faz lazy load custar 5-10s por áudio. <em>Sempre</em> carregue no startup.</li>
+<li>• <strong>language=None</strong>: deixa Whisper detectar — adiciona ~300ms. Se você sabe que é pt-BR, force.</li>
+<li>• <strong>Limite de 20MB</strong>: voice messages do Telegram passam de 20MB se duração &gt; ~12min. <code>getFile</code> falha sem mensagem clara — valide <code>voice.duration</code> antes.</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Bonus: confirmação visual</h3>
+<p class="text-neutral-300 text-sm">Antes de processar voice longo, mande <code>sendChatAction(typing)</code> para mostrar que o bot está "digitando". Telegram derruba esse status em 5s, então re-envie a cada 4s enquanto Whisper roda. UX vira premium — user sabe que mensagem chegou.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Modelo small</strong><p class="text-xs text-neutral-400 mt-1">Sweet spot pt-BR. 244MB, qualidade boa.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">int8 quantization</strong><p class="text-xs text-neutral-400 mt-1">3x menos RAM, perda imperceptível.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">beam_size=1</strong><p class="text-xs text-neutral-400 mt-1">Greedy. Áudio conversacional não precisa de beam search.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">tempfile + unlink</strong><p class="text-xs text-neutral-400 mt-1">Disco enche rápido. Sempre limpe.</p></div>
+</div>
+</section>
+
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Token em 60s via @BotFather</strong><span class="text-neutral-400"> — único canal sem aprovação. Valide com <code>getMe</code>, polish com /setdescription e /setcommands.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Long-polling é o default certo</strong><span class="text-neutral-400"> — roda sem IP público, sem TLS, sem firewall ticket. Webhook fica pra escala alta ou serverless.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">TelegramChannel em ~50 linhas</strong><span class="text-neutral-400"> — só httpx, zero wrapper. Implementa o contrato Channel intacto, hot-swap com qualquer outro canal.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">MarkdownV2 exige escape e fallback</strong><span class="text-neutral-400"> — 18 chars reservados, blocos de código preservados, retry em plain text se 400.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Whitelist é dia zero, não roadmap</strong><span class="text-neutral-400"> — scrapers acham seu bot em dias. ALLOWED_USER_IDS + audit log + alert ao admin com cooldown.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Voz triplica adoção mobile</strong><span class="text-neutral-400"> — faster-whisper local, modelo small + int8, asyncio.to_thread pra não travar loop, fallback pra API.</span></div></div>
+</div>
+
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-blue-400 mb-2">Próximo módulo:</h3><p class="text-neutral-300">2.4 — Memória que dura: SQLite FTS5, categorias, embeddings opcionais e o comando <code>/esqueça</code></p></div>
+
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="modulo-2-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+<a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+</div>
+</div>
+</section>
 
 </main>
+
 <footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 2 · Módulo 2.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
+
+<script>
+const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;
+if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}
+tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});
+</script>
 </body></html>

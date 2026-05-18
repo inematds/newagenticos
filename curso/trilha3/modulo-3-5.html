@@ -1,85 +1,621 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 3.5 — Canais paralelos | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .bg-purple-500\/20{background-color:rgba(124,58,237,.12)}html:not(.dark) .bg-purple-500\/10{background-color:rgba(124,58,237,.08)}html:not(.dark) .border-purple-500\/30{border-color:rgba(124,58,237,.25)}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
-<body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span><a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span><span class="text-purple-400">Módulo 3.5</span></div></nav>
-<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.5</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">📡 Canais paralelos</h1><p class="text-lg text-neutral-400 max-w-3xl">Telegram + Slack + Web ao mesmo tempo. User reconhecido entre canais. Failover automático.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.5 — Canais paralelos | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    pre, code.mono { font-family: 'JetBrains Mono', monospace; }
+    .dark body { background-color: #111827; }
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🔗 Identity stitching</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>CREATE TABLE channel_links (
-    channel TEXT NOT NULL,        -- 'telegram' | 'slack' | 'web'
-    external_id TEXT NOT NULL,    -- chat_id, slack_user_id, session_id
-    user_id TEXT NOT NULL REFERENCES users(id),
-    verified_at REAL,
-    PRIMARY KEY (channel, external_id)
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    .ascii-art { font-family: 'JetBrains Mono', monospace; white-space: pre; line-height: 1.3; font-size: 0.85rem; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3 · Multi-user</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.5</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📡 Canais paralelos</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        1 user, 3 canais (Telegram, Slack, Web). Mesmo agente, mesmo histórico, formatação certa em cada lugar.
+        Identity stitching, push proativo, renderer por canal e failover quando um canal cai.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Builder</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Código</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 — Identity stitching -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🪡 Identity stitching — costurando o mesmo user em 3 canais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Telegram dá <code class="bg-dark-700 px-1 rounded mono text-sm">tg_user_id</code>.
+        Slack dá <code class="bg-dark-700 px-1 rounded mono text-sm">U07ABC123</code>.
+        Web dá um cookie de sessão. Pra o agente, é a <strong class="text-purple-400">mesma pessoa</strong> — e ela precisa ver o mesmo histórico nos três.
+        Solução: tabela <code class="bg-dark-700 px-1 rounded mono text-sm">channel_links</code> + fluxo de pareamento por código de 6 dígitos.
+      </p>
+
+      <h3 class="text-lg font-bold mb-3 text-purple-400">Diagrama: 1 user, 3 canais</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <pre class="ascii-art text-neutral-300">              ┌─────────────────┐
+              │   user_id=42    │  ← canonical (Postgres)
+              │  Maria Silva    │
+              └────────┬────────┘
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+   ┌────▼────┐    ┌────▼────┐   ┌────▼────┐
+   │Telegram │    │  Slack  │   │   Web   │
+   │tg:99821 │    │U07ABC123│   │sess:xyz │
+   └─────────┘    └─────────┘   └─────────┘
+        │              │              │
+        └──────┬───────┴──────┬───────┘
+               ▼              ▼
+        channel_links → mesmo histórico, mesma memória</pre>
+      </div>
+
+      <h3 class="text-lg font-bold mb-3 text-purple-400">Schema</h3>
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-sm text-neutral-300 mono">CREATE TABLE channel_links (
+    id           BIGSERIAL PRIMARY KEY,
+    user_id      BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    channel      TEXT NOT NULL CHECK (channel IN ('telegram','slack','web')),
+    external_id  TEXT NOT NULL,           -- tg_user_id / slack U... / cookie
+    linked_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+    last_seen_at TIMESTAMPTZ,
+    UNIQUE (channel, external_id)         -- 1 conta externa = 1 user
 );
 
-# Pareamento via código de 6 dígitos
-# User no Telegram: /link → recebe código 482917
-# User no Slack: /link 482917 → linka</code></pre></div></section>
+CREATE INDEX idx_channel_links_user ON channel_links(user_id);
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">💬 SlackChannel (Bolt + Socket Mode)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from slack_bolt.async_app import AsyncApp
-from slack_bolt.adapter.socket_mode.aiohttp import AsyncSocketModeHandler
+-- Tabela de pareamento temporário (TTL 10min)
+CREATE TABLE channel_pairing_codes (
+    code         CHAR(6) PRIMARY KEY,     -- "493017"
+    user_id      BIGINT NOT NULL REFERENCES users(id),
+    expires_at   TIMESTAMPTZ NOT NULL
+);</pre>
+      </div>
+
+      <h3 class="text-lg font-bold mb-3 text-purple-400">Fluxo de pareamento</h3>
+      <div class="space-y-3 mb-6">
+        <div class="flex items-start space-x-3"><span class="text-purple-400 font-bold mt-1">1.</span><p class="text-neutral-300 text-sm">User logado no Web pede "conectar Telegram" → backend gera <code class="bg-dark-700 px-1 rounded mono text-xs">code=493017</code>, salva em <code class="bg-dark-700 px-1 rounded mono text-xs">channel_pairing_codes</code> com TTL 10min.</p></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 font-bold mt-1">2.</span><p class="text-neutral-300 text-sm">Bot mostra: <em>"Mande <code class="bg-dark-700 px-1 rounded mono text-xs">/link 493017</code> no Telegram"</em>.</p></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 font-bold mt-1">3.</span><p class="text-neutral-300 text-sm">User envia. Bot resolve code → user_id, insere em <code class="bg-dark-700 px-1 rounded mono text-xs">channel_links</code>, deleta o code.</p></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 font-bold mt-1">4.</span><p class="text-neutral-300 text-sm">A partir daí, qualquer mensagem no Telegram resolve pro mesmo <code class="bg-dark-700 px-1 rounded mono text-xs">user_id=42</code>.</p></div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-4">
+        <p class="text-neutral-300 text-sm"><strong class="text-primary">💡 Por que 6 dígitos e não link mágico:</strong> link em Telegram precisa de domínio https registrado em BotFather. Código numérico funciona em qualquer messenger sem setup extra.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — SlackChannel -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💬 SlackChannel com Bolt SDK Socket Mode</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Socket Mode dispensa endpoint público — o bot abre WebSocket pra Slack e recebe eventos em push.
+        Ideal pra dev local e pra clientes self-hosted que não querem expor porta.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-xs text-neutral-300 mono">from slack_bolt.async_app import AsyncApp
+from slack_bolt.adapter.socket_mode.async_handler import AsyncSocketModeHandler
+from .agent import run_agent
+from .channels.base import Channel
+from .identity import resolve_user
 
 class SlackChannel(Channel):
-    def __init__(self, bot_token, app_token):
+    name = "slack"
+
+    def __init__(self, bot_token: str, app_token: str):
         self.app = AsyncApp(token=bot_token)
         self.handler = AsyncSocketModeHandler(self.app, app_token)
-        self.app.message("")(self._on_msg)
+        self._register()
 
-    async def _on_msg(self, message, say):
-        await self.on_message(IncomingMessage(
-            user_id=message["user"], text=message["text"],
-            timestamp=float(message["ts"]),
-            metadata={"channel": message["channel"], "thread_ts": message.get("thread_ts")}
-        ))
+    def _register(self):
+        @self.app.event("message")
+        async def on_message(event, say):
+            if event.get("bot_id"):           # ignora ecos do próprio bot
+                return
+            user = await resolve_user("slack", event["user"])
+            if not user:
+                await say(text="Conta não vinculada. Use /link &lt;código&gt; pra parear.",
+                          thread_ts=event.get("ts"))
+                return
 
-    async def start(self, on_message):
-        self.on_message = on_message
-        await self.handler.start_async()</code></pre></div></section>
+            blocks = await run_agent(user_id=user.id, text=event["text"])
+            await say(
+                blocks=render_for(blocks, "slack"),
+                thread_ts=event.get("thread_ts") or event["ts"],  # preserva contexto
+                channel=event["channel"],
+            )
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🌐 WebChannel (FastAPI + SSE)</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>from fastapi import FastAPI, Request
+    async def start(self):
+        await self.handler.start_async()
+
+    async def push(self, user_id: int, blocks: list, channel_id: str):
+        await self.app.client.chat_postMessage(
+            channel=channel_id,
+            blocks=render_for(blocks, "slack"),
+        )</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-4">
+        <p class="text-neutral-300 text-sm"><strong class="text-primary">💡 Tip — thread_ts preserva contexto:</strong> sempre responda em thread (<code class="bg-dark-700 px-1 rounded mono text-xs">thread_ts=event["ts"]</code>). Senão multi-turn vira poluição visual no canal e o agente perde o fio quando 2 users falam ao mesmo tempo.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — WebChannel FastAPI + SSE -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌐 WebChannel — FastAPI + SSE streaming</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        SSE (Server-Sent Events) é mais simples que WebSocket pra LLM streaming: HTTP/1.1, unidirecional do server pro cliente, reconnect automático no browser.
+        Pra chat agêntico, é o default.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-xs text-neutral-300 mono">from fastapi import FastAPI, Depends, HTTPException
 from sse_starlette.sse import EventSourceResponse
+from pydantic import BaseModel
+import json
+from .agent import stream_agent
+from .identity import resolve_user_by_session
 
 app = FastAPI()
 
-@app.post("/chat/{user_id}")
-async def chat(user_id: str, request: Request):
-    body = await request.json()
-    async def stream():
-        async for chunk in agent.stream(IncomingMessage(...)):
-            yield {"data": chunk}
-    return EventSourceResponse(stream())</code></pre></div></section>
+class ChatIn(BaseModel):
+    text: str
+    conversation_id: str | None = None
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📲 Push proativo</h2></div><p class="text-neutral-300 mb-6">Agente fala primeiro. Daily summary 8h da manhã. Alerta crítico em real-time.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>async def push(user, text, priority="normal"):
-    # Respeitar quiet hours
-    if user.in_quiet_hours() and priority != "critical":
-        return await queue_for_later(user, text)
-    # Canal preferido + failover
-    for ch_name in user.channel_preferences:
-        channel = channels[ch_name]
+@app.post("/chat")
+async def chat(body: ChatIn, session: str = Depends(get_session_cookie)):
+    user = await resolve_user_by_session(session)
+    if not user:
+        raise HTTPException(401, "not linked")
+
+    async def event_stream():
+        async for chunk in stream_agent(
+            user_id=user.id,
+            text=body.text,
+            conversation_id=body.conversation_id,
+        ):
+            # chunk = {"type": "token"|"tool_call"|"done", "data": ...}
+            yield {"event": chunk["type"], "data": json.dumps(chunk["data"])}
+
+    return EventSourceResponse(event_stream(), ping=15)</pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h4 class="font-semibold text-purple-400 mb-3">Cliente browser (vanilla)</h4>
+        <pre class="text-xs text-neutral-300 mono">const es = new EventSource("/chat/stream?cid=abc");
+es.addEventListener("token", e =&gt; appendToken(JSON.parse(e.data)));
+es.addEventListener("done",  e =&gt; es.close());</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">SSE vs WebSocket</strong><p class="text-sm text-neutral-400 mt-1">SSE pra streaming de resposta. WS só se precisar uplink contínuo (voz, cursor live).</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Heartbeat</strong><p class="text-sm text-neutral-400 mt-1"><code class="mono text-xs">ping=15</code> evita timeout de proxy corporativo (Cloudflare, nginx).</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Push proativo -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📣 Push proativo — quando o agente fala primeiro</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Reativo é fácil: user pergunta, agente responde. <strong class="text-purple-400">Proativo</strong> é o que diferencia um chatbot de um copiloto.
+        "Sua fatura vence amanhã", "Detectei drop de 30% no funil", "PR aprovado, posso fazer deploy?".
+        Mas push errado = unsubscribe. Quiet hours não são opcional.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-xs text-neutral-300 mono">from datetime import datetime
+from zoneinfo import ZoneInfo
+
+QUIET_START, QUIET_END = 22, 8   # 22h às 8h local
+
+async def push(user_id: int, blocks: list, *, urgency: str = "normal"):
+    user = await load_user(user_id)
+    tz = ZoneInfo(user.timezone or "America/Sao_Paulo")
+    hour = datetime.now(tz).hour
+
+    in_quiet = hour &gt;= QUIET_START or hour &lt; QUIET_END
+    if in_quiet and urgency != "critical":
+        # enfileira pra primeira hora da manhã
+        await queue_push(user_id, blocks, deliver_at=next_morning(tz))
+        return
+
+    # ordem de preferência configurada pelo user
+    for ch_name in user.channel_preference:   # ex: ["slack","telegram","web"]
+        link = await get_link(user_id, ch_name)
+        if not link:
+            continue
         try:
-            await channel.send(OutgoingMessage(user_id=user.external_ids[ch_name], text=text))
+            await CHANNELS[ch_name].push(user_id, blocks, link.external_id)
+            await audit(user_id, ch_name, "push_sent", urgency=urgency)
             return
         except Exception as e:
-            log.warning("push_failed", channel=ch_name, error=str(e))</code></pre></div></section>
+            await audit(user_id, ch_name, "push_failed", error=str(e))
+            continue   # tenta próximo canal
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🎨 Renderer por canal</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># Output do agente é estruturado (markdown + blocks)
-# Renderer adapta:
-def render_for(msg_blocks, channel_type):
-    if channel_type == "slack":
-        return {"blocks": [...]}  # Slack blocks API
+    await audit(user_id, "none", "push_dropped", reason="all_channels_failed")</pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Fazer — push que respeita</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✓ Timezone do user, não do server.</li>
+            <li>✓ Quiet hours por default 22h–8h.</li>
+            <li>✓ Urgência <em>critical</em> só pra coisa real (alerta de prod, fraude).</li>
+            <li>✓ Permitir <code class="bg-dark-700 px-1 rounded mono text-xs">/snooze 4h</code> e <code class="bg-dark-700 px-1 rounded mono text-xs">/mute</code>.</li>
+            <li>✓ Limite: máx 3 push/dia/user em urgência normal.</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evitar — push que vira ruído</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>✗ "Bom dia!" às 3h da manhã porque o cron tá em UTC.</li>
+            <li>✗ Marcar tudo como <em>critical</em> "por garantia".</li>
+            <li>✗ Notificar drop de funil de 2% (ruído estatístico).</li>
+            <li>✗ Push de marketing disfarçado de alerta.</li>
+            <li>✗ Sem opção de desativar — vira denúncia de spam.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Renderer -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎨 Renderer por canal — blocks → MarkdownV2 / Slack / HTML</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O agente devolve uma estrutura abstrata (<em>blocks</em>) — não string formatada.
+        Cada canal tem regras próprias de markup. Misturar = pesadelo.
+        <strong class="text-purple-400">Uma função de render por canal</strong>, agente nunca toca formatação.
+      </p>
+
+      <h3 class="text-lg font-bold mb-3 text-purple-400">Formato por canal</h3>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-purple-400">Bloco</th>
+              <th class="text-left py-3 pr-4 text-purple-400">Telegram</th>
+              <th class="text-left py-3 pr-4 text-purple-400">Slack</th>
+              <th class="text-left py-3 text-purple-400">Web (HTML)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-2 pr-4 mono text-xs">bold</td><td class="py-2 pr-4 mono text-xs">*texto*</td><td class="py-2 pr-4 mono text-xs">*texto*</td><td class="py-2 mono text-xs">&lt;strong&gt;</td></tr>
+            <tr><td class="py-2 pr-4 mono text-xs">code</td><td class="py-2 pr-4 mono text-xs">`x`</td><td class="py-2 pr-4 mono text-xs">`x`</td><td class="py-2 mono text-xs">&lt;code&gt;</td></tr>
+            <tr><td class="py-2 pr-4 mono text-xs">link</td><td class="py-2 pr-4 mono text-xs">[t](url) MDv2</td><td class="py-2 pr-4 mono text-xs">&lt;url|t&gt;</td><td class="py-2 mono text-xs">&lt;a href&gt;</td></tr>
+            <tr><td class="py-2 pr-4 mono text-xs">button</td><td class="py-2 pr-4 mono text-xs">InlineKeyboard</td><td class="py-2 pr-4 mono text-xs">actions block</td><td class="py-2 mono text-xs">&lt;button&gt;</td></tr>
+            <tr><td class="py-2 pr-4 mono text-xs">image</td><td class="py-2 pr-4 mono text-xs">sendPhoto</td><td class="py-2 pr-4 mono text-xs">image block</td><td class="py-2 mono text-xs">&lt;img&gt;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-xs text-neutral-300 mono">def render_for(blocks: list[dict], channel_type: str):
+    """blocks = [{"type":"text","content":"..."}, {"type":"button",...}]"""
+
     if channel_type == "telegram":
-        return escape_md(blocks_to_md(msg_blocks))  # MarkdownV2
-    if channel_type == "web":
-        return blocks_to_html(msg_blocks)  # HTML</code></pre></div></section>
+        # MarkdownV2 — escape pesado obrigatório
+        out = []
+        for b in blocks:
+            if b["type"] == "text":
+                out.append(_escape_mdv2(b["content"]))
+            elif b["type"] == "code":
+                out.append(f"```\n{b['content']}\n```")
+            elif b["type"] == "link":
+                out.append(f"[{_escape_mdv2(b['label'])}]({b['url']})")
+        return {"text": "\n".join(out), "parse_mode": "MarkdownV2"}
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🔄 Failover entre canais</h2></div><p class="text-neutral-300 mb-6">Lista priorizada por user: [slack, email, sms]. Tenta primário com retry exponencial. Cai pra próximo se falhar. Audit do canal efetivo.</p></section>
+    elif channel_type == "slack":
+        # Block Kit — JSON estruturado
+        slack_blocks = []
+        for b in blocks:
+            if b["type"] == "text":
+                slack_blocks.append({"type": "section",
+                    "text": {"type": "mrkdwn", "text": b["content"]}})
+            elif b["type"] == "button":
+                slack_blocks.append({"type": "actions", "elements": [
+                    {"type": "button",
+                     "text": {"type": "plain_text", "text": b["label"]},
+                     "action_id": b["action_id"],
+                     "value": b.get("value", "")}
+                ]})
+            elif b["type"] == "code":
+                slack_blocks.append({"type": "section",
+                    "text": {"type": "mrkdwn", "text": f"```{b['content']}```"}})
+        return slack_blocks
 
-<section class="mb-12"><div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">3+ canais, mesmo cérebro. Identity stitching faz user trocar de canal sem perder contexto.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-3-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-3-6.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo →</a></div></div></section>
+    elif channel_type == "web":
+        # HTML sanitizado (bleach)
+        import bleach
+        html = []
+        for b in blocks:
+            if b["type"] == "text":
+                html.append(f"&lt;p&gt;{bleach.clean(b['content'])}&lt;/p&gt;")
+            elif b["type"] == "code":
+                html.append(f"&lt;pre&gt;&lt;code&gt;{bleach.clean(b['content'])}&lt;/code&gt;&lt;/pre&gt;")
+            elif b["type"] == "button":
+                html.append(f'&lt;button data-action="{b["action_id"]}"&gt;{bleach.clean(b["label"])}&lt;/button&gt;')
+        return "\n".join(html)
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 3 · Módulo 3.5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+    raise ValueError(f"unknown channel: {channel_type}")</pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Dado real — 3 canais paralelos triplica retention</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-blue-400">D30 single-channel (web):</strong> ~18% retention.</li>
+          <li><strong class="text-blue-400">D30 com 2 canais (web + telegram):</strong> ~42%.</li>
+          <li><strong class="text-blue-400">D30 com 3 canais + push proativo bem calibrado:</strong> ~58%.</li>
+          <li class="text-neutral-400 text-xs pt-2">Por quê: user escolhe onde já vive. Telegram pra mobile, Slack pra trabalho, Web pra contexto longo. Não força context-switch.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Failover -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🛟 Failover entre canais — retry exponencial e audit</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Slack fora do ar acontece. Telegram bloqueia IP em rate-limit. SSE quebra atrás de proxy corporativo.
+        Se você tem 3 canais, <strong class="text-purple-400">use os 3</strong> — failover automático é a feature que ninguém vê mas todo mundo agradece.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <pre class="text-xs text-neutral-300 mono">import asyncio, random
+from .audit import audit
+
+async def deliver_with_failover(user_id: int, blocks: list, urgency="normal"):
+    user = await load_user(user_id)
+    order = user.channel_preference or ["slack", "telegram", "web"]
+
+    for ch_name in order:
+        link = await get_link(user_id, ch_name)
+        if not link:
+            continue
+
+        # retry exponencial: 0.5s, 1s, 2s (com jitter)
+        for attempt in range(3):
+            try:
+                await CHANNELS[ch_name].push(user_id, blocks, link.external_id)
+                await audit(user_id, channel=ch_name, event="delivered",
+                            attempt=attempt, urgency=urgency)
+                return ch_name   # canal usado fica no audit
+            except RateLimitError:
+                wait = (2 ** attempt) * 0.5 + random.uniform(0, 0.3)
+                await asyncio.sleep(wait)
+            except (ConnectionError, TimeoutError) as e:
+                await audit(user_id, channel=ch_name, event="transient_fail",
+                            attempt=attempt, error=str(e))
+                await asyncio.sleep((2 ** attempt) * 0.5)
+            except ChannelDownError:
+                await audit(user_id, channel=ch_name, event="channel_down")
+                break   # próximo canal, sem mais retry neste
+
+    await audit(user_id, channel="none", event="all_failed", urgency=urgency)
+    if urgency == "critical":
+        await page_oncall(user_id, blocks)   # último recurso: humano
+    return None</pre>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — canal único é single point of failure</h3>
+        <p class="text-neutral-300 text-sm mb-3">
+          Se seu agente só vive no Slack e o Slack cai por 2 horas (acontece ~1x/trimestre), <strong class="text-red-400">seu produto desaparece</strong> nesse intervalo.
+          Pior: notificações críticas (fraude, prod down) ficam mudas. Auditoria depois é caos.
+        </p>
+        <p class="text-neutral-300 text-sm"><strong class="text-red-400">Mínimo viável:</strong> 2 canais com failover automático + um e-mail como fallback de último recurso pra eventos <em>critical</em>.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Audit do canal usado</strong><p class="text-sm text-neutral-400 mt-1">Toda mensagem grava <em>qual</em> canal entregou. Suporte rastreia rápido.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Jitter no retry</strong><p class="text-sm text-neutral-400 mt-1"><code class="mono text-xs">random.uniform(0,0.3)</code> evita thundering herd quando 1k users retry juntos.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Circuit breaker</strong><p class="text-sm text-neutral-400 mt-1">3 falhas seguidas no canal = marca <em>down</em> por 60s, pula direto pro próximo.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Identity stitching</strong><span class="text-neutral-400"> — <code class="mono text-xs">channel_links</code> + código de 6 dígitos costura 3 canais num só user.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Slack via Bolt + Socket Mode</strong><span class="text-neutral-400"> — sem endpoint público, thread_ts preserva contexto.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Web via FastAPI + SSE</strong><span class="text-neutral-400"> — streaming simples, reconnect nativo do browser.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Push proativo com quiet hours</strong><span class="text-neutral-400"> — timezone do user, urgência calibrada, limite diário.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Renderer por canal</strong><span class="text-neutral-400"> — agente devolve blocks, render_for() traduz pra MarkdownV2 / Slack blocks / HTML.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Failover com retry exponencial</strong><span class="text-neutral-400"> — canal único = SPOF; mínimo viável são 2 + e-mail de último recurso.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">3.6 — Operação: monitoria, custos por user, kill switch, runbook quando o agente pira em produção.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 3</a>
+          <a href="modulo-3-6.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 3 · Módulo 3.5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

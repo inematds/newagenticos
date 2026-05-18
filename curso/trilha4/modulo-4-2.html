@@ -1,72 +1,617 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 4.2 — Estrutura de pastas | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .bg-amber-500\/20{background-color:rgba(217,119,6,.12)}html:not(.dark) .bg-amber-500\/10{background-color:rgba(217,119,6,.08)}html:not(.dark) .border-amber-500\/30{border-color:rgba(217,119,6,.25)}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.2 — Estrutura de pastas | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .code-box { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.55; white-space: pre; overflow-x: auto; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha amber (T4 ativa) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(217,119,6,.12); }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500:hover { background-color: #f59e0b; }
+
+    /* Light mode — trilhas inativas */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas + code-box */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    .dark .code-box { background-color: #0b1220; color: #e5e7eb; }
+    html:not(.dark) .code-box { background-color: #f3f4f6; color: #1f2937; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">T3</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.2</span></div></nav>
-<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.2</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">📁 Estrutura de pastas</h1><p class="text-lg text-neutral-400 max-w-3xl">clients/, brand-context/, context/ sectorizado, projects/briefs/. Receita comentada.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">👥 clients/&lt;nome&gt;/</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">clients/
-├── _templates/        # esqueleto pra cliente novo
-│   ├── brief.md
-│   ├── data/
-│   └── notes/
-├── acme-corp/         # cliente real
-│   ├── brief.md
-│   ├── data/
-│   ├── notes/
-│   └── deliverables/
-└── beta-startup/</pre></div></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🎨 brand-context/</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">brand-context/
-├── voice.md           # Como falamos
-├── positioning.md     # Onde estamos no mercado
-├── icp.md             # Ideal customer profile
-└── assets/
-    ├── logo.svg
-    ├── colors.json
-    └── fonts/</pre></div></section>
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4 · iAmasters OS</a>
+      <span>/</span>
+      <span class="text-amber-400">Módulo 4.2</span>
+    </div>
+  </nav>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🧩 context/ sectorizado</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">context/
-├── me.md                  # Sobre o operador
-├── work.md                # Negócio, oferta, modelo
-├── team.md                # Pessoas envolvidas
-├── current-priorities.md  # O que tá pegando agora
-├── goals.md               # Metas Q/Y
-├── decisions-log.md       # Decisões importantes
-├── learnings.md           # Consolidações da Sinapsis
-└── soul.md                # Valores, jeito</pre></div></section>
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📁 Estrutura de pastas</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        O esqueleto físico do iAmasters OS. Cliente como diretório-cidadão,
+        brand-context isolado, context/ em 8 arquivos sectorizados, briefs com frontmatter,
+        skills versionadas e Sinapsis embedded com pin. Cada pasta carrega uma decisão de design.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">45</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Arquitetura</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Prático</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📋 projects/briefs/</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono"># projects/briefs/landing-q3/brief.md
----
-status: active   # active | paused | done
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 — clients/<nome>/ -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏛️ clients/&lt;nome&gt;/ — multi-cliente como diretório-cidadão</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada cliente da iAmasters vira <strong class="text-amber-400">uma pasta de primeira classe</strong>
+        dentro de <code class="text-amber-400">clients/</code>. Não é "uma branch", não é "um workspace separado",
+        não é "um arquivo de config". É um <em>cidadão do filesystem</em>, com mesma forma para todos —
+        garantida por <code class="text-amber-400">clients/_templates/</code>.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">iamasters-os/
+└── clients/
+    ├── _templates/                  ← contrato. cópia base de todo cliente novo.
+    │   ├── brand-context/
+    │   │   ├── voice.md
+    │   │   ├── positioning.md
+    │   │   ├── icp.md
+    │   │   └── assets/
+    │   ├── projects/
+    │   │   └── briefs/
+    │   ├── .claude/
+    │   │   ├── skills/
+    │   │   └── commands/
+    │   └── README.md
+    │
+    ├── acme-corp/                   ← cliente real. herda forma de _templates/
+    │   ├── brand-context/
+    │   ├── projects/briefs/lancamento-q3/
+    │   └── .claude/skills/welcome.md
+    │
+    ├── nubank-pj/
+    │   ├── brand-context/
+    │   ├── projects/briefs/onboarding-2026/
+    │   └── .claude/
+    │
+    └── bemobi/
+        └── ...</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">📥 Por que diretório (e não branch/DB)</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>Git diff legível:</strong> mudança em cliente = diff em 1 pasta.</li>
+            <li><strong>Onboard agente novo:</strong> aponta pra <code>clients/acme-corp/</code> e pronto.</li>
+            <li><strong>Backup/arquivamento:</strong> <code>tar czf acme.tgz clients/acme-corp/</code>.</li>
+            <li><strong>Sair do cliente:</strong> <code>git rm -r clients/foo/</code>. Limpo.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">🎯 Regra do <code>_templates/</code></h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Toda pasta nova de cliente <strong>nasce</strong> via <code>cp -r _templates/ clients/&lt;novo&gt;/</code>.</li>
+            <li>Mudança em <code>_templates/</code> = ADR registrada.</li>
+            <li>Drift entre clientes vira lint check no CI.</li>
+            <li>Template é <strong>contrato</strong> — não sugestão.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Tip — template como contrato</h3>
+        <p class="text-neutral-300">Quando <code>_templates/</code> é tratado como contrato (com lint que falha se um cliente está fora de forma), o drift entre clientes desaparece. Sem isso, em 6 meses cada cliente vira um floco de neve único e o OS quebra.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — brand-context/ -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎨 brand-context/ — voz, posicionamento, ICP, assets</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada cliente carrega <strong class="text-amber-400">sua identidade de marca em arquivos planos</strong> que
+        o agente lê antes de qualquer entrega criativa. Quatro arquivos canônicos cobrem 90% dos casos.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">clients/acme-corp/
+└── brand-context/
+    ├── voice.md          ← tom, palavras proibidas, exemplos do/don't
+    ├── positioning.md    ← posicionamento, concorrentes, narrativa-mãe
+    ├── icp.md            ← perfil ideal, jobs-to-be-done, objeções
+    └── assets/
+        ├── logo.svg
+        ├── palette.json
+        ├── fonts/
+        └── references/   ← screenshots, prints de campanhas anteriores</div>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm bg-dark-800 rounded-xl border border-dark-600">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 px-4 text-amber-400 font-semibold">Arquivo</th>
+              <th class="text-left py-3 px-4 text-amber-400 font-semibold">Responsabilidade</th>
+              <th class="text-left py-3 px-4 text-amber-400 font-semibold">Tamanho ideal</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 px-4 font-mono text-amber-400">voice.md</td><td class="py-3 px-4">Tom + 5 exemplos do/don't + glossário</td><td class="py-3 px-4">&lt; 400 tokens</td></tr>
+            <tr><td class="py-3 px-4 font-mono text-amber-400">positioning.md</td><td class="py-3 px-4">Frase-mãe, concorrentes, diferenciação</td><td class="py-3 px-4">&lt; 300 tokens</td></tr>
+            <tr><td class="py-3 px-4 font-mono text-amber-400">icp.md</td><td class="py-3 px-4">Persona, dores, gatilhos, objeções</td><td class="py-3 px-4">&lt; 500 tokens</td></tr>
+            <tr><td class="py-3 px-4 font-mono text-amber-400">assets/</td><td class="py-3 px-4">Binários (logo, palette, fonts, refs)</td><td class="py-3 px-4">&lt; 20 MB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">voice.md</strong><p class="text-xs text-neutral-400 mt-1">Para todo output verbal.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">positioning.md</strong><p class="text-xs text-neutral-400 mt-1">Para estratégia.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">icp.md</strong><p class="text-xs text-neutral-400 mt-1">Para copy + ads.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">assets/</strong><p class="text-xs text-neutral-400 mt-1">Para visual + handoff.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — context/ sectorizado -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧠 context/ sectorizado — 8 arquivos, não 1 monolito</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Aqui mora o <strong class="text-amber-400">contexto do operador</strong> (não do cliente). Quem é você,
+        como trabalha, com quem, o que está priorizando, decisões já tomadas, aprendizados acumulados.
+        Em vez de um <code>CLAUDE.md</code> gigante, são <strong class="text-amber-400">8 arquivos &lt; 500 tokens</strong> cada.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">iamasters-os/
+└── context/
+    ├── me.md                    ← identidade: quem é o operador
+    ├── work.md                  ← rotina, ferramentas, ritmos
+    ├── team.md                  ← quem trabalha com você (papéis)
+    ├── current-priorities.md    ← top 3-5 do trimestre, vivo
+    ├── goals.md                 ← OKRs / metas anuais
+    ├── decisions-log.md         ← ADR-lite: o que foi decidido e por quê
+    ├── learnings.md             ← o que mudou de ideia (vivo)
+    └── soul.md                  ← princípios, voz pessoal, gostos estéticos</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Fazer — context/ sectorizado</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>8 arquivos, cada um &lt; 500 tokens, um assunto cada.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Agente carrega só o que precisa via SessionStart hook.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Edit cirúrgico — mudar prioridade não toca o resto.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Git diff revela <em>qual</em> dimensão mudou.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Soul.md fica estável; current-priorities.md muda toda semana.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evitar — CLAUDE.md monolítico</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>1 arquivo de 5k+ tokens com tudo misturado.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente carrega tudo, sempre — desperdiça contexto.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editar prioridade arrisca quebrar tom/identidade.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Diff vira ruído — impossível revisar.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Em 3 meses ninguém quer mais tocar no arquivo.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Dados — sectorizado vence em todo eixo</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-blue-400">8 arquivos &lt; 500 tokens</strong> = ~4k tokens total, carregamento seletivo via hook reduz para ~1.5k por sessão.</li>
+          <li><strong class="text-blue-400">1 arquivo &gt; 5k tokens</strong> = sempre carregado integral, ~5k por sessão, 3.3× mais.</li>
+          <li><strong class="text-blue-400">Tempo médio de edição</strong>: sectorizado 90s, monolito 8min (procurar a seção certa + medo de quebrar vizinhos).</li>
+          <li><strong class="text-blue-400">Conflitos de merge</strong>: sectorizado &lt; 5%, monolito &gt; 40% quando 2 pessoas tocam na mesma semana.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — projects/briefs/ -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📋 projects/briefs/&lt;nome&gt;/brief.md com frontmatter</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Todo projeto vira <strong class="text-amber-400">uma pasta de brief</strong> dentro do cliente.
+        O <code>brief.md</code> carrega frontmatter YAML que o agente parseia para filtrar
+        "o que está vivo agora" (status: active) vs. arquivo histórico.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">clients/acme-corp/projects/briefs/
+├── lancamento-q3/
+│   ├── brief.md           ← status: active
+│   ├── research/
+│   ├── drafts/
+│   └── final/
+├── rebrand-2025/
+│   └── brief.md           ← status: done
+└── campanha-natal/
+    └── brief.md           ← status: paused</div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">---
+title: Lançamento Q3 — produto Aurora
 client: acme-corp
-deadline: 2026-08-30
+status: active            # active | paused | done
 owner: nei
+deadline: 2026-09-15
+budget_tokens: 250000
+related_skills: [six-hats, visual]
 ---
-# Landing Q3
 
 ## Objetivo
-Conversão de visitante para lead. Meta: 5%.
-...</pre></div></section>
+Lançar Aurora para ICP enterprise até 15/set.
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🗂️ .claude/ skills e commands</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono">.claude/
-├── skills/
-│   ├── welcome/           # boas-vindas guiadas
-│   ├── six-hats/          # análise por chapéus
-│   ├── visual/            # geração de design
-│   └── ...
-└── commands/
-    ├── eod.md             # end of day
-    ├── dream.md
-    └── system-status.md</pre></div></section>
+## Critério de pronto
+- [ ] 3 ângulos de copy testados
+- [ ] Landing aprovada
+- [ ] Plano de mídia validado</div>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🔧 vendor/sinapsis/</h2></div><p class="text-neutral-300 mb-6">Engine embedded. Pin de versão (v4.5). Atualiza via <code class="bg-dark-700 px-1 rounded">bun run vendor:update</code> quando quer. Upstream breaking não te derruba.</p></section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4">
+          <strong class="text-amber-400">status: active</strong>
+          <p class="text-sm text-neutral-400 mt-1">Carregado no contexto do agente, aparece em <code>/eod</code>.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4">
+          <strong class="text-amber-400">status: paused</strong>
+          <p class="text-sm text-neutral-400 mt-1">Indexado, mas não compete por atenção. Some do dashboard.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4">
+          <strong class="text-amber-400">status: done</strong>
+          <p class="text-sm text-neutral-400 mt-1">Arquivado, vira referência histórica para <code>learnings.md</code>.</p>
+        </div>
+      </div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">5 pastas explicam tudo: clients, brand-context, context, projects, .claude, vendor. Cada uma com responsabilidade clara.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-4-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-4-3.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo →</a></div></div></section>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Tip — frontmatter é interface</h3>
+        <p class="text-neutral-300">O frontmatter não é decoração — é <em>interface entre humano e agente</em>. Quando você muda <code>status: active</code> → <code>done</code>, o OS inteiro reage: o brief sai do contexto carregado, o orquestrador para de sugerir tarefas dele, o /eod para de listar.</p>
+      </div>
+    </section>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 4 · Módulo 4.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+    <!-- TOPICO 5 — .claude/skills + commands -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🛠️ .claude/skills/ e .claude/commands/</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Skills são <strong class="text-amber-400">capacidades especializadas</strong> versionadas em markdown.
+        Commands são <strong class="text-amber-400">atalhos de slash</strong> que disparam fluxos. Cada um vive
+        no seu lugar canônico para que o Claude Code descubra automaticamente.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">iamasters-os/
+└── .claude/
+    ├── skills/
+    │   ├── welcome/
+    │   │   └── SKILL.md            ← onboard de qualquer pessoa no OS
+    │   ├── six-hats/
+    │   │   └── SKILL.md            ← análise de De Bono com anti-âncora
+    │   └── visual/
+    │       └── SKILL.md            ← geração de assets visuais (canvas-design)
+    │
+    └── commands/
+        ├── eod.md                  ← /eod — end of day: relatório do dia
+        └── dream.md                ← /dream — sessão criativa exploratória</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">📚 skills/ — capacidades</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>welcome:</strong> primeiro contato. Lê context/me.md e contextualiza.</li>
+            <li><strong>six-hats:</strong> análise multi-perspectiva com isolamento estrito de fases.</li>
+            <li><strong>visual:</strong> dispara canvas-design + brand-context do cliente ativo.</li>
+            <li>Cada skill = 1 pasta, 1 SKILL.md com frontmatter (name, description, trigger).</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">⚡ commands/ — atalhos</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>/eod:</strong> varre briefs active, lista o que avançou, o que travou.</li>
+            <li><strong>/dream:</strong> abre sessão sem julgamento, alimenta learnings.md depois.</li>
+            <li>Versionados no git — todo mundo do time pode invocar.</li>
+            <li>Discoverable: <code>/</code> no Claude Code lista todos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">welcome</strong><p class="text-xs text-neutral-400 mt-1">skill de onboarding</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">six-hats</strong><p class="text-xs text-neutral-400 mt-1">skill analítica</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">/eod</strong><p class="text-xs text-neutral-400 mt-1">comando diário</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">/dream</strong><p class="text-xs text-neutral-400 mt-1">comando criativo</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — vendor/sinapsis/ -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">⚙️ vendor/sinapsis/ — engine embedded com pin</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O <strong class="text-amber-400">Sinapsis</strong> (engine de orquestração) é embedded — vive dentro do
+        iAmasters OS em <code>vendor/sinapsis/</code>, com <strong class="text-amber-400">pin de versão explícito</strong>.
+        Atualização é deliberada, via <code>bun run vendor:update</code>, nunca automática.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 code-box">iamasters-os/
+├── vendor/
+│   └── sinapsis/
+│       ├── .version            ← v2.4.1 (pin explícito, commitado)
+│       ├── src/
+│       ├── package.json
+│       └── README.md
+│
+├── scripts/
+│   └── vendor-update.ts        ← controla bun run vendor:update
+│
+└── package.json
+    └── "scripts": {
+          "vendor:update": "bun run scripts/vendor-update.ts"
+        }</div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — vendor sem pin quebra prod</h3>
+        <p class="text-neutral-300 mb-3">Se você consome Sinapsis via <code>npm install sinapsis@latest</code> ou submodule sem pin,
+        um breaking change upstream entra silenciosamente na próxima instalação. Cliente em produção quebra
+        sem você ter mudado uma linha.</p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> <code>.version</code> committed + <code>vendor:update</code> manual que abre PR com diff legível. Você <em>vê</em> o que mudou antes de aceitar.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">🎯 Por que embedded (e não dependência)</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Sinapsis é <strong>core</strong> do OS — não periferia.</li>
+            <li>Debug profundo: stack trace aponta pra <code>vendor/</code>, lê o código.</li>
+            <li>Patches locais possíveis sem fork.</li>
+            <li>Zero surpresa em build/CI offline.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">🔄 Fluxo de update</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><code>bun run vendor:update</code> busca última versão upstream.</li>
+            <li>Compara <code>.version</code> atual vs. nova.</li>
+            <li>Aplica diff, roda testes, abre PR.</li>
+            <li>Humano revisa changelog + diff antes do merge.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Pin</strong><p class="text-xs text-neutral-400 mt-1">.version commitado</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Embedded</strong><p class="text-xs text-neutral-400 mt-1">vendor/, não node_modules</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Update</strong><p class="text-xs text-neutral-400 mt-1">manual via bun script</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Review</strong><p class="text-xs text-neutral-400 mt-1">PR com diff legível</p></div>
+      </div>
+    </section>
+
+    <!-- ARVORE COMPLETA -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-6">
+        <h2 class="text-2xl font-bold mb-4 flex items-center"><span class="mr-3">🌳</span> Árvore completa — o iAmasters OS num só print</h2>
+        <div class="code-box bg-dark-900/50 rounded-lg p-5 border border-dark-600">iamasters-os/
+├── context/
+│   ├── me.md
+│   ├── work.md
+│   ├── team.md
+│   ├── current-priorities.md
+│   ├── goals.md
+│   ├── decisions-log.md
+│   ├── learnings.md
+│   └── soul.md
+│
+├── clients/
+│   ├── _templates/
+│   ├── acme-corp/
+│   │   ├── brand-context/
+│   │   │   ├── voice.md
+│   │   │   ├── positioning.md
+│   │   │   ├── icp.md
+│   │   │   └── assets/
+│   │   └── projects/briefs/lancamento-q3/brief.md
+│   └── nubank-pj/
+│
+├── .claude/
+│   ├── skills/{welcome,six-hats,visual}/
+│   └── commands/{eod.md,dream.md}
+│
+├── vendor/
+│   └── sinapsis/
+│       ├── .version
+│       └── src/
+│
+├── scripts/
+│   └── vendor-update.ts
+│
+├── CLAUDE.md                ← aponta para context/ + clients/
+└── package.json</div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">clients/&lt;nome&gt;/ é cidadão de primeira classe</strong><span class="text-neutral-400"> — diretório, não branch nem DB. Forma garantida por <code>_templates/</code>.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">brand-context/ isola identidade da marca</strong><span class="text-neutral-400"> — voice, positioning, icp, assets. 4 arquivos canônicos.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">context/ em 8 arquivos sectorizados</strong><span class="text-neutral-400"> — &lt;500 tokens cada, vence o CLAUDE.md monolítico em todo eixo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">briefs com frontmatter</strong><span class="text-neutral-400"> — status: active/paused/done vira interface entre humano e OS.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">.claude/skills/ + commands/</strong><span class="text-neutral-400"> — welcome, six-hats, visual, /eod, /dream. Versionados, discoverable.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">vendor/sinapsis/ com pin</strong><span class="text-neutral-400"> — engine embedded, .version commitado, update via bun run vendor:update.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">4.3 — Sinapsis engine: como o orquestrador embedded conecta skills, briefs e brand-context em runtime.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 4</a>
+          <a href="modulo-4-3.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 4 · Módulo 4.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

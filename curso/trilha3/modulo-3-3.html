@@ -1,57 +1,609 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 3.3 — Memória compartilhada vs privada | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .bg-purple-500\/20{background-color:rgba(124,58,237,.12)}html:not(.dark) .bg-purple-500\/10{background-color:rgba(124,58,237,.08)}html:not(.dark) .border-purple-500\/30{border-color:rgba(124,58,237,.25)}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.3 — Memória compartilhada vs privada | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .dark body { background-color: #111827; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124,58,237,.12); }
+
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre.code-block { background:#0b1220; color:#e5e7eb; padding:1rem; border-radius:.5rem; overflow-x:auto; font-size:.8rem; line-height:1.55; }
+    html:not(.dark) pre.code-block { background:#0f172a; color:#e2e8f0; }
+    .tag-user { color:#a78bfa; }
+    .tag-team { color:#60a5fa; }
+    .tag-world { color:#fbbf24; }
+    .c-kw { color:#c084fc; }
+    .c-str { color:#86efac; }
+    .c-fn { color:#93c5fd; }
+    .c-com { color:#6b7280; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span><a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span><span class="text-purple-400">Módulo 3.3</span></div></nav>
-<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.3</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Memória compartilhada vs privada</h1><p class="text-lg text-neutral-400 max-w-3xl">3 escopos (user, team, world), SQLite por user, vector compartilhado com namespaces. Sem vazamentos.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🎯 3 escopos</h2></div><div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6"><ul class="space-y-2 text-neutral-300 text-sm"><li><strong class="text-purple-400">user:</strong> privado, default. "Meu CPF é X."</li><li><strong class="text-purple-400">team:</strong> compartilhado entre members. "Nosso processo de onboarding."</li><li><strong class="text-purple-400">world:</strong> público a todos. "Lista de feriados nacionais."</li></ul></div></section>
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📚 SQLite por user</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># 1 arquivo .db por workspace de user
-# Isolamento real, backup trivial
-class UserMemory:
-    def __init__(self, user: User):
-        self.db_path = user_workspace(user.id) / "memory.db"
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3 · Multi-user</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.3</span>
+    </div>
+  </nav>
 
-    async def save(self, content, category, scope="user"):
-        # scope == "user" sempre. Para team/world usa store compartilhada.
-        ...</code></pre></div></section>
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Memória compartilhada vs privada</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        3 escopos (<span class="tag-user font-semibold">user</span> / <span class="tag-team font-semibold">team</span> / <span class="tag-world font-semibold">world</span>),
+        SQLite por usuário, vector store com namespace, promoção controlada e garbage collection.
+        O que separa um agente multi-user que respeita LGPD de um vazamento esperando para acontecer.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Builder</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🌐 Vector store com namespaces</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>collection.add(
-    documents=[content],
-    metadatas=[{"user_id": uid, "scope": "team", "team_id": tid}],
-    ids=[entry_id]
-)
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-# Query SEMPRE com filter:
-results = collection.query(
-    query_texts=[query],
-    where={"$or": [{"user_id": uid}, {"team_id": user.team_id}]},
-    n_results=10
-)</code></pre></div></section>
+    <!-- TOPICO 1 — Os 3 escopos -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🪜 Os 3 escopos: user, team, world</h2>
+      </div>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🤝 Promover privado → team</h2></div><p class="text-neutral-300 mb-6">Comando explícito <code class="bg-dark-700 px-1 rounded">/share &lt;memory_id&gt;</code>. Audit log inclui quem promoveu.</p></section>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Memória sem escopo é vazamento esperando hora. Toda memória do seu agente cai em <strong class="text-purple-400">um e apenas um</strong> de três baldes.
+        Decidir o balde é decisão de produto, não de engenharia — engenharia só executa.
+      </p>
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🔍 Busca consciente</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>async def search(query, user, scopes=("user",)):
-    # default = ['user']. Forçar escolha.
-    if "team" in scopes and not user.team_id:
-        raise ValueError("user sem team não pode buscar em scope=team")
-    log.info("memory_search", user_id=user.id, scopes=list(scopes))
-    return await store.search_with_filter(query, user_id=user.id, scopes=scopes)</code></pre></div></section>
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧩</span> Tabela canônica dos escopos</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Escopo</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Quem vê</th>
+              <th class="text-left py-3 pr-4 text-purple-400 font-semibold">Onde mora</th>
+              <th class="text-left py-3 text-purple-400 font-semibold">Exemplo concreto</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr>
+              <td class="py-3 pr-4"><span class="tag-user font-bold">user</span></td>
+              <td class="py-3 pr-4">só o dono</td>
+              <td class="py-3 pr-4">SQLite por usuário</td>
+              <td class="py-3">"Prefiro respostas curtas." / CPF / saldo</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4"><span class="tag-team font-bold">team</span></td>
+              <td class="py-3 pr-4">membros do workspace</td>
+              <td class="py-3 pr-4">Postgres + namespace</td>
+              <td class="py-3">Tom de voz da marca / fluxo aprovado</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4"><span class="tag-world font-bold">world</span></td>
+              <td class="py-3 pr-4">todos os usuários</td>
+              <td class="py-3 pr-4">vector store global</td>
+              <td class="py-3">Documentação pública / FAQ produto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🧹 Garbage collection</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># Cron diário
-# 1. Memórias de users deletados há &gt; 7 dias → hard delete
-# 2. Hash de content para dedup (mesma frase 10x = 1)
-# 3. Memórias &gt; 1 ano sem acesso → comprime em arquivo .gz
-async def gc():
-    deleted = await db.execute("DELETE FROM memories WHERE user_id IN (SELECT id FROM users WHERE deleted_at &lt; ?)", (time.time() - 7*86400,))
-    log.info("gc_run", deleted=deleted.rowcount)</code></pre></div></section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-user">Regra do user</strong><p class="text-sm text-neutral-400 mt-1">Default. Tudo nasce aqui. Promoção é ação consciente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-team">Regra do team</strong><p class="text-sm text-neutral-400 mt-1">Requer dono + audit log + 1 aprovação.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-world">Regra do world</strong><p class="text-sm text-neutral-400 mt-1">Só conteúdo que poderia estar no site público.</p></div>
+      </div>
+    </section>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">3 escopos + SQLite por user + vector com namespaces = arquitetura sólida. Promoção explícita evita vazamento.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-3-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-3-4.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo →</a></div></div></section>
+    <!-- TOPICO 2 — SQLite por user -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💾 SQLite por usuário (file-per-tenant)</h2>
+      </div>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 3 · Módulo 3.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Banco compartilhado com coluna <code class="bg-dark-700 px-1 rounded">user_id</code> resolve 80% — mas você ainda paga risco de query mal escrita vazando linha.
+        File-per-tenant elimina esse risco fisicamente: cada user é um <code class="bg-dark-700 px-1 rounded">memory.db</code> separado em disco. Query errada no DB do João não pode retornar nada da Maria.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Estrutura no disco</h3>
+      <pre class="code-block mb-6">~/.app/users/
+├── 6a2f3c-uuid-joao/
+│   ├── memory.db          <span class="c-com"># SQLite só do João</span>
+│   ├── sessions/
+│   └── attachments/
+├── 91bd-uuid-maria/
+│   ├── memory.db          <span class="c-com"># SQLite só da Maria</span>
+│   └── ...
+└── _system/
+    └── catalog.db         <span class="c-com"># mapeia uuid → email, plano, status</span></pre>
+
+      <h3 class="text-xl font-bold mb-4">Classe <code>UserMemory</code> — abre o DB certo, sempre</h3>
+      <pre class="code-block mb-6"><span class="c-kw">from</span> pathlib <span class="c-kw">import</span> Path
+<span class="c-kw">import</span> sqlite3, json, time
+
+ROOT = Path.home() / <span class="c-str">".app/users"</span>
+
+<span class="c-kw">class</span> <span class="c-fn">UserMemory</span>:
+    <span class="c-kw">def</span> <span class="c-fn">__init__</span>(self, user_id: str):
+        <span class="c-kw">if not</span> user_id:
+            <span class="c-kw">raise</span> ValueError(<span class="c-str">"user_id obrigatório — sem default global"</span>)
+        self.user_id = user_id
+        self.path = ROOT / user_id / <span class="c-str">"memory.db"</span>
+        self.path.parent.mkdir(parents=<span class="c-kw">True</span>, exist_ok=<span class="c-kw">True</span>)
+        self.db = sqlite3.connect(self.path)
+        self._migrate()
+
+    <span class="c-kw">def</span> <span class="c-fn">_migrate</span>(self):
+        self.db.executescript(<span class="c-str">"""
+            CREATE TABLE IF NOT EXISTS memories(
+              id INTEGER PRIMARY KEY,
+              kind TEXT NOT NULL,           -- fact | preference | event
+              content TEXT NOT NULL,
+              created_at INTEGER NOT NULL,
+              last_used_at INTEGER,
+              uses INTEGER DEFAULT 0
+            );
+            CREATE INDEX IF NOT EXISTS idx_kind ON memories(kind);
+        """</span>)
+
+    <span class="c-kw">def</span> <span class="c-fn">add</span>(self, kind: str, content: str) -&gt; int:
+        cur = self.db.execute(
+            <span class="c-str">"INSERT INTO memories(kind, content, created_at) VALUES(?, ?, ?)"</span>,
+            (kind, content, int(time.time()))
+        )
+        self.db.commit()
+        <span class="c-kw">return</span> cur.lastrowid
+
+    <span class="c-kw">def</span> <span class="c-fn">recall</span>(self, kind: str | <span class="c-kw">None</span> = <span class="c-kw">None</span>) -&gt; list[dict]:
+        sql = <span class="c-str">"SELECT id, kind, content FROM memories"</span>
+        args = ()
+        <span class="c-kw">if</span> kind:
+            sql += <span class="c-str">" WHERE kind = ?"</span>; args = (kind,)
+        <span class="c-kw">return</span> [<span class="c-kw">dict</span>(zip([<span class="c-str">"id"</span>,<span class="c-str">"kind"</span>,<span class="c-str">"content"</span>], r))
+                <span class="c-kw">for</span> r <span class="c-kw">in</span> self.db.execute(sql, args).fetchall()]</pre>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-3">✓ Default user</h4>
+          <p class="text-sm text-neutral-300">Construtor exige <code>user_id</code>. Sem fallback global. Falhar cedo &gt; vazar tarde.</p>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Default everything</h4>
+          <p class="text-sm text-neutral-300"><code>UserMemory(user_id=None)</code> abrindo um DB compartilhado é o bug mais comum de implementação ingênua. Nunca.</p>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Bônus operacional</h3>
+        <p class="text-neutral-300 text-sm">File-per-tenant facilita LGPD: <em>"apagar todos os dados do João"</em> vira <code>rm -rf ~/.app/users/&lt;uuid&gt;/</code>. Backup por user também — sem query, sem dump filtrado.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Vector store com namespace -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🗄️ Vector store compartilhado com namespaces</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        SQLite resolve fato estruturado. Para memória semântica (RAG, busca por similaridade) você precisa de vetor. Manter um Chroma/Qdrant por user fica caro — a alternativa é <strong class="text-purple-400">um índice único + metadata filter por namespace</strong>. Mas a disciplina passa a viver no <em>filter</em>.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Convenção de namespace</h3>
+      <pre class="code-block mb-6"><span class="c-com"># formato: &lt;scope&gt;:&lt;owner_id&gt;</span>
+user:6a2f3c-uuid-joao        <span class="c-com"># memória privada do João</span>
+team:acme-marketing          <span class="c-com"># compartilhada no time</span>
+world:public                 <span class="c-com"># pública, indexada por todos</span></pre>
+
+      <h3 class="text-xl font-bold mb-4">Chroma com metadata filter — escrita e busca</h3>
+      <pre class="code-block mb-6"><span class="c-kw">import</span> chromadb
+<span class="c-kw">from</span> uuid <span class="c-kw">import</span> uuid4
+
+client = chromadb.PersistentClient(path=<span class="c-str">"./vec"</span>)
+col = client.get_or_create_collection(<span class="c-str">"memories"</span>)
+
+<span class="c-kw">def</span> <span class="c-fn">remember</span>(text: str, *, scope: str, owner: str):
+    ns = <span class="c-str">f"</span>{scope}<span class="c-str">:</span>{owner}<span class="c-str">"</span>
+    col.add(
+        documents=[text],
+        metadatas=[{<span class="c-str">"namespace"</span>: ns, <span class="c-str">"scope"</span>: scope, <span class="c-str">"owner"</span>: owner}],
+        ids=[<span class="c-str">f"</span>{ns}<span class="c-str">::</span>{uuid4()}<span class="c-str">"</span>],
+    )
+
+<span class="c-kw">def</span> <span class="c-fn">search</span>(query: str, *, scopes: tuple[str, ...] = (<span class="c-str">"user"</span>,), owner: str):
+    <span class="c-kw">if not</span> scopes:
+        <span class="c-kw">raise</span> ValueError(<span class="c-str">"scopes vazio = busca sem filtro = vazamento"</span>)
+    <span class="c-com"># monta namespaces autorizados explicitamente</span>
+    allowed = []
+    <span class="c-kw">for</span> s <span class="c-kw">in</span> scopes:
+        <span class="c-kw">if</span> s == <span class="c-str">"user"</span>:    allowed.append(<span class="c-str">f"user:</span>{owner}<span class="c-str">"</span>)
+        <span class="c-kw">elif</span> s == <span class="c-str">"team"</span>:  allowed += team_ns_for(owner)   <span class="c-com"># lookup de membership</span>
+        <span class="c-kw">elif</span> s == <span class="c-str">"world"</span>: allowed.append(<span class="c-str">"world:public"</span>)
+    <span class="c-kw">return</span> col.query(
+        query_texts=[query],
+        n_results=8,
+        where={<span class="c-str">"namespace"</span>: {<span class="c-str">"$in"</span>: allowed}},
+    )</pre>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta: search sem filter = vazamento</h3>
+        <p class="text-neutral-300 text-sm mb-3">O bug clássico: dev esquece o <code>where=</code> em uma chamada e o índice retorna documentos de qualquer namespace. O usuário vê dado de outro tenant — e nem percebe, porque o LLM parafraseia.</p>
+        <pre class="text-sm text-neutral-300"><span class="c-com"># BAD — sem where, busca em TUDO</span>
+col.query(query_texts=[q], n_results=8)
+
+<span class="c-com"># GOOD — wrapper search() acima força scopes obrigatório</span>
+search(q, scopes=(<span class="c-str">"user"</span>,), owner=user_id)</pre>
+        <p class="text-sm text-neutral-400 mt-3"><strong class="text-red-400">Defesa em profundidade:</strong> nunca exporte o cliente bruto do vector store para o código de aplicação. Exporte só <code>search()</code> e <code>remember()</code>.</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip: namespace prefix evita query cruzar</h3>
+        <p class="text-neutral-300 text-sm">Use prefixo no <code>id</code> (<code>user:joao::abc123</code>) além do metadata. Se um dia precisar reindexar manualmente, o próprio ID já carrega a fronteira. Auditoria por <code>grep</code> vira possível.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Promoção privado → team -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📤 Promover privado → team (<code>/share</code>)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Memória nasce <span class="tag-user font-semibold">user</span>. Promover para <span class="tag-team font-semibold">team</span> é decisão explícita: comando <code>/share</code>, confirmação humana, audit log. Nunca automático — nem "ML sugere promover". Vazamento por ML é o pior tipo: você nem sabe onde foi parar.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Comando <code>/share</code> com confirmação</h3>
+      <pre class="code-block mb-6"><span class="c-kw">async def</span> <span class="c-fn">cmd_share</span>(ctx, memory_id: int, target_team: str):
+    <span class="c-com"># 1. valida ownership</span>
+    mem = ctx.user_mem.get(memory_id)
+    <span class="c-kw">if not</span> mem:
+        <span class="c-kw">return</span> reply(<span class="c-str">"❌ memória não existe ou não é sua"</span>)
+
+    <span class="c-com"># 2. valida membership no time</span>
+    <span class="c-kw">if</span> target_team <span class="c-kw">not in</span> ctx.user.teams:
+        <span class="c-kw">return</span> reply(<span class="c-str">f"❌ você não é membro de </span>{target_team}<span class="c-str">"</span>)
+
+    <span class="c-com"># 3. preview + confirmação síncrona</span>
+    confirmed = <span class="c-kw">await</span> ctx.confirm(
+        <span class="c-str">f"Compartilhar com `</span>{target_team}<span class="c-str">`?\n\n"</span>
+        <span class="c-str">f"&gt; </span>{mem.content[:200]}<span class="c-str">\n\n"</span>
+        <span class="c-str">"Membros que verão: "</span> + <span class="c-str">", "</span>.join(team_members(target_team))
+    )
+    <span class="c-kw">if not</span> confirmed:
+        <span class="c-kw">return</span> reply(<span class="c-str">"cancelado"</span>)
+
+    <span class="c-com"># 4. cópia (não move) — original fica como user</span>
+    new_id = ctx.team_mem(target_team).add(
+        kind=mem.kind, content=mem.content,
+        source_user=ctx.user.id, source_mem_id=memory_id,
+    )
+
+    <span class="c-com"># 5. audit log imutável</span>
+    audit.write({
+        <span class="c-str">"action"</span>: <span class="c-str">"memory.promote"</span>,
+        <span class="c-str">"from"</span>: <span class="c-str">f"user:</span>{ctx.user.id}<span class="c-str">"</span>,
+        <span class="c-str">"to"</span>:   <span class="c-str">f"team:</span>{target_team}<span class="c-str">"</span>,
+        <span class="c-str">"memory_id"</span>: memory_id, <span class="c-str">"new_id"</span>: new_id,
+        <span class="c-str">"actor"</span>: ctx.user.id, <span class="c-str">"ts"</span>: now(),
+    })
+    <span class="c-kw">return</span> reply(<span class="c-str">f"✅ compartilhada como #</span>{new_id}<span class="c-str">"</span>)</pre>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-purple-400 mb-3">📥 O que o audit captura</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>actor:</strong> quem promoveu</li>
+            <li><strong>from / to:</strong> namespace origem e destino</li>
+            <li><strong>memory_id + new_id:</strong> rastreável dos dois lados</li>
+            <li><strong>ts:</strong> hora UTC, append-only</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-purple-400 mb-3">🔁 Por que copiar e não mover</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Revogação não destrói histórico do user</li>
+            <li>Comparar versões fica trivial</li>
+            <li>Rollback = só apagar a cópia team</li>
+            <li>LGPD: original ainda pertence ao titular</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6">
+        <h3 class="text-purple-400 font-semibold mb-2 flex items-center"><span class="mr-2">⚖️</span> Princípio: promoção é evento, não estado</h3>
+        <p class="text-neutral-300 text-sm">Não adicione coluna <code>shared_with_team</code> na tabela <code>memories</code>. Cria-se uma <strong>nova linha</strong> no escopo de destino com origem rastreável. Estado é derivado dos dois registros — não há "meio compartilhado".</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Busca consciente do escopo -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔍 Busca consciente do escopo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A regra é cruel e simples: <strong class="text-purple-400">toda chamada a <code>search()</code> declara explicitamente os escopos consultados</strong>. Se a lista vier vazia, levanta exceção. Sem default implícito — porque default implícito é como bug de privacidade nasce.
+      </p>
+
+      <pre class="code-block mb-6"><span class="c-kw">def</span> <span class="c-fn">search</span>(query: str, *, scopes: tuple[str, ...], owner: str):
+    <span class="c-kw">if not</span> scopes:
+        <span class="c-kw">raise</span> ValueError(
+            <span class="c-str">"scopes não pode ser vazio. "</span>
+            <span class="c-str">"Use scopes=('user',) explicitamente."</span>
+        )
+    <span class="c-kw">for</span> s <span class="c-kw">in</span> scopes:
+        <span class="c-kw">if</span> s <span class="c-kw">not in</span> {<span class="c-str">"user"</span>, <span class="c-str">"team"</span>, <span class="c-str">"world"</span>}:
+            <span class="c-kw">raise</span> ValueError(<span class="c-str">f"escopo inválido: </span>{s}<span class="c-str">"</span>)
+    <span class="c-com"># ... resolve namespaces e consulta com where filter ...</span>
+
+<span class="c-com"># Uso típico no agente</span>
+<span class="c-kw">async def</span> <span class="c-fn">answer</span>(question: str, ctx):
+    <span class="c-com"># pergunta pessoal — só user</span>
+    <span class="c-kw">if</span> is_personal(question):
+        hits = search(question, scopes=(<span class="c-str">"user"</span>,), owner=ctx.user.id)
+    <span class="c-com"># pergunta sobre processo do time — user + team</span>
+    <span class="c-kw">elif</span> is_team_topic(question):
+        hits = search(question, scopes=(<span class="c-str">"user"</span>, <span class="c-str">"team"</span>), owner=ctx.user.id)
+    <span class="c-com"># dúvida genérica de produto — todos</span>
+    <span class="c-kw">else</span>:
+        hits = search(question, scopes=(<span class="c-str">"user"</span>, <span class="c-str">"team"</span>, <span class="c-str">"world"</span>), owner=ctx.user.id)
+    <span class="c-kw">return await</span> llm.respond(question, context=hits)</pre>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-user">scopes=('user',)</strong><p class="text-xs text-neutral-400 mt-1">Padrão de pergunta pessoal. Não cruza dado de ninguém.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-team">('user','team')</strong><p class="text-xs text-neutral-400 mt-1">Operação interna. Cruza com conhecimento do time.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="tag-world">('user','team','world')</strong><p class="text-xs text-neutral-400 mt-1">Aberto. Use só quando a pergunta admite resposta pública.</p></div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Dado: por que essa disciplina paga conta</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-blue-400">LGPD Art. 52:</strong> multa de até <strong>2% do faturamento</strong> (limite R$ 50 mi por infração) por vazamento de dados pessoais.</li>
+          <li><strong class="text-blue-400">~73%</strong> dos incidentes de IA em produção em 2025 envolveram <em>cross-tenant data leak</em> — não jailbreak, não prompt injection. Foi <code>WHERE</code> faltando.</li>
+          <li><strong class="text-blue-400">Tempo médio de detecção:</strong> 47 dias. Vaza, ninguém vê, até o cliente printar.</li>
+          <li><strong class="text-blue-400">Custo de remediação:</strong> notificação ANPD + auditoria + reputação. ~50x mais caro que ter feito certo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Garbage collection -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧹 Garbage collection: órfãs, duplicatas, expiradas</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Memória cresce monotonicamente. Sem GC, em 6 meses você tem 80% de lixo — duplicatas, fatos obsoletos, memórias de usuários deletados que ficaram órfãs no vector store. Performance cai, custo sobe, e auditoria fica impossível.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Schema com CASCADE — órfãs morrem sozinhas</h3>
+      <pre class="code-block mb-6"><span class="c-kw">CREATE TABLE</span> users(
+  id          <span class="c-kw">TEXT PRIMARY KEY</span>,
+  email       <span class="c-kw">TEXT UNIQUE NOT NULL</span>,
+  deleted_at  <span class="c-kw">INTEGER</span>
+);
+
+<span class="c-kw">CREATE TABLE</span> memories(
+  id            <span class="c-kw">INTEGER PRIMARY KEY</span>,
+  user_id       <span class="c-kw">TEXT NOT NULL REFERENCES</span> users(id) <span class="c-kw">ON DELETE CASCADE</span>,
+  content       <span class="c-kw">TEXT NOT NULL</span>,
+  content_hash  <span class="c-kw">TEXT NOT NULL</span>,    <span class="c-com">-- sha256(normalize(content))</span>
+  created_at    <span class="c-kw">INTEGER NOT NULL</span>,
+  last_used_at  <span class="c-kw">INTEGER</span>,
+  ttl_days      <span class="c-kw">INTEGER</span>,             <span class="c-com">-- NULL = nunca expira</span>
+  <span class="c-kw">UNIQUE</span>(user_id, content_hash)        <span class="c-com">-- dedup automático na escrita</span>
+);
+<span class="c-kw">CREATE INDEX</span> idx_mem_lastused <span class="c-kw">ON</span> memories(last_used_at);</pre>
+
+      <h3 class="text-xl font-bold mb-4">Cron de GC — 3 passadas, idempotente</h3>
+      <pre class="code-block mb-6"><span class="c-com"># cron: 0 3 * * *   (todo dia 3h da manhã)</span>
+<span class="c-kw">def</span> <span class="c-fn">gc_run</span>(db, vec):
+    now = int(time.time())
+    stats = {<span class="c-str">"expired"</span>: 0, <span class="c-str">"orphan_vec"</span>: 0, <span class="c-str">"dedup"</span>: 0}
+
+    <span class="c-com"># 1) Expiração por TTL</span>
+    cur = db.execute(<span class="c-str">"""
+        DELETE FROM memories
+        WHERE ttl_days IS NOT NULL
+          AND created_at + (ttl_days * 86400) &lt; ?
+        RETURNING id, user_id
+    """</span>, (now,))
+    expired = cur.fetchall()
+    stats[<span class="c-str">"expired"</span>] = len(expired)
+    <span class="c-com"># sincroniza no vector store</span>
+    <span class="c-kw">for</span> mem_id, uid <span class="c-kw">in</span> expired:
+        vec.delete(ids=[<span class="c-str">f"user:</span>{uid}<span class="c-str">::</span>{mem_id}<span class="c-str">"</span>])
+
+    <span class="c-com"># 2) Órfãs no vector store (user deletado, CASCADE já tirou do SQLite)</span>
+    live_users = {r[0] <span class="c-kw">for</span> r <span class="c-kw">in</span> db.execute(
+        <span class="c-str">"SELECT id FROM users WHERE deleted_at IS NULL"</span>)}
+    <span class="c-kw">for</span> ns <span class="c-kw">in</span> vec.list_namespaces():
+        <span class="c-kw">if</span> ns.startswith(<span class="c-str">"user:"</span>) <span class="c-kw">and</span> ns.split(<span class="c-str">":"</span>)[1] <span class="c-kw">not in</span> live_users:
+            n = vec.delete_namespace(ns)
+            stats[<span class="c-str">"orphan_vec"</span>] += n
+
+    <span class="c-com"># 3) Dedup defensivo (UNIQUE já protege, mas histórico antigo pode ter)</span>
+    cur = db.execute(<span class="c-str">"""
+        DELETE FROM memories
+        WHERE id NOT IN (
+          SELECT MIN(id) FROM memories GROUP BY user_id, content_hash
+        )
+    """</span>)
+    stats[<span class="c-str">"dedup"</span>] = cur.rowcount
+
+    db.commit()
+    log.info(<span class="c-str">"gc.done"</span>, extra=stats)
+    <span class="c-kw">return</span> stats</pre>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Passada 1: TTL</strong><p class="text-xs text-neutral-400 mt-1">Memórias com prazo curto (ex: cache de sessão, 7 dias).</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Passada 2: Órfãs</strong><p class="text-xs text-neutral-400 mt-1">Vector store não tem FK — precisa reconciliar com SQLite.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-purple-400">Passada 3: Dedup</strong><p class="text-xs text-neutral-400 mt-1">Defensivo. Mantém o ID menor (mais antigo) por hash.</p></div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Conceitos-chave do GC</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-primary">Idempotência:</strong> rodar 2x não muda resultado. Cron pode falhar e ser reexecutado sem medo.</li>
+          <li><strong class="text-primary">CASCADE no SQLite, manual no vetor:</strong> vector store quase sempre não tem FK — a reconciliação é trabalho do cron.</li>
+          <li><strong class="text-primary">Métricas como SLO:</strong> exporte <code>stats</code> pro Prometheus. Quando <code>orphan_vec &gt; 0</code> consistente, há bug em deleção de user.</li>
+          <li><strong class="text-primary">Dry-run primeiro:</strong> antes de rodar GC novo em prod, troque <code>DELETE</code> por <code>SELECT</code> e revise o que iria embora.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">3 escopos canônicos</strong><span class="text-neutral-400"> — user (privado), team (workspace), world (público). Decida o balde antes de escrever a linha.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">SQLite file-per-tenant</strong><span class="text-neutral-400"> — cada user em <code>~/.app/users/&lt;uuid&gt;/memory.db</code>. Query errada não cruza fronteira física.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Vector store com namespace</strong><span class="text-neutral-400"> — um índice, metadata filter obrigatório, wrapper <code>search()</code> que rejeita scopes vazio.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Promoção como evento auditável</strong><span class="text-neutral-400"> — <code>/share</code> com confirmação humana, cópia (não move), audit log imutável.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Busca declara escopos</strong><span class="text-neutral-400"> — sem default. 73% dos incidentes em 2025 foram <code>WHERE</code> esquecido.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">GC noturno em 3 passadas</strong><span class="text-neutral-400"> — TTL, órfãs no vetor, dedup. CASCADE no SQLite, reconciliação manual no vector store.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">3.4 — Orquestrador: chief-of-staff que coordena agentes especializados por usuário</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 3</a>
+          <a href="modulo-3-4.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 3 · Módulo 3.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

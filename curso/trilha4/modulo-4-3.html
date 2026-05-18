@@ -1,30 +1,542 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 4.3 — Sinapsis engine | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .bg-amber-500\/20{background-color:rgba(217,119,6,.12)}html:not(.dark) .bg-amber-500\/10{background-color:rgba(217,119,6,.08)}html:not(.dark) .border-amber-500\/30{border-color:rgba(217,119,6,.25)}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}</style></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.3 — Sinapsis engine | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+
+    /* Light mode — trilhas inativas */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,.25); }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    pre { font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 0.8125rem; line-height: 1.55; overflow-x: auto; }
+    code { font-family: ui-monospace, 'JetBrains Mono', monospace; }
+    .dark pre { background-color: #0b1220; }
+    html:not(.dark) pre { background-color: #f1f5f9; color: #0f172a; }
+  </style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">T3</a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">T4</a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button></div></div></div></nav>
-<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.3</span></div></nav>
-<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.3</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🧬 Sinapsis engine</h1><p class="text-lg text-neutral-400 max-w-3xl">Append-only, dream cycle, learnings consolidados, dashboard. Como uma memória que evolui sem virar lixão.</p></div></header>
-<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📜 Append-only</h2></div><p class="text-neutral-300 mb-6">Observações entram como nova entry. Editar = nova entry com <code>supersedes_id</code>. Histórico preservado, rollback é só ignorar entries posteriores.</p></section>
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🌙 Dream cycle (cron 3h)</h2></div><p class="text-neutral-300 mb-6">Pega obs das últimas 24h, escreve <code>synapsis/daily-summaries/&lt;DATE&gt;.md</code>, atualiza <code>context/learnings.md</code> consolidando padrões recorrentes.</p></section>
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4 · iAmasters OS</a>
+      <span>/</span>
+      <span class="text-amber-400">Módulo 4.3</span>
+    </div>
+  </nav>
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🎓 learnings.md</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="text-sm text-neutral-300 font-mono"># learnings.md (lido todo SessionStart)
-## Rule: Sempre confirmar antes de mandar email pro cliente
-Why: incidente 2026-04-15 — agente mandou rascunho
-How to apply: comando send_email com requires_approval=true</pre></div></section>
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧬 Sinapsis engine</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Append-only por princípio, dream cycle às 3h, learnings consolidados, dashboard local
+        e comandos globais. O kernel de memória do iAmasters OS — anatomia completa, do disco ao SessionStart.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">75</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Builder</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Engine</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📊 /dashboard-sinapsis</h2></div><p class="text-neutral-300 mb-6">Comando que abre HTML local com skills mais usadas, tempo economizado (estimado por skill × invocações), learnings ativos.</p></section>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⚙️ /evolve, /instinct-status, /passive-status</h2></div><p class="text-neutral-300 mb-6">Comandos globais (~/.claude/commands/) controlam o engine: /evolve promove learning pra regra; /instinct-status mostra padrões ativos; /passive-status mostra coleta em background.</p></section>
+    <!-- TOPICO 1 — Append-only -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📝 Append-only por princípio</h2>
+      </div>
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🆚 SQLite vs Sinapsis</h2></div><div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6"><ul class="space-y-2 text-neutral-300 text-sm"><li><strong class="text-amber-400">SQLite (intelecto):</strong> working memory — busca rápida, dados estruturados.</li><li><strong class="text-amber-400">Sinapsis (iamasters-os):</strong> long-term memory — append + síntese LLM + evolução.</li><li>Compõe: SQLite pra cache de fatos, Sinapsis pra contexto evolutivo.</li></ul></div></section>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sinapsis não <strong class="text-amber-400">edita</strong> nada. Toda observação é uma
+        <em>entry</em> nova, com timestamp, autor, contexto. Editar = escrever uma nova entry com
+        <code class="text-amber-400">supersedes_id</code> apontando pra anterior. Isso te dá histórico
+        completo, audit grátis e zero risco de corromper estado por race condition entre sessões paralelas.
+      </p>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">Append + dream + learnings = memória que aprende. Comandos /evolve, /dream, /system-status dão controle.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-4-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-4-4.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo →</a></div></div></section>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">📌</span> Anatomia de uma entry</h3>
+        <p class="text-neutral-300 mb-3 text-sm">Cada arquivo em <code class="text-amber-400">~/.claude/sinapsis/observations/&lt;DATE&gt;.jsonl</code> é uma linha JSON. Exemplo real de uma decisão registrada hoje:</p>
+<pre class="rounded-lg p-4 text-neutral-200"><code>{
+  "id": "obs_01HXKQ7P3F4ZT8VN6M2RJW9D1A",
+  "ts": "2026-05-18T20:46:11-03:00",
+  "client": "cliente-alpha",
+  "project": "rebranding-q2",
+  "type": "decision",
+  "actor": "operator",
+  "tags": ["pricing", "tier-pro"],
+  "text": "Manter tier Pro em R$ 297 até julho. Churn caiu 2.1pp pós-anúncio.",
+  "supersedes_id": null,
+  "source": "session:claude-code",
+  "session_id": "ses_8f3a"
+}</code></pre>
+        <p class="text-sm text-neutral-400 mt-3">Se amanhã mudarmos pra R$ 327, escrevemos <strong class="text-amber-400">nova entry</strong> com <code>supersedes_id: "obs_01HXKQ7P3F4ZT8VN6M2RJW9D1A"</code>. Histórico intacto.</p>
+      </div>
 
-</main>
-<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 4 · Módulo 4.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
-</body></html>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Fazer</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Nova entry com <code>supersedes_id</code> na velha.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Marcar <code>type</code> claro: <code>decision</code>, <code>fact</code>, <code>preference</code>, <code>artifact</code>.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Sempre incluir <code>client</code> — multi-cliente exige.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Rotacionar por dia (1 .jsonl/dia) pra leitura barata.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>IDs ULID — ordem temporal embutida.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evitar</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sobrescrever entry "pra arrumar typo" — perde rastro.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deletar entry obsoleta — use <code>type: "retracted"</code>.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Misturar clientes no mesmo arquivo sem campo <code>client</code>.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>JSON malformado — quebra dream cycle silenciosamente.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editar arquivo .jsonl à mão. Use SDK.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Formato</strong><p class="text-xs text-neutral-400 mt-1">JSONL — 1 entry por linha.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Rotação</strong><p class="text-xs text-neutral-400 mt-1">1 arquivo por dia.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">ID</strong><p class="text-xs text-neutral-400 mt-1">ULID — ordem temporal.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Audit</strong><p class="text-xs text-neutral-400 mt-1">Grátis — append-only é log.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — Dream cycle -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🌙 Dream cycle (cron 3h da manhã)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Às 3h da manhã (launchd no macOS, crontab no Linux) o <strong class="text-amber-400">dream cycle</strong>
+        consolida as observações das últimas 24h num único <code>daily-summaries/&lt;DATE&gt;.md</code>.
+        É o "sono" do Sinapsis — quando ele transforma ruído em sinal.
+      </p>
+
+      <h3 class="text-xl font-bold mb-4">Timeline do dream (5 passos)</h3>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Pega as observações</h4>
+            <p class="text-neutral-300 text-sm">Lê todos os <code>observations/*.jsonl</code> das últimas 24h. Filtra entries com <code>supersedes_id</code> apontando pra elas (já obsoletas). Resultado: ~50-300 obs típicas por operador ativo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Agrupa por cliente e projeto</h4>
+            <p class="text-neutral-300 text-sm">Buckets: <code>cliente-alpha/rebranding-q2</code>, <code>cliente-beta/landing</code>, <code>_global/preferences</code>. Cada bucket vira uma seção do summary final.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Prompt LLM (Haiku, barato)</h4>
+            <p class="text-neutral-300 text-sm">Pra cada bucket: <em>"Resuma essas entries em 3-7 bullets factuais. Marque decisões com [D], fatos com [F], preferências com [P]. Cite obs_id de origem em cada bullet."</em></p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Parse e validação</h4>
+            <p class="text-neutral-300 text-sm">Cada bullet validado contra schema mínimo (tipo, autor, ref a obs_id origem). Bullet sem ref vai pra <code>_unsourced/</code> e dispara warning no próximo SessionStart.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">Escreve daily-summary</h4>
+            <p class="text-neutral-300 text-sm">Output em <code>~/.claude/sinapsis/daily-summaries/2026-05-18.md</code>. SessionStart do dia seguinte lê o summary de ontem — continuidade real, sem você narrar nada de novo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip — SessionStart lê o daily de ontem</h3>
+        <p class="text-neutral-300">
+          Quando você abre o Claude Code de manhã, o hook <code>SessionStart</code> injeta o
+          <code>daily-summaries/&lt;ontem&gt;.md</code> no contexto. Você nunca começa do zero —
+          o agente lembra das decisões de ontem sem você precisar narrar de novo. <strong class="text-primary">Essa é a continuidade.</strong>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Horário</strong><p class="text-xs text-neutral-400 mt-1">03:00 local. Disco ocioso.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Modelo</strong><p class="text-xs text-neutral-400 mt-1">Haiku — ~R$ 0,02/dia.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Duração</strong><p class="text-xs text-neutral-400 mt-1">30-90s pra ~500 obs.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Output</strong><p class="text-xs text-neutral-400 mt-1">1 .md por dia, por cliente.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Learnings -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎓 Learnings consolidados</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Daily summaries são <em>cronológicos</em>. Learnings são <strong class="text-amber-400">atemporais</strong> —
+        regras que o agente extraiu de padrões repetidos. Moram em <code>context/learnings.md</code>
+        e seguem o formato <strong class="text-amber-400">Rule + Why + How to apply</strong>.
+      </p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">📖</span> Exemplo real — context/learnings.md</h3>
+<pre class="rounded-lg p-4 text-neutral-200"><code># Learnings — cliente-alpha
+_Última consolidação: 2026-05-18 (dream cycle)_
+
+## L-001 — Pricing nunca muda sem A/B de 14 dias
+- **Rule**: Não alterar tier/preço sem teste A/B mínimo de 14 dias.
+- **Why**: 3 mudanças anteriores (out/24, jan/25, mar/25) sem teste
+  causaram churn médio +4.2pp nos 30 dias seguintes.
+- **How to apply**: Antes de aprovar mudança, criar brief
+  `projects/briefs/pricing-test-&lt;data&gt;/` com hipótese e métrica.
+
+## L-002 — Voice: nunca usar "solução" em copy de site
+- **Rule**: Banir "solução" do copy. Trocar por "ferramenta",
+  "atalho" ou nome específico do produto.
+- **Why**: ICP é cético com jargão corporativo. CTR cai 18%
+  em headlines com "solução" (medido em 6 LPs em 2025).
+- **How to apply**: Skill `brand-audit` flagga uso. Reescrever
+  antes de publicar.
+
+## L-003 — Reuniões com diretoria: deck antes, fala depois
+- **Rule**: Mandar deck 24h antes. Em reunião, só responder perguntas.
+- **Why**: 4 reuniões em 2025 onde apresentei ao vivo viraram
+  brainstorm e perderam decisão. Quando mandei antes, decidiu em 30min.
+- **How to apply**: Skill `meeting-prep` exige flag `--async-first`.</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Origem</strong><p class="text-sm text-neutral-400 mt-1">Dream cycle promove daily-summary virando learning quando padrão se repete 3x+.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Escopo</strong><p class="text-sm text-neutral-400 mt-1">Por cliente. <code>_global/learnings.md</code> pra regras universais do operador.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Uso</strong><p class="text-sm text-neutral-400 mt-1">SessionStart injeta learnings do cliente ativo. Custom skill referencia por ID.</p></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Conceito-chave</strong><p class="text-sm text-neutral-400 mt-1">Learning &gt; instruction. Tem <em>razão</em>, não só ordem.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Revisão</strong><p class="text-sm text-neutral-400 mt-1"><code>/evolve</code> 1x/semana revalida com humano antes de gravar.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Dashboard -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📊 Dashboard Sinapsis</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O comando <code class="text-amber-400">/dashboard-sinapsis</code> gera um HTML estático local
+        (<code>~/.claude/sinapsis/dashboard.html</code>) e abre no browser via <code>open</code>/<code>xdg-open</code>.
+        Nada vai pra rede — tudo é leitura dos arquivos locais.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Dados típicos no dashboard</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-blue-400">~25.000 obs/cliente/ano</strong> — volume típico após dream limpar duplicatas e supersedidas em 1 cliente ativo de operador médio.</li>
+          <li><strong class="text-blue-400">Última execução do dream</strong> — verde se &lt; 30h, amarelo 30-48h, vermelho &gt; 48h.</li>
+          <li><strong class="text-blue-400">Custo mensal Haiku</strong> — soma das chamadas do dream cycle (geralmente R$ 0,60-1,80/mês por operador).</li>
+          <li><strong class="text-blue-400">Top 10 tags</strong> — quais temas dominam suas obs (pricing, brand, infra, etc).</li>
+          <li><strong class="text-blue-400">Entries sem cliente</strong> — orfãs. Deve ser sempre 0.</li>
+          <li><strong class="text-blue-400">Learnings ativos</strong> — quantos por cliente, qual mais aplicado.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">🛠️ Como funciona</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>1.</strong> Comando gera HTML com dados embedados.</li>
+            <li><strong>2.</strong> Abre em browser via <code>open</code> (mac) ou <code>xdg-open</code>.</li>
+            <li><strong>3.</strong> Atualiza ao re-executar — não é live.</li>
+            <li><strong>4.</strong> Zero deps, zero rede, zero servidor.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-amber-400 mb-3">📈 Pra que serve</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Detectar dream que parou de rodar.</li>
+            <li>Ver se cliente novo está gerando obs.</li>
+            <li>Sanity check de custo antes de mês fechar.</li>
+            <li>Mostrar pro cliente "olha, sua memória existe".</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Comandos globais -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚙️ Comandos globais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        4 comandos vivem em <code>~/.claude/commands/</code> — disponíveis em qualquer projeto.
+        Cada um é um <code>.md</code> com frontmatter e instruções pro agente.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-2"><code>/evolve</code></h4>
+          <p class="text-sm text-neutral-300 mb-2">Promove obs repetidas pra learning. Roda interativo: pergunta confirmação antes de escrever em <code>learnings.md</code>.</p>
+          <p class="text-xs text-neutral-500">Use: 1x por semana, no /eod de sexta.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-2"><code>/instinct-status</code></h4>
+          <p class="text-sm text-neutral-300 mb-2">Mostra quais learnings o agente está aplicando ativamente nesta sessão. Útil pra debugar "por que o agente decidiu X".</p>
+          <p class="text-xs text-neutral-500">Use: quando agente sugerir algo estranho.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-2"><code>/passive-status</code></h4>
+          <p class="text-sm text-neutral-300 mb-2">Reporta o que Sinapsis está observando passivamente (hooks ligados, último write, próximo dream).</p>
+          <p class="text-xs text-neutral-500">Use: depois de mudar configuração.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-amber-400 mb-2"><code>/system-status</code></h4>
+          <p class="text-sm text-neutral-300 mb-2">Health-check completo: cron ativo, disco disponível, daily de ontem existe, learnings coerentes.</p>
+          <p class="text-xs text-neutral-500">Use: SessionStart automático em alguns setups.</p>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Alerta — Dream desligado enche o disco</h3>
+        <p class="text-neutral-300 mb-3">
+          Se o cron do dream cycle parar (launchd corrompido, crontab apagado, máquina hibernada por dias),
+          observations/ acumula sem consolidar. <strong class="text-red-400">Em semanas vira GB</strong> de .jsonl
+          que ninguém lê — e o SessionStart fica lento porque tenta carregar tudo.
+        </p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> <code>/system-status</code> no SessionStart com alerta vermelho se último dream &gt; 48h. Reinstale o cron com <code>bun run install-dream</code>.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Localização</strong><p class="text-xs text-neutral-400 mt-1">~/.claude/commands/</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Escopo</strong><p class="text-xs text-neutral-400 mt-1">Global — todo projeto.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Formato</strong><p class="text-xs text-neutral-400 mt-1">.md com frontmatter.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Versionamento</strong><p class="text-xs text-neutral-400 mt-1">vendor/ no repo iAmasters OS.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Comparação SQLite -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔀 Sinapsis vs SQLite do intelecto</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Pergunta frequente: "por que não usar SQLite com FTS?" Resposta:
+        <strong class="text-amber-400">são camadas diferentes</strong> e se compõem. SQLite é
+        <em>working memory</em> (alta frequência, schema rígido, dura a sessão). Sinapsis é
+        <em>long-term memory</em> (baixa frequência, semântica livre, dura para sempre).
+      </p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🧩</span> Comparativo direto</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-amber-400 font-semibold">Eixo</th>
+              <th class="text-left py-3 pr-4 text-amber-400 font-semibold">SQLite (intelecto)</th>
+              <th class="text-left py-3 text-amber-400 font-semibold">Sinapsis (memória)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4 font-semibold">Latência</td><td class="py-3 pr-4">&lt; 1ms (índice em RAM)</td><td class="py-3">10-100ms (read .md)</td></tr>
+            <tr><td class="py-3 pr-4 font-semibold">Evolução</td><td class="py-3 pr-4">Schema rígido. Migration dói.</td><td class="py-3">Append-only. Tipo novo = só usar.</td></tr>
+            <tr><td class="py-3 pr-4 font-semibold">Custo</td><td class="py-3 pr-4">Quase zero. Disco apenas.</td><td class="py-3">~R$ 0,02/dia (Haiku dream).</td></tr>
+            <tr><td class="py-3 pr-4 font-semibold">Complexidade</td><td class="py-3 pr-4">SQL + ORM + migrations.</td><td class="py-3">jsonl + .md. Lê com cat.</td></tr>
+            <tr><td class="py-3 pr-4 font-semibold">Audit</td><td class="py-3 pr-4">Trigger + tabela history.</td><td class="py-3">Grátis — append é log.</td></tr>
+            <tr><td class="py-3 pr-4 font-semibold">Uso típico</td><td class="py-3 pr-4">Cache de sessão, FTS rápido.</td><td class="py-3">Continuidade entre sessões.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        <strong class="text-amber-400">Compõem.</strong> No iAmasters OS o intelecto usa SQLite
+        pra working memory dentro da sessão (cache de FTS, contagem de tokens, índice de skills).
+        No final, hook <code>Stop</code> escreve as obs importantes em Sinapsis. Dia seguinte,
+        SessionStart injeta o daily-summary — SQLite começa frio, mas com contexto fresco do Sinapsis.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Working memory</strong><p class="text-xs text-neutral-400 mt-1">SQLite. Dura a sessão.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Long-term memory</strong><p class="text-xs text-neutral-400 mt-1">Sinapsis. Dura para sempre.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-amber-400">Bridge</strong><p class="text-xs text-neutral-400 mt-1">Hook Stop escreve em Sinapsis.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Append-only por princípio</strong><span class="text-neutral-400"> — toda entry é nova, editar = supersedes_id.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Dream cycle às 3h</strong><span class="text-neutral-400"> — pega obs, agrupa, prompt Haiku, parse, escreve daily.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Learnings em context/learnings.md</strong><span class="text-neutral-400"> — formato Rule + Why + How to apply.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Dashboard local</strong><span class="text-neutral-400"> — HTML estático, sem rede, métricas de saúde.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">4 comandos globais</strong><span class="text-neutral-400"> — /evolve, /instinct-status, /passive-status, /system-status.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Compõe com SQLite</strong><span class="text-neutral-400"> — working memory vs long-term memory.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">4.4 — Install gate: estado JSON, fases bloqueantes, idempotência total</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 4</a>
+          <a href="modulo-4-4.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 4 · Módulo 4.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

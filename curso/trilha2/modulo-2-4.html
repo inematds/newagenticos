@@ -1,69 +1,611 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Módulo 2.4 — Memória | New Agentic OS</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}.dark .border-dark-600{border-color:#374151}.code-box{font-family:'Menlo',monospace;font-size:0.85rem}</style></head>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2.4 — Memória: SQLite FTS5 vs vector vs Markdown | New Agentic OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+html:not(.dark) body{background-color:#f8fafc}
+html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}
+html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}
+html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}
+html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,.12)}html:not(.dark) .bg-blue-500\/10{background-color:rgba(37,99,235,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}html:not(.dark) .bg-blue-900\/20{background-color:rgba(59,130,246,.08)}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}
+html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}
+html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}
+html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}
+html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}
+html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}
+html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}
+html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}
+html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}
+.dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}
+.code-box{font-family:'Menlo',monospace;font-size:0.85rem}
+</style>
+</head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+<a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+<a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+<a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+<button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+</div>
+</div></div></nav>
+
 <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 2 · Builder</a><span>/</span><span class="text-blue-400">Módulo 2.4</span></div></nav>
-<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.4</span><h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Memória: SQLite FTS5 vs vector vs Markdown</h1><p class="text-lg text-neutral-400 max-w-3xl">Quando usar cada um. O intelecto escolheu FTS5 — vamos ver por quê.</p></div></header>
+
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.4</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Memória: SQLite FTS5 vs vector vs Markdown</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">A pergunta que define se seu agente é ferramenta de chat ou colega de trabalho. Três tecnologias, três volumes, três casos de uso — e uma tabela de decisão que evita você queimar US$ 400/mês em Pinecone sem precisar.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">85</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Técnico</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prática</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div></header>
+
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-<section id="topico-1" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🤔 Por que persistir</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Sem memória, cada conversa começa do zero. Agente vira chatbot fancy. ROI cai pela metade.</p></section>
+<!-- TOPICO 1 — Por que persistir -->
+<section id="topico-1" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🎯 Por que persistir (chat vs agente)</h2></div>
 
-<section id="topico-2" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📊 SQLite FTS5 — implementação</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>import aiosqlite, uuid, time
-from .base import MemoryStore, MemoryEntry
+<p class="text-neutral-300 mb-6 leading-relaxed">Um chat <strong class="text-blue-400">esquece de propósito</strong> — começa do zero a cada sessão e isso é feature, não bug. Um agente que esquece é um estagiário com amnésia: simpático no primeiro dia, frustrante no segundo, demitido no terceiro. Memória persistente é o que transforma "demo bonita" em "colega que aprende com você".</p>
 
-class SQLiteFTS5Store(MemoryStore):
-    def __init__(self, path):
-        self.path = path
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📌</span> A regra prática</h3>
+<p class="text-neutral-300">Se o usuário precisa repetir <strong class="text-blue-400">a mesma informação 2 vezes</strong> em conversas diferentes, sua memória está errada (ou inexistente). Esse é o teste de cheiro mais barato que existe.</p>
+</div>
 
-    async def setup(self):
+<h3 class="text-xl font-bold mb-4">A linha do tempo de uma conversa real</h3>
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold mb-1">Dia 1 — Onboarding</h4>
+<p class="text-sm text-neutral-400 mb-2">"Trabalho com SaaS B2B, time de 12, meu nome é Marco, prefiro respostas curtas."</p>
+<p class="text-neutral-300 text-sm">Agente <strong class="text-blue-400">salva 4 facts</strong> categorizadas. Sem isso, é só log de chat.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D7</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold mb-1">Dia 7 — Decisão registrada</h4>
+<p class="text-sm text-neutral-400 mb-2">"Decidimos AWS sobre GCP por causa do Bedrock."</p>
+<p class="text-neutral-300 text-sm">Category <code>decision</code> + metadata <code>{date, rationale}</code>. Auditável em 6 meses.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D30</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold mb-1">Dia 30 — Recall sob pressão</h4>
+<p class="text-sm text-neutral-400 mb-2">"Lembra por que escolhemos AWS?"</p>
+<p class="text-neutral-300 text-sm"><code>memory.search("AWS GCP escolha")</code> → 1 hit. <strong class="text-blue-400">Sem isso</strong>, agente inventa razão plausível e errada.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D90</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold mb-1">Dia 90 — Forget por LGPD</h4>
+<p class="text-sm text-neutral-400 mb-2">"Apaga tudo que sabe sobre o cliente X."</p>
+<p class="text-neutral-300 text-sm"><code>memory.forget()</code> + audit row. Sem operação explícita, você não tem compliance — tem promessa.</p>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Memória bem feita</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usuário sente <em>continuidade</em> entre sessões.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Toda entry tem <code>user_id</code>, <code>category</code>, <code>created_at</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Recall é busca, não scan de tudo no contexto.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Forget existe, é testado, gera audit.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Memória de demo</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"História toda no system prompt" — input tokens explodem.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dict global em RAM — perde no restart.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem categoria → não consegue filtrar nem deletar seletivamente.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pinecone no dia 1 com 200 entries — overkill caro.</span></li>
+</ul>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Custo do esquecimento</strong><p class="text-xs text-neutral-400 mt-1">Repetir info = quebra de confiança.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Custo do excesso</strong><p class="text-xs text-neutral-400 mt-1">Tudo no prompt = US$ por turn ↑↑.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sweet spot</strong><p class="text-xs text-neutral-400 mt-1">recent(10) + search(top-5) por turn.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">LGPD</strong><p class="text-xs text-neutral-400 mt-1">Right to forget é lei, não favor.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 2 — SQLite FTS5 -->
+<section id="topico-2" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🗄️ SQLite FTS5 — implementação completa com aiosqlite</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">FTS5 é a extensão de full-text search do SQLite. <strong class="text-blue-400">Zero setup, zero servidor, zero custo de hospedagem</strong>. Suporta MATCH com operadores booleanos, snippet highlighting, ranking BM25. Para até ~1M entries por user, é a resposta certa em 90% dos casos.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import aiosqlite, uuid, time, json
+from dataclasses import dataclass, field
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS memories(
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  category TEXT NOT NULL,
+  content TEXT NOT NULL,
+  metadata TEXT NOT NULL DEFAULT '{}',
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_user_cat ON memories(user_id, category, created_at);
+
+CREATE VIRTUAL TABLE IF NOT EXISTS memories_fts USING fts5(
+  content,
+  content='memories', content_rowid='rowid',
+  tokenize='unicode61 remove_diacritics 2'
+);
+
+CREATE TRIGGER IF NOT EXISTS memories_ai AFTER INSERT ON memories BEGIN
+  INSERT INTO memories_fts(rowid, content) VALUES (new.rowid, new.content);
+END;
+CREATE TRIGGER IF NOT EXISTS memories_ad AFTER DELETE ON memories BEGIN
+  INSERT INTO memories_fts(memories_fts, rowid, content) VALUES('delete', old.rowid, old.content);
+END;
+"""
+
+class SQLiteMemory:
+    def __init__(self, path: str): self.path = path
+    async def init(self):
         async with aiosqlite.connect(self.path) as db:
-            await db.execute("""
-                CREATE VIRTUAL TABLE IF NOT EXISTS memories USING fts5(
-                    id, content, category, user_id, created_at UNINDEXED
-                )""")
+            await db.executescript(SCHEMA); await db.commit()
 
-    async def save(self, content, category, user_id):
+    async def save(self, content, category, user_id, metadata=None) -&gt; str:
         eid = str(uuid.uuid4())
         async with aiosqlite.connect(self.path) as db:
-            await db.execute("INSERT INTO memories VALUES (?,?,?,?,?)",
-                (eid, content, category, user_id, time.time()))
+            await db.execute(
+                "INSERT INTO memories(id,user_id,category,content,metadata,created_at) VALUES(?,?,?,?,?,?)",
+                (eid, user_id, category, content, json.dumps(metadata or {}), time.time())
+            )
             await db.commit()
         return eid
 
     async def search(self, query, user_id, limit=10):
+        # FTS5 MATCH + snippet + bm25 ranking, escopado por user_id
         async with aiosqlite.connect(self.path) as db:
-            cursor = await db.execute(
-                "SELECT id, content, category, user_id, created_at FROM memories "
-                "WHERE memories MATCH ? AND user_id = ? ORDER BY rank LIMIT ?",
-                (query, user_id, limit))
-            rows = await cursor.fetchall()
-            return [MemoryEntry(*r) for r in rows]</code></pre></div></section>
+            cur = await db.execute("""
+                SELECT m.id, m.content, m.category, m.created_at, m.metadata,
+                       snippet(memories_fts, 0, '&lt;b&gt;', '&lt;/b&gt;', '...', 16) as snip
+                FROM memories_fts
+                JOIN memories m ON m.rowid = memories_fts.rowid
+                WHERE memories_fts MATCH ? AND m.user_id = ?
+                ORDER BY bm25(memories_fts) LIMIT ?
+            """, (query, user_id, limit))
+            return [dict(zip([c[0] for c in cur.description], r)) async for r in cur]
 
-<section id="topico-3" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🔮 Vector store (quando FTS falha)</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">FTS5 não acha "automóvel" buscando "carro". Vector store sim. Mas só vale a partir de ~10k entries OU quando vocabulário do user diverge muito.</p><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code># Chroma local (gratuito)
-import chromadb
+    async def forget(self, entry_id, user_id) -&gt; bool:
+        async with aiosqlite.connect(self.path) as db:
+            cur = await db.execute(
+                "DELETE FROM memories WHERE id=? AND user_id=?", (entry_id, user_id))
+            await db.commit()
+            return cur.rowcount &gt; 0</code></pre>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> O que ganhou de graça</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">BM25 ranking:</strong> resultados ordenados por relevância real, não por data.</li>
+<li><strong class="text-blue-400">Snippet com highlight:</strong> <code>&lt;b&gt;...&lt;/b&gt;</code> direto na resposta, ótimo pra debug.</li>
+<li><strong class="text-blue-400">Operadores:</strong> <code>"aws AND bedrock"</code>, <code>"prefere*"</code> (prefix), <code>NEAR(x y, 5)</code>.</li>
+<li><strong class="text-blue-400">unicode61 + remove_diacritics:</strong> "São" casa com "Sao". Importante em pt-BR.</li>
+<li><strong class="text-blue-400">Triggers automáticos:</strong> insert/delete propaga pro índice FTS sem código extra.</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Tip de produção</h3>
+<p class="text-neutral-300 text-sm">Ative <code>PRAGMA journal_mode=WAL</code> e <code>PRAGMA synchronous=NORMAL</code> na inicialização. Throughput sobe ~5x e você ganha leituras concorrentes sem bloquear writers. Para multi-process, considere <code>busy_timeout=5000</code>.</p>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> 3 pegadinhas</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li>1. <strong>FTS5 não entende sinônimos.</strong> "carro" não casa com "automóvel". Se isso importa, vector é melhor.</li>
+<li>2. <strong>Não esquecer <code>user_id</code> no WHERE.</strong> Sem ele, busca vaza memória entre users. Bug catastrófico.</li>
+<li>3. <strong>MATCH é sensível a sintaxe.</strong> Input do user precisa de sanitização — aspas duplas viram operador.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Setup</strong><p class="text-xs text-neutral-400 mt-1">1 arquivo .db. Zero infra.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Latência</strong><p class="text-xs text-neutral-400 mt-1">&lt;5ms em 100k entries.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Custo</strong><p class="text-xs text-neutral-400 mt-1">R$ 0. Roda em qualquer VPS.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Backup</strong><p class="text-xs text-neutral-400 mt-1"><code>cp memory.db</code>. Pronto.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 3 — Vector stores -->
+<section id="topico-3" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🧮 Vector stores (Pinecone, Chroma) — quando faz sentido</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Vector busca por <strong class="text-blue-400">similaridade semântica</strong>, não por palavras. "Como cancelo a assinatura?" casa com "quero dar baixa no plano". FTS5 não faz isso. Mas embedding custa, vector DB custa, e você só precisa quando o conteúdo é <em>parafraseável</em> em larga escala — knowledge base de suporte, RAG sobre documentos, busca em transcrições.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import chromadb
+from chromadb.utils import embedding_functions
+
+# Chroma local — embarcado, sem servidor. Bom pra dev e produção pequena.
 client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_or_create_collection("memories")
-collection.add(documents=[content], metadatas=[{"user_id": uid}], ids=[eid])
-results = collection.query(query_texts=[query], where={"user_id": uid}, n_results=10)</code></pre></div></section>
+embed = embedding_functions.SentenceTransformerEmbeddingFunction(
+    model_name="paraphrase-multilingual-MiniLM-L12-v2"  # bom pra pt-BR
+)
 
-<section id="topico-4" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📄 Markdown blocks (o que Claude Code usa)</h2></div><p class="text-neutral-300 mb-6 leading-relaxed">Arquivos .md com frontmatter (name, type, description). Index MEMORY.md tem ponteiros. Humano lê, git versiona.</p></section>
+collection = client.get_or_create_collection(
+    name="memories", embedding_function=embed,
+    metadata={"hnsw:space": "cosine"}
+)
 
-<section id="topico-5" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⚖️ Tabela de decisão</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6 overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-dark-600"><th class="text-left py-3 text-blue-400">Volume</th><th class="text-left py-3 text-blue-400">Tipo de busca</th><th class="text-left py-3 text-blue-400">Use</th></tr></thead><tbody class="text-neutral-300"><tr class="border-b border-dark-600/50"><td class="py-2">&lt;1k</td><td class="py-2">Qualquer</td><td class="py-2">Markdown</td></tr><tr class="border-b border-dark-600/50"><td class="py-2">1k-100k</td><td class="py-2">Palavra exata</td><td class="py-2">SQLite FTS5</td></tr><tr class="border-b border-dark-600/50"><td class="py-2">1k-100k</td><td class="py-2">Semântica</td><td class="py-2">Vector (Chroma)</td></tr><tr><td class="py-2">&gt;100k</td><td class="py-2">Híbrido</td><td class="py-2">FTS5 + Vector</td></tr></tbody></table></div></section>
+# Save: id, document, metadata
+collection.add(
+    ids=["mem-001"],
+    documents=["Marco prefere AWS por causa do Bedrock e equipe já treinada"],
+    metadatas=[{"user_id": "u_42", "category": "decision", "ts": 1715900000}]
+)
 
-<section id="topico-6" class="mb-16"><div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🗑️ Forget e LGPD</h2></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-6"><pre class="code-box text-neutral-300 overflow-x-auto"><code>async def forget(self, entry_id):
-    async with aiosqlite.connect(self.path) as db:
-        # Audit antes (sem o conteúdo)
-        await db.execute("INSERT INTO audit (op, entry_id, ts) VALUES (?,?,?)",
-            ("forget", entry_id, time.time()))
-        await db.execute("DELETE FROM memories WHERE id = ?", (entry_id,))
-        await db.commit()
-    # Se usa vector, cascade:
-    # collection.delete(ids=[entry_id])</code></pre></div></section>
+# Search: top-k semantic + filter
+hits = collection.query(
+    query_texts=["por que escolhemos cloud provider"],
+    n_results=5,
+    where={"user_id": "u_42"}   # SEMPRE filtrar por user
+)
+for doc, dist, meta in zip(hits["documents"][0], hits["distances"][0], hits["metadatas"][0]):
+    print(f"[{dist:.3f}] {meta['category']}: {doc}")</code></pre>
+</div>
 
-<section class="mb-12"><div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8"><h2 class="text-2xl font-bold mb-6">📝 Resumo</h2><p class="text-neutral-300 mb-6">SQLite FTS5 é o "default certo" pra 90% dos casos. Vector só quando FTS falhar. Forget é obrigatório.</p><div class="flex flex-col sm:flex-row gap-4"><a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Anterior</a><a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo →</a></div></div></section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Quando usar vector</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>RAG sobre &gt;10k documentos heterogêneos.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Suporte/FAQ onde mesma intenção tem 20 formulações.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Conteúdo multilíngue (pt + en + es no mesmo índice).</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Recall &gt; precisão (você quer "achar algo parecido").</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Quando NÃO usar</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>&lt;5k entries no total. Custo &gt; benefício.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Busca por nome próprio, código, ID. FTS5 ganha disparado.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Quero saber TUDO sobre user X" — isso é SQL, não vector.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Latência crítica (&lt;50ms) com modelo de embedding remoto.</span></li>
+</ul>
+</div>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Pinecone vs Chroma vs pgvector</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">Chroma (embarcado):</strong> dev, projetos &lt;1M vetores, zero ops. <em>Default.</em></li>
+<li><strong class="text-blue-400">Pinecone (SaaS):</strong> &gt;10M vetores, SLA, multi-region. ~US$ 70/mês mínimo + por uso.</li>
+<li><strong class="text-blue-400">pgvector (Postgres):</strong> já tem Postgres? Adicione extension, evite uma stack nova.</li>
+<li><strong class="text-blue-400">Qdrant, Weaviate, Milvus:</strong> nichos. Considere só depois de saber o que precisa.</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Híbrido é a melhor resposta na prática</h3>
+<p class="text-neutral-300 text-sm">Use FTS5 para <em>facts curtas</em> (preferências, decisões, identidades) — busca por keyword é o que você quer. Use vector para <em>chunks longos de documento</em>. O mesmo agente pode chamar os dois e fundir resultados. Não é "ou" — é "e".</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Embedding cost</strong><p class="text-xs text-neutral-400 mt-1">~US$ 0,02 / 1M tokens (OpenAI ada).</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Storage cost</strong><p class="text-xs text-neutral-400 mt-1">Pinecone ~US$ 70/mês mínimo.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Local embed</strong><p class="text-xs text-neutral-400 mt-1">sentence-transformers grátis, 200ms/query.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 4 — Markdown blocks -->
+<section id="topico-4" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📝 Markdown blocks (padrão Claude Code, frontmatter, MEMORY.md)</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">Nem toda memória é entry de banco. Algumas coisas <strong class="text-blue-400">precisam ser editáveis por humanos</strong>: identidade do agente, regras de negócio, lista de stakeholders, glossário. O padrão estabelecido pelo Claude Code é arquivo Markdown versionado com frontmatter YAML — o que Anthropic chama de <em>memory blocks</em>.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>---
+agent: marco-os
+version: 2.4
+updated: 2026-05-18
+owner: marco@empresa.com
+tags: [identidade, regras, escopo]
+priority: always-load
+---
+
+# MEMORY.md — Marco OS
+
+## Identidade
+Você é o agente pessoal do Marco. Responde em pt-BR formal, frases curtas.
+Nunca usa emoji exceto em listas de check (✓/✗).
+
+## Stakeholders
+- **Marco** (CEO) — decisão final, prefere ver número antes de prosa
+- **Ana** (CTO) — discutir antes de mudar arquitetura
+- **Time eng** (12 pessoas) — pode ler tudo exceto folha de pagamento
+
+## Regras inegociáveis
+1. Nunca envia email sem aprovação explícita
+2. Audit log obrigatório em qualquer ação financeira
+3. PII só fica em SQLite local, nunca em prompt de LLM externo
+
+## Decisões arquiteturais ativas (2026)
+- Cloud: AWS (Bedrock, RDS, S3)
+- LLM default: Claude Sonnet 4.6, fallback GPT-4o
+- Memory: SQLite FTS5 + Chroma local pra docs</code></pre>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Por que MD em vez de DB pra isso</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">Git diff legível:</strong> mudança de regra aparece no PR como mudança de regra, não como UPDATE SQL.</li>
+<li><strong class="text-blue-400">Frontmatter = metadata:</strong> <code>priority: always-load</code> diz pro orquestrador injetar no system prompt.</li>
+<li><strong class="text-blue-400">Editável por não-dev:</strong> CEO consegue abrir o arquivo no editor e mudar uma regra.</li>
+<li><strong class="text-blue-400">Reuso entre agentes:</strong> mesmo MEMORY.md serve N agentes da mesma empresa.</li>
+<li><strong class="text-blue-400">Sem migração:</strong> mudou estrutura? Salva o arquivo. Acabou.</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ MD blocks para</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Identidade e tom do agente</li>
+<li>• Regras de negócio estáveis</li>
+<li>• Glossário, stakeholders, contexto duradouro</li>
+<li>• Templates de resposta padronizados</li>
+<li>• Documentos que humanos releem mensalmente</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ MD blocks NÃO para</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Histórico de conversas (vai pra DB)</li>
+<li>• Facts efêmeras ("hoje o user disse que está cansado")</li>
+<li>• Dados que mudam toda hora (vira ruído no git)</li>
+<li>• PII de cliente (vaza em backup de repo)</li>
+<li>• Mais de ~5k tokens (system prompt incha)</li>
+</ul>
+</div>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Hierarquia que funciona</h3>
+<p class="text-neutral-300 text-sm">Anthropic recomenda 3 níveis: <code>~/.claude/CLAUDE.md</code> (global do usuário), <code>repo/CLAUDE.md</code> (projeto), <code>repo/sub/CLAUDE.md</code> (módulo). Cada nível adiciona contexto. Adote a mesma hierarquia para seus agentes: <code>org/MEMORY.md</code> → <code>team/MEMORY.md</code> → <code>user/MEMORY.md</code>.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Versionado</strong><p class="text-xs text-neutral-400 mt-1">Git. PR. Code review.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sem migração</strong><p class="text-xs text-neutral-400 mt-1">Estrutura muda livre.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Frontmatter</strong><p class="text-xs text-neutral-400 mt-1">YAML → metadata estruturada.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sempre carregado</strong><p class="text-xs text-neutral-400 mt-1">Vai no system prompt — não consulta.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 5 — Tabela de decisão -->
+<section id="topico-5" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">📊 Tabela de decisão (volume × precisão × custo)</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">A pergunta que aparece em toda reunião técnica: <em>"então o que a gente usa?"</em>. A resposta honesta é "depende de 3 variáveis", e essa tabela resolve a maioria dos casos sem precisar de discussão de 1h.</p>
+
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6 overflow-x-auto">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🧩</span> Volume × Tipo × Recomendação</h3>
+<table class="w-full text-sm">
+<thead>
+<tr class="border-b border-dark-600">
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">Volume</th>
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">Tipo de conteúdo</th>
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">Tipo de busca</th>
+<th class="text-left py-3 text-blue-400 font-semibold">Recomendação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-dark-600 text-neutral-300">
+<tr><td class="py-3 pr-4">&lt; 100 entries</td><td class="py-3 pr-4">Regras, identidade</td><td class="py-3 pr-4">N/A — sempre carregado</td><td class="py-3"><strong class="text-blue-400">MD blocks</strong> no system prompt</td></tr>
+<tr><td class="py-3 pr-4">100 — 10k</td><td class="py-3 pr-4">Facts, decisões, interações</td><td class="py-3 pr-4">Keyword + recent</td><td class="py-3"><strong class="text-blue-400">SQLite FTS5</strong></td></tr>
+<tr><td class="py-3 pr-4">10k — 100k</td><td class="py-3 pr-4">Docs internos, transcrições</td><td class="py-3 pr-4">Semântica + filtros</td><td class="py-3"><strong class="text-blue-400">Chroma local</strong> + FTS5 híbrido</td></tr>
+<tr><td class="py-3 pr-4">100k — 1M</td><td class="py-3 pr-4">Knowledge base multi-tenant</td><td class="py-3 pr-4">Semântica + alta concorrência</td><td class="py-3"><strong class="text-blue-400">pgvector</strong> (já tem Postgres)</td></tr>
+<tr><td class="py-3 pr-4">&gt; 1M</td><td class="py-3 pr-4">Catálogo público, RAG escala</td><td class="py-3 pr-4">Semântica + SLA</td><td class="py-3"><strong class="text-blue-400">Pinecone</strong> ou <strong class="text-blue-400">Qdrant Cloud</strong></td></tr>
+<tr><td class="py-3 pr-4">Qualquer</td><td class="py-3 pr-4">PII sensível, LGPD strict</td><td class="py-3 pr-4">Qualquer</td><td class="py-3"><strong class="text-blue-400">SQLite local</strong> + embedding local</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Padrão de evolução</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>1. Comece com <strong>MEMORY.md</strong> + <strong>SQLite FTS5</strong>.</li>
+<li>2. Quando RAG aparece como necessidade real, adicione <strong>Chroma local</strong>.</li>
+<li>3. Quando ops pesa, migre Chroma → <strong>pgvector</strong> ou Pinecone.</li>
+<li>4. Nunca pule etapa por "futurismo" — paga em complexidade hoje.</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Anti-padrões clássicos</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Pinecone com 500 entries — US$ 70/mês de overhead inútil.</li>
+<li>• Tudo no MD — system prompt vira novela russa, custo/turn explode.</li>
+<li>• Vector pra buscar email específico — FTS encontra em &lt;1ms, vector erra.</li>
+<li>• Reescrever de SQLite pra Postgres na semana 2 — premature scaling.</li>
+</ul>
+</div>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> A pergunta que destrava decisão</h3>
+<p class="text-neutral-300 text-sm">"O usuário vai buscar usando <em>as mesmas palavras</em> que estão guardadas, ou usando <em>uma paráfrase</em>?" Se a primeira: FTS5 ganha (mais barato, mais rápido, mais previsível). Se a segunda: vector ganha. Se ambas acontecem: híbrido.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Default 90% dos casos</strong><p class="text-xs text-neutral-400 mt-1">MD + SQLite FTS5.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">RAG real</strong><p class="text-xs text-neutral-400 mt-1">Chroma local primeiro.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Multi-tenant SaaS</strong><p class="text-xs text-neutral-400 mt-1">pgvector.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Hiperescala</strong><p class="text-xs text-neutral-400 mt-1">Pinecone/Qdrant.</p></div>
+</div>
+</section>
+
+<!-- TOPICO 6 — Forget e LGPD -->
+<section id="topico-6" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🗑️ Forget e LGPD (operação delete + audit)</h2></div>
+
+<p class="text-neutral-300 mb-6 leading-relaxed">LGPD artigo 18 dá ao titular o <strong class="text-blue-400">direito ao apagamento</strong> dos dados. Para agente com memória, isso é uma operação <em>técnica concreta</em> — não promessa. E ela precisa rodar em <strong>todos os stores</strong>: SQLite, vector DB, MD, logs estruturados, backups. Esquecer um lugar = não cumprir a lei.</p>
+
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<pre class="code-box text-neutral-300 overflow-x-auto"><code>import time, uuid, json
+
+class ForgetService:
+    """Apaga em todos os stores + grava audit imutável.
+    Audit fica em tabela separada que NÃO é deletada — só ela
+    prova depois que o apagamento aconteceu."""
+
+    def __init__(self, sqlite_mem, vector_mem, audit_db):
+        self.sqlite = sqlite_mem
+        self.vector = vector_mem
+        self.audit = audit_db
+
+    async def forget_user(self, user_id: str, requested_by: str, reason: str) -&gt; dict:
+        req_id = str(uuid.uuid4())
+        started = time.time()
+
+        # 1. SQLite — DELETE escopado por user_id
+        sql_deleted = await self.sqlite.forget_all_for_user(user_id)
+
+        # 2. Vector store — Chroma where filter
+        vec_deleted = await self.vector.delete(where={"user_id": user_id})
+
+        # 3. MD blocks — busca arquivos com owner=user e remove
+        md_files = await self._purge_md_blocks(user_id)
+
+        # 4. Logs — anonimiza request_ids associados
+        logs_anon = await self._anonymize_logs(user_id)
+
+        # 5. Audit imutável — append-only, NÃO deletar nem editar
+        await self.audit.append({
+            "request_id": req_id,
+            "operation": "forget_user",
+            "subject_user_id": user_id,
+            "requested_by": requested_by,
+            "reason": reason,
+            "started_at": started,
+            "finished_at": time.time(),
+            "results": {
+                "sqlite_rows_deleted": sql_deleted,
+                "vector_rows_deleted": vec_deleted,
+                "md_files_purged": md_files,
+                "log_entries_anonymized": logs_anon,
+            }
+        })
+        return {"request_id": req_id, "status": "completed"}</code></pre>
+</div>
+
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> 5 lugares que todo mundo esquece</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li>1. <strong>Backups antigos</strong> — política de retenção precisa estar escrita. "Apagado em prod, vivo no S3" não cola.</li>
+<li>2. <strong>Cache de embeddings</strong> — Redis, disco local, CDN. Tudo precisa de purge.</li>
+<li>3. <strong>Logs estruturados</strong> — Datadog, CloudWatch. Anonimize ou apague.</li>
+<li>4. <strong>Conversas exportadas pra fine-tuning</strong> — dataset precisa ser regenerado.</li>
+<li>5. <strong>Memória de LLM externo</strong> (OpenAI Memory, Anthropic Files API) — chame a API de delete.</li>
+</ul>
+</div>
+
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> O que o audit precisa registrar</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">request_id:</strong> UUID rastreável end-to-end.</li>
+<li><strong class="text-blue-400">requested_by:</strong> quem pediu (o titular ou DPO em nome dele).</li>
+<li><strong class="text-blue-400">reason:</strong> "LGPD art.18 inciso VI" ou "encerramento de contrato".</li>
+<li><strong class="text-blue-400">timestamps:</strong> início e fim — prova de SLA.</li>
+<li><strong class="text-blue-400">contagens por store:</strong> evidência de execução em cada lugar.</li>
+<li><strong class="text-blue-400">imutabilidade:</strong> audit log nunca deleta. Append-only com hash da linha anterior se for paranoico.</li>
+</ul>
+</div>
+
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Forget granular vs total</h3>
+<p class="text-neutral-300 text-sm">LGPD permite o titular pedir apagamento <em>parcial</em>: "esqueça só meu endereço, mantenha histórico de compras anônimo". Modele isso: <code>forget(user_id, category="address")</code>. Sem granularidade, todo pedido vira "apaga tudo" — perda de dado útil agregado (analytics, ML training).</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Boa operação forget</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• 1 endpoint único, idempotente, async</li>
+<li>• Roda em <strong>todos</strong> os stores</li>
+<li>• Gera audit imutável</li>
+<li>• SLA escrito (ex: 48h)</li>
+<li>• Testado em CI com fixture de user falso</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Forget de mentirinha</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Marca flag <code>deleted=true</code> e segue usando</li>
+<li>• Esquece backup / cache / logs</li>
+<li>• Sem audit — como prova que apagou?</li>
+<li>• Operação manual via SQL no console</li>
+<li>• Sem teste — descobre que quebrou no incidente</li>
+</ul>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Base legal</strong><p class="text-xs text-neutral-400 mt-1">LGPD art.18 inciso VI.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">SLA típico</strong><p class="text-xs text-neutral-400 mt-1">15 dias úteis. Melhor: 48h.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Audit retenção</strong><p class="text-xs text-neutral-400 mt-1">5+ anos. Imutável.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Granularidade</strong><p class="text-xs text-neutral-400 mt-1">Por category, não só total.</p></div>
+</div>
+</section>
+
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Memória é o que separa demo de colega</strong><span class="text-neutral-400"> — se user repete info entre sessões, sua memória está errada.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">SQLite FTS5 resolve 90% dos casos</strong><span class="text-neutral-400"> — zero infra, &lt;5ms em 100k entries, BM25 + snippet de graça.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Vector só quando precisa de paráfrase</strong><span class="text-neutral-400"> — Chroma local primeiro, Pinecone só em &gt;1M vetores ou SLA exigente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">MD blocks com frontmatter</strong><span class="text-neutral-400"> — identidade, regras e contexto duradouro versionados em git, editáveis por humano.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tabela de decisão</strong><span class="text-neutral-400"> — volume × tipo × tipo de busca decide tudo. Pinecone em &lt;5k entries é desperdício.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Forget é operação técnica + audit imutável</strong><span class="text-neutral-400"> — roda em todos os stores (SQLite, vector, MD, logs, backups). LGPD não aceita promessa.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-blue-400 mb-2">Próximo módulo:</h3><p class="text-neutral-300">2.5 — Tools que dão dinheiro (shell, web, calendar, JSON Schema bem feito)</p></div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+<a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+</div>
+</div>
+</section>
 
 </main>
+
 <footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 2 · Módulo 2.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
-<script>const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});</script>
+
+<script>
+const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;
+if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}
+tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});
+</script>
 </body></html>
