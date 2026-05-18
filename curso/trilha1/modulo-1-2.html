@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1.2 — As 6 camadas analógicas | New Agentic OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+html:not(.dark) body{background-color:#f8fafc}
+html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}
+html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}
+html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}
+html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) .hover\:bg-emerald-500\/10:hover{background-color:rgba(5,150,105,.08)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}
+html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .hover\:text-blue-400:hover{color:#2563eb}html:not(.dark) .hover\:bg-blue-500\/10:hover{background-color:rgba(37,99,235,.08)}html:not(.dark) .bg-blue-900\/20{background-color:rgba(59,130,246,.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,.25)}
+html:not(.dark) .text-purple-400{color:#7c3aed}html:not(.dark) .hover\:text-purple-400:hover{color:#7c3aed}html:not(.dark) .hover\:bg-purple-500\/10:hover{background-color:rgba(124,58,237,.08)}
+html:not(.dark) .text-amber-400{color:#92400e}html:not(.dark) .hover\:text-amber-400:hover{color:#92400e}html:not(.dark) .hover\:bg-amber-500\/10:hover{background-color:rgba(217,119,6,.08)}
+html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .bg-red-900\/20{background-color:rgba(239,68,68,.08)}html:not(.dark) .border-red-500\/30{border-color:rgba(239,68,68,.25)}
+html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}
+html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,.08)}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,.25)}
+html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}
+html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}
+.dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}
+</style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧠</span><span class="font-bold text-lg hidden sm:inline">New Agentic OS</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span></a>
+<a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span></a>
+<a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span></a>
+<a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span></a>
+<button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button>
+</div></div></div></nav>
+
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-emerald-400">Início</a><span>/</span><a href="index.html" class="hover:text-emerald-400">Trilha 1 · Executivo</a><span>/</span><span class="text-emerald-400">Módulo 1.2</span></div></nav>
+
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🗺️ As 6 camadas analógicas</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Cada camada do Agentic OS explicada com analogia direta de negócio que executivo entende. Sem jargão técnico.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl"><div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div><div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">35</div><div class="text-xs text-neutral-400">Minutos</div></div><div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Executivo</div><div class="text-xs text-neutral-400">Nível</div></div><div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Teoria</div><div class="text-xs text-neutral-400">Tipo</div></div></div>
+</div></header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+<section id="topico-1" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🖥️ Camada 1 — LLM = processador</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O LLM é o silício do Agentic OS. Bruto, poderoso, inútil sozinho. Igual processador sem sistema operacional.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">💼</span> Analogia executiva</h3>
+<p class="text-neutral-300">Comprar GPT-4 enterprise sem o OS é comprar 100 CPUs Xeon empilhadas. Tem capacidade, mas ninguém usa. Você ainda precisa do sistema operacional, das aplicações, dos workflows.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Quem oferece</strong><p class="text-sm text-neutral-400 mt-1">Anthropic, OpenAI, Google, Mistral, Meta.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Commodity?</strong><p class="text-sm text-neutral-400 mt-1">Tendendo. Trocas relevantes a cada 6 meses.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Risco</strong><p class="text-sm text-neutral-400 mt-1">Vendor lock-in. Mitigue na camada 2.</p></div>
+</div>
+</section>
+
+<section id="topico-2" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🧬 Camada 2 — Agentic OS = kernel/SO</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">CLAUDE.md, skills, hooks, orquestrador. É a peça que define <strong class="text-emerald-400">quem é seu agente</strong>, como se comporta, o que pode fazer.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> O que mora aqui</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">CLAUDE.md / AGENTS.md:</strong> identidade e regras.</li>
+<li><strong class="text-blue-400">Skills:</strong> habilidades nomeadas (silver-platter, dream, six-hats).</li>
+<li><strong class="text-blue-400">Hooks:</strong> interrupts (SessionStart, PostToolUse, Stop).</li>
+<li><strong class="text-blue-400">Orquestrador:</strong> quem decide qual agente faz o quê.</li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6"><h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Por que isso é o coração</h3><p class="text-neutral-300">É a única camada onde sua empresa <strong>tem que ser dona</strong>. As outras podem ser terceirizadas. Esta, não.</p></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Investimento</strong><p class="text-sm text-neutral-400 mt-1">Alto no início, baixa amortização depois.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Quem mantém</strong><p class="text-sm text-neutral-400 mt-1">Time interno. Sempre. Sem exceções.</p></div></div>
+</section>
+
+<section id="topico-3" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">⌨️ Camada 3 — CLI agêntica = shell</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Claude Code, Codex CLI, Gemini CLI. A forma humana de operar o OS. Igual bash/zsh foi a forma humana de operar Unix.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6"><h3 class="text-lg font-semibold text-emerald-400 mb-3">Sem CLI, você fica no chat web</h3><p class="text-neutral-300">Chat web é o "Windows 95" da IA: bom pra aprender, ruim pra trabalhar. CLI é onde produtividade real acontece.</p></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Operador típico</strong><p class="text-sm text-neutral-400 mt-1">Dev, ops, analista de dados.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Curva</strong><p class="text-sm text-neutral-400 mt-1">1 dia pra fluente. 1 semana pra confortável.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Ganho</strong><p class="text-sm text-neutral-400 mt-1">2-5x produtividade vs chat web.</p></div></div>
+</section>
+
+<section id="topico-4" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🌐 Camada 4 — MCP/A2A = protocolos</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">MCP (Model Context Protocol) e A2A (Agent-to-Agent) são o "TCP/IP da era agêntica". Como agentes e ferramentas se conversam.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6"><h3 class="text-lg font-semibold text-blue-400 mb-3">Em prosa simples</h3><ul class="space-y-2 text-neutral-300 text-sm"><li><strong class="text-blue-400">MCP:</strong> "esse agente conecta no Google Drive". Padrão de plugin.</li><li><strong class="text-blue-400">A2A:</strong> "esse agente conversa com aquele outro". Padrão de delegação.</li></ul></div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6"><h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> O que vigiar</h3><p class="text-neutral-300">Protocolo certo = ecossistema rico. Protocolo errado = você reescreve quando vier o vencedor. MCP venceu, A2A ainda em definição.</p></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">MCP</strong><p class="text-sm text-neutral-400 mt-1">Adopt. Suportado por Claude, GPT, Gemini.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">A2A</strong><p class="text-sm text-neutral-400 mt-1">Watch. Vários candidatos, sem vencedor claro.</p></div></div>
+</section>
+
+<section id="topico-5" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🛠️ Camada 5 — Agentes/Skills = aplicações</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Onde o trabalho útil acontece. Cada skill resolve 1 problema bem. Como aplicativos em iOS.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6"><h3 class="text-lg font-semibold text-emerald-400 mb-3">Princípio do "1 skill, 1 problema"</h3><p class="text-neutral-300">Skill que faz 10 coisas faz todas mal. Skill que faz 1 coisa faz bem e é fácil de manter. Igual unix tools.</p></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-3">✓ Exemplos certos</h4><ul class="space-y-2 text-sm text-neutral-300"><li>✓ generate-onboarding-doc (1 coisa)</li><li>✓ summarize-meeting (1 coisa)</li><li>✓ price-comparison-scraper (1 coisa)</li></ul></div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-3">✗ Exemplos errados</h4><ul class="space-y-2 text-sm text-neutral-300"><li>✗ super-assistant (faz tudo)</li><li>✗ business-helper (vago)</li><li>✗ ai-everywhere (sem foco)</li></ul></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Granularidade</strong><p class="text-sm text-neutral-400 mt-1">Pequena. Sempre.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Manutenção</strong><p class="text-sm text-neutral-400 mt-1">Cada skill é 1 PR.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Composição</strong><p class="text-sm text-neutral-400 mt-1">Orquestrador combina skills.</p></div></div>
+</section>
+
+<section id="topico-6" class="mb-16">
+<div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">📊 Camada 6 — Hooks/Ops = interrupts/observabilidade</h2></div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Hooks são interrupts do SO: "quando sessão começar, faça X". "Quando tool rodar, audite Y". É a camada que separa demo de produção.</p>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6"><h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Hooks na vida real</h3><ul class="space-y-2 text-neutral-300 text-sm"><li><strong>SessionStart:</strong> "Carregue contexto do cliente X automaticamente."</li><li><strong>PostToolUse:</strong> "Logue toda chamada de shell com timestamp e user."</li><li><strong>Stop:</strong> "Antes de terminar, escreva um daily summary."</li></ul></div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6"><h3 class="text-lg font-semibold text-blue-400 mb-3">A camada que executivo geralmente ignora</h3><p class="text-neutral-300">E paga caro depois. Sem hooks = sem audit = sem compliance = problema de regulação.</p></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Hooks</strong><p class="text-xs text-neutral-400 mt-1">Eventos do ciclo de vida.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Audit log</strong><p class="text-xs text-neutral-400 mt-1">JSON por evento.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Dashboard</strong><p class="text-xs text-neutral-400 mt-1">Custo, latência, erros.</p></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Kill switch</strong><p class="text-xs text-neutral-400 mt-1">Botão de pânico documentado.</p></div></div>
+</section>
+
+<section class="mb-12">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">6 camadas, cada uma com responsabilidade clara</strong><span class="text-neutral-400"> — LLM (processador), OS (kernel), CLI (shell), MCP/A2A (protocolo), Skills (apps), Hooks (interrupts).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Compra por camada</strong><span class="text-neutral-400"> — não compre pacote opaco. Cada camada tem fornecedor diferente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Camada 2 (OS) tem que ser da empresa</strong><span class="text-neutral-400"> — as outras podem ser terceirizadas; esta não.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Skills = 1 problema, 1 skill</strong><span class="text-neutral-400"> — granularidade pequena. Sem super-assistants.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Hooks são a diferença entre demo e produção</strong><span class="text-neutral-400"> — audit, compliance, observabilidade.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-emerald-400 mb-2">Próximo módulo:</h3><p class="text-neutral-300">1.3 — ROI real: 3 casos traduzidos em horas/semana economizadas</p></div>
+<div class="flex flex-col sm:flex-row gap-4"><a href="modulo-1-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a><a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a></div>
+</div>
+</section>
+
+</main>
+
+<footer class="border-t border-dark-600 py-8 mt-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>New Agentic OS · Trilha 1 · Módulo 1.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+<script>
+const tt=document.getElementById('theme-toggle'),td=document.getElementById('theme-toggle-dark-icon'),tl=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;
+if(localStorage.getItem('theme')==='light'||(!localStorage.getItem('theme')&&!h.classList.contains('dark'))){td.classList.remove('hidden');h.classList.remove('dark')}else{tl.classList.remove('hidden')}
+tt.addEventListener('click',()=>{td.classList.toggle('hidden');tl.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light')});
+</script>
+</body></html>
