@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.1 — Por que "OS" e não "ferramenta" | New Agentic OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode — trilha emerald (T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+
+    /* Light mode — trilhas inativas no nav */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(239,68,68,.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(239,68,68,.25); }
+
+    /* Light mode — gradientes removidos + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+
+    /* Dark mode — bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧠</span>
+            <span class="font-bold text-lg hidden sm:inline">New Agentic OS</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Executivo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Builder</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Multi-user</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">iAmasters OS</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1 · Executivo</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.1</span>
+    </div>
+  </nav>
+
+  <!-- HEADER MODULO -->
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧱 Por que "OS" e não "ferramenta"</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        A virada de paradigma em 10 minutos. Por que tratar IA como "mais uma ferramenta" é a
+        decisão estratégica errada — e o que muda quando você passa a tratar como sistema operacional.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">30</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">Executivo</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">Teoria</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 — A virada (timeline) -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🪜 A virada: por que ferramentas isoladas não escalam</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Em 2023 a IA era um <strong class="text-emerald-400">chat</strong>. Em 2024 virou
+        <strong class="text-emerald-400">automação pontual</strong>. Em 2025 virou
+        <strong class="text-emerald-400">agente</strong>. Em 2026 quem está colhendo retorno
+        já tratou tudo isso como <strong class="text-emerald-400">camadas de um SO</strong>.
+        Quem não tratou ainda está apagando incêndios.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📌</span> A frase que resume tudo</h3>
+        <p class="text-neutral-300 text-lg italic">
+          "Você não comprou um computador. Você comprou um <strong class="text-emerald-400">processador sem sistema operacional</strong>.
+          Sem CLAUDE.md, sem hooks, sem memória persistente, sem orquestrador — é só silício caro."
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">A linha do tempo (em 4 cliques)</h3>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">2023 — Chat</h4>
+            <p class="text-sm text-neutral-400 mb-2">"Pergunto, ele responde, eu copio."</p>
+            <p class="text-neutral-300 text-sm">Modelo era a estrela. Workflow era humano. Nada persistia.
+            Cada conversa começava do zero. O ROI vinha de produtividade individual — mensurável só em depoimentos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">2024 — Automação pontual</h4>
+            <p class="text-sm text-neutral-400 mb-2">"Zapier + GPT na hora do café."</p>
+            <p class="text-neutral-300 text-sm">Surgiram n8n, Make, fluxos com webhook + LLM.
+            Resolveu tarefas <em>uma de cada vez</em>. Cada automação era uma ilha — sem memória entre elas,
+            sem governança comum. Quando uma quebrava, era detetive.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">3</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">2025 — Agente</h4>
+            <p class="text-sm text-neutral-400 mb-2">"Roda sozinho, decide quando agir."</p>
+            <p class="text-neutral-300 text-sm">Tools, MCP, hooks. Surgiu autonomia real.
+            Mas cada empresa montou o seu de um jeito — sem padrão, sem disciplina.
+            Resultado: <strong class="text-emerald-400">demos espetaculares, produção frágil</strong>.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">4</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-1">2026 — Agentic OS</h4>
+            <p class="text-sm text-neutral-400 mb-2">"Tem camadas, contratos, governança."</p>
+            <p class="text-neutral-300 text-sm">A virada: parar de ver IA como app e começar a ver como
+            <strong class="text-emerald-400">plataforma</strong>. Quem tratou assim escalou — quem ficou
+            no estágio 3 está reescrevendo a casa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Marco temporal</strong><p class="text-sm text-neutral-400 mt-1">~36 meses do chat ao OS — rápido demais para esperar a poeira baixar.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Custo da espera</strong><p class="text-sm text-neutral-400 mt-1">Cada 6 meses de atraso = ~2 anos de débito técnico para corrigir.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Não é hype</strong><p class="text-sm text-neutral-400 mt-1">A virada já aconteceu nos buy-side e nos times técnicos. Falta o executivo nomear.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Vocabulário antigo machuca</strong><p class="text-sm text-neutral-400 mt-1">Dizer "ferramenta de IA" hoje é como dizer "página de Facebook" em 2010 para uma estratégia de marca.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 — Camadas (concept) -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🗺️ As camadas que ninguém te mostrou</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Um SO clássico tem hardware → kernel → shell → linguagem → aplicação. Agentic OS tem
+        <strong class="text-emerald-400">paralelos diretos</strong>. Memorizar essa tabela é o que separa
+        o executivo que "sabe que IA é importante" do que entende <em>o que está comprando quando aprova um orçamento</em>.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🧩</span> Mapeamento clássico → agêntico</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-3 pr-4 text-emerald-400 font-semibold">Era clássica</th>
+              <th class="text-left py-3 text-emerald-400 font-semibold">Era agêntica</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600 text-neutral-300">
+            <tr><td class="py-3 pr-4">Hardware (CPU/RAM/disco)</td><td class="py-3">LLMs (Claude, GPT, Gemini)</td></tr>
+            <tr><td class="py-3 pr-4">Kernel / SO</td><td class="py-3"><strong class="text-emerald-400">Agentic OS</strong> (CLAUDE.md, skills, hooks, orquestrador)</td></tr>
+            <tr><td class="py-3 pr-4">Shell (bash, zsh)</td><td class="py-3">CLI agêntica (Claude Code, Codex CLI)</td></tr>
+            <tr><td class="py-3 pr-4">Protocolos (TCP/IP, POSIX)</td><td class="py-3">MCP, A2A</td></tr>
+            <tr><td class="py-3 pr-4">Linguagens (C, Python)</td><td class="py-3">n8n, Make, LangGraph, Python+SDK</td></tr>
+            <tr><td class="py-3 pr-4">Aplicações</td><td class="py-3">Agentes especializados</td></tr>
+            <tr><td class="py-3 pr-4">Filesystem</td><td class="py-3">Silver Platters, RAG, memory blocks</td></tr>
+            <tr><td class="py-3 pr-4">Interrupts</td><td class="py-3">Hooks (SessionStart, PostToolUse, Stop)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-emerald-400 mb-3">📥 O que cada camada entrega</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li><strong>LLM:</strong> raciocínio bruto. Inutilizável solto.</li>
+            <li><strong>Agentic OS:</strong> identidade, regras, governança.</li>
+            <li><strong>CLI agêntica:</strong> jeito humano de operar.</li>
+            <li><strong>MCP/A2A:</strong> como tudo se conversa.</li>
+            <li><strong>Skills/Agentes:</strong> trabalho útil.</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-semibold text-emerald-400 mb-3">💼 Por que importa pra você</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li>Decisão de compra <em>por camada</em>, não em pacote único.</li>
+            <li>Vendor lock-in fica restrito a uma camada (ex: trocar LLM sem trocar OS).</li>
+            <li>Vocabulário comum entre você e o time técnico.</li>
+            <li>Roadmap defensável: cada release toca 1-2 camadas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Camada-base</strong><p class="text-xs text-neutral-400 mt-1">LLM. Commodity.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Camada de identidade</strong><p class="text-xs text-neutral-400 mt-1">CLAUDE.md/AGENTS.md.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Camada de conhecimento</strong><p class="text-xs text-neutral-400 mt-1">Silver Platters, RAG.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Camada operacional</strong><p class="text-xs text-neutral-400 mt-1">Hooks, dashboards, audit.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 — Custo escondido (fazer vs evitar) -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">💸 Custo escondido de tratar como "ferramenta"</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Empresas que tratam IA como ferramenta solta gastam <strong class="text-emerald-400">2-3x mais</strong> nos
+        primeiros 18 meses do que as que tratam como OS. Não porque OS seja mais caro — porque
+        sem disciplina você refaz tudo a cada novo caso de uso.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Quem trata como OS</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Define <strong>uma vez</strong> identidade, regras, escopo — reusa em 20 casos.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Troca o modelo (Claude → GPT) sem reescrever os agentes.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Audit log nativo — sabe quem decidiu o quê e quando.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Onboarding de novo dev: 1 dia. Lê o CLAUDE.md e entende.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Custo por usuário/cliente rastreável.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Quem trata como ferramenta</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cada novo caso reescreve regras, contexto, prompt — copia-cola eterno.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Trocar modelo = reescrever metade do código.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Audit é screenshot de chat. Compliance ri da sua cara.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Onboarding: 2-4 semanas, e o dev sai com o conhecimento na cabeça.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Custo = soma de faturas dispersas. Nunca dá pra atribuir.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Conta rápida pra você fazer hoje</h3>
+        <p class="text-neutral-300">
+          Pegue o último projeto de IA que sua empresa entregou. Pergunte: <em>"Se trocássemos o LLM amanhã, quanto custaria refazer?"</em>
+          Se a resposta for "muito" ou "não sei", você está no modo ferramenta. Esse é o número que justifica investir
+          em Agentic OS antes do próximo projeto começar.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Reuso</strong><p class="text-sm text-neutral-400 mt-1">OS: 80%. Ferramenta: ~20%.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Time-to-second-agent</strong><p class="text-sm text-neutral-400 mt-1">OS: dias. Ferramenta: semanas.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">Risco de vendor</strong><p class="text-sm text-neutral-400 mt-1">OS: baixo. Ferramenta: alto.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 — Quem vence (dados blue) -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📈 Quem está vencendo: 3 sinais reais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Não é discurso de venture capitalist. São sinais observáveis em empresas que já operam Agentic OS.
+        Use isso para comparar com onde sua empresa está hoje.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Dados que aparecem em quem implementou</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-blue-400">90,2%</strong> — melhoria de qualidade quando há orquestrador (chief-of-staff pattern) vs. agente solto. Vale para tarefas técnicas e operacionais.</li>
+          <li><strong class="text-blue-400">3-5x</strong> — velocidade de entrega de novos agentes após o segundo. O primeiro custa caro; o décimo é quase grátis.</li>
+          <li><strong class="text-blue-400">~70%</strong> — redução em tempo de onboarding de novo time. CLAUDE.md vira "leia isso e está dentro".</li>
+          <li><strong class="text-blue-400">&gt;95%</strong> — taxa de auditabilidade. Toda decisão tem origem, hora, contexto.</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Os 3 sinais práticos</h3>
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">A</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">O CLAUDE.md (ou equivalente) tem versionamento e PR</h4>
+            <p class="text-neutral-300 text-sm">Quando o arquivo que define "quem é o agente" passa por code review como qualquer outro código,
+            você está em OS. Quando vive numa wiki desatualizada, ainda é ferramenta.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">B</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Existe alguém "operando" os agentes — não só usando</h4>
+            <p class="text-neutral-300 text-sm">Ops de IA é função real: alguém olha custo, latência, alucinação, logs.
+            Se "operação" é o estagiário verificando se "tá funcionando", você está no estágio 2.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">C</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">A pergunta "quanto custa por cliente?" tem resposta</h4>
+            <p class="text-neutral-300 text-sm">Em ferramenta, custo é uma fatura geral. Em OS, você atribui consumo
+            por cliente, projeto ou skill. Sem isso, você não sabe precificar — então não vende confiante.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sinal A</strong><p class="text-xs text-neutral-400 mt-1">Identidade versionada.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sinal B</strong><p class="text-xs text-neutral-400 mt-1">Ops de IA existe.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Sinal C</strong><p class="text-xs text-neutral-400 mt-1">Custo por cliente.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-blue-400">Bônus</strong><p class="text-xs text-neutral-400 mt-1">Kill switch escrito, testado.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 — Ilusoes (alerta red) -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚠️ As 4 ilusões mais comuns do executivo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Estas são as frases que aparecem em board meeting. Cada uma é uma decisão que vai custar caro 12 meses depois.
+        Reconhecer evita a armadilha.
+      </p>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Ilusão 1: "É só assinar o ChatGPT Enterprise"</h3>
+        <p class="text-neutral-300 mb-3">Você comprou acesso ao modelo. Não comprou identidade, governança, memória, integração, audit. É como comprar processador e dizer que tem servidor.</p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> Toda compra de modelo precisa vir com plano de OS — mesmo que mínimo.</p>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Ilusão 2: "Vamos esperar a tecnologia amadurecer"</h3>
+        <p class="text-neutral-300 mb-3">A tecnologia já amadureceu — o que falta é a sua organização desenvolver a disciplina.
+        Esperar mais 12 meses só aumenta o débito de prática, não diminui o risco técnico.</p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> 1 piloto pequeno + 1 pessoa responsável + 90 dias. Não precisa ser grande.</p>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Ilusão 3: "Vou terceirizar tudo numa consultoria"</h3>
+        <p class="text-neutral-300 mb-3">Funciona pro primeiro projeto, quebra no segundo. A consultoria sai e leva o
+        conhecimento da operação. O OS precisa pertencer à empresa — assim como o ERP pertence.</p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> Consultoria pra setup, time interno pra operação. Cláusula de handoff escrita.</p>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">🚨</span> Ilusão 4: "IA vai substituir o time"</h3>
+        <p class="text-neutral-300 mb-3">Vai substituir tarefas, não funções. O time muda de "executor" para "operador
+        de agentes". Quem demitir cedo demais perde a memória institucional que treina o OS.</p>
+        <p class="text-sm text-neutral-400"><strong class="text-red-400">Antídoto:</strong> Reorganizar antes de reduzir. As pessoas certas, treinando os agentes certos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-red-400">Padrão das 4</strong><p class="text-sm text-neutral-400 mt-1">Todas tratam IA como produto. É plataforma.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-red-400">Custo médio do erro</strong><p class="text-sm text-neutral-400 mt-1">~12 meses de atraso + retrabalho do que foi feito errado.</p></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 — Checklist (tip primary) -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">✅ Checklist: você está pronto para Agentic OS?</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Marque mentalmente. 4+ "sim" = comece o piloto na semana que vem. 2-3 = você precisa do
+        próximo módulo desta trilha antes. 0-1 = volte ao tópico 1 deste módulo e releia com atenção.
+      </p>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-4 flex items-center"><span class="mr-2">📋</span> O termômetro do executivo</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Você consegue explicar a diferença entre LLM e Agentic OS</strong> sem usar a palavra "IA" mais de duas vezes?</span></li>
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Existe pelo menos 1 pessoa no time</strong> cujo cargo (ou parte dele) é operar agentes — não só usar?</span></li>
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Você consegue dizer o custo</strong> mensal de IA do último trimestre por projeto/cliente?</span></li>
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Existe um documento</strong> que define "como nossos agentes se comportam" — versionado e revisado?</span></li>
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Você sabe responder</strong> "se trocássemos o modelo amanhã, quanto custaria?" sem chamar o fornecedor?</span></li>
+          <li class="flex items-start space-x-3"><span class="text-primary mt-1 font-bold">☐</span><span><strong>Existe um kill switch</strong> documentado — um botão pra desligar tudo se algo der errado?</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🎯</span> Se você marcou 0-1</h3>
+        <p class="text-neutral-300">Não é vergonha — é fotografia honesta. A maioria das empresas brasileiras está aqui em maio de 2026.
+        Continue nos módulos 1.2 (camadas em detalhe) e 1.3 (casos reais de ROI). Em 30 dias você sai daqui.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">0-1 sim</strong><p class="text-xs text-neutral-400 mt-1">Em formação. Foque na trilha 1.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">2-3 sim</strong><p class="text-xs text-neutral-400 mt-1">Conscientização. Hora do piloto.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">4-5 sim</strong><p class="text-xs text-neutral-400 mt-1">Operação. Vá pra trilha 3.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><strong class="text-emerald-400">6 sim</strong><p class="text-xs text-neutral-400 mt-1">Maduro. Trilha 4 pra escalar.</p></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📝</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Agentic OS é disciplina, não app</strong><span class="text-neutral-400"> — tem camadas, contratos e governança.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">A virada já aconteceu</strong><span class="text-neutral-400"> — 2023 chat, 2024 automação, 2025 agente, 2026 OS.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Quem trata como ferramenta gasta 2-3x mais</strong><span class="text-neutral-400"> — sem reuso, sem auditabilidade, sem custo por cliente.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">3 sinais que você operou a virada</strong><span class="text-neutral-400"> — identidade versionada, ops de IA real, custo atribuível.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">4 ilusões pra evitar</strong><span class="text-neutral-400"> — "só ChatGPT", "esperar maturar", "terceirizar tudo", "substituir o time".</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Checklist de 6 perguntas</strong><span class="text-neutral-400"> — termômetro objetivo da sua maturidade.</span></div></div>
+        </div>
+
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">1.2 — As 6 camadas analógicas explicadas com analogias de negócio</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 1</a>
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>New Agentic OS · Trilha 1 · Módulo 1.1 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
